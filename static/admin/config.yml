@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: main
   commit_messages:
     create: "Create {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -29,12 +29,7 @@ collections:
           default: single-post,
         }
       - { label: "Title", name: "title", widget: "string" }
-      - {
-          label: "Status",
-          name: "status",
-          widget: select,
-          options: ["Published", "Draft"],
-        }
+        # defaults to current datetime
       - { label: "Publish Date", name: "publish_date", widget: "datetime" }
       - {
           label: "Author(s)",
@@ -62,16 +57,6 @@ collections:
         }
       - { label: "Body", name: "body", widget: "markdown", required: false }
       - {
-          label: "Filetype(s)",
-          name: "file_types",
-          required: false,
-          widget: "relation",
-          collection: "file_types",
-          multiple: true,
-          searchFields: ["title"],
-          valueField: "title",
-        }
-      - {
           label: "Tag(s)",
           name: "tags",
           required: false,
@@ -80,18 +65,6 @@ collections:
           multiple: true,
           searchFields: ["title"],
           valueField: "title",
-        }
-      - {
-          label: "External Link",
-          name: "external_link",
-          widget: "string",
-          required: false,
-        }
-      - {
-          label: "Direct Link",
-          name: "direct_link",
-          widget: "string",
-          required: false,
         }
       - {
           label: "Short description",

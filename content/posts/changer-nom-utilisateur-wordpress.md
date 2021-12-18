@@ -1,6 +1,5 @@
 ---
 title: Changer son nom d’utilisateur WordPress
-status: Published
 publish_date: 2021-11-20
 authors:
   - Vladislav Kim

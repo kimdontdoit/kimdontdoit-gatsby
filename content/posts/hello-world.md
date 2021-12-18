@@ -1,8 +1,7 @@
 ---
 title: Hello World
-status: Published
 publish_date: 2015-05-01T22:12:03.284Z
-description: Hello World
+short_description: Hello World
 authors:
   - Vladislav Kim
 category: rip sysadmin

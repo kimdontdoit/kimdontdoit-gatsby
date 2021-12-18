@@ -52,7 +52,7 @@ export const templateQuery = graphql`
       frontmatter {
         title
         publish_date(formatString: "MMMM DD, YYYY")
-        description
+        short_description
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
