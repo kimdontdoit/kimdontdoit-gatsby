@@ -1,0 +1,23 @@
+.footer {
+  :global {
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.footerContainer {
+  max-width: 25rem;
+}
+
+.scrollTopLink {
+  &:after {
+    content: "⤴";
+    vertical-align: top;
+    margin-left: 1rem;
+  }
+}

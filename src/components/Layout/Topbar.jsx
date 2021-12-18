@@ -1,0 +1,88 @@
+import React, { useState, useEffect } from "react";
+import { Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
+
+import * as classes from "./Topbar.module.scss";
+
+const Topbar = (props) => {
+  const { topbarFixed } = props;
+
+  const [sticky, setSticky] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      window.scrollY > 150 ? setSticky(true) : setSticky(false);
+    });
+  });
+
+  return (
+    <div
+      className={`${classes.topbar} ${topbarFixed ? classes.fixed : ""} ${
+        sticky ? classes.sticky : ""
+      }`}
+    >
+      <div className={`container flex flex-row py-4`}>
+        <div className={`flex-1 flex`}>
+          <Link to="/">
+            <StaticImage
+              src="../../images/kimdontdoit_logo_dark.svg"
+              alt="Kimdontdoit Wavy Logo"
+              objectFit="contain"
+              loading="eager"
+              placeholder="none"
+              height={40}
+              width={92}
+            />
+          </Link>
+
+          <ul className="flex ml-16 items-center">
+            <li>
+              <Link to="/blogue" activeClassName="underline">
+                Blogue
+              </Link>
+            </li>
+            <li>
+              <Link to="/categories" activeClassName="underline">
+                Catégories
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className={`flex flex-1 justify-end items-center`}>
+          <ul className="flex">
+            <li>
+              <a
+                href="https://www.linkedin.com/in/vladislav-kim-3ba4a1172"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Linkedin
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/kimdontdoit"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Github
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/kimdontdoit/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Topbar;

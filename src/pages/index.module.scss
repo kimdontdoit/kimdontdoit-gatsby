@@ -1,0 +1,30 @@
+.section {
+  display: block;
+}
+
+.mediumTitle {
+  font-size: 2rem;
+  line-height: 110%;
+  font-weight: 900;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.block {
+  border-radius: 12px;
+}
+
+.blockContent {
+  max-width: 25rem;
+  padding: 2.5rem 0 5rem 0;
+}
+
+.workSection {
+  :global {
+    img {
+      border-radius: 8px;
+    }
+  }
+}

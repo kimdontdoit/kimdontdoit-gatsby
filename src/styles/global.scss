@@ -1,0 +1,21 @@
+@import "fonts.scss";
+
+/* 
+ * Colors, fonts
+ * also fed to tailwindcss config */
+@import "variables.scss";
+
+/*
+ * Preflight
+ * https://tailwindcss.com/docs/preflight */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "base.scss";
+@import "components.scss";
+
+body {
+  @apply text-black;
+  font-feature-settings: "ss03" 1;
+}

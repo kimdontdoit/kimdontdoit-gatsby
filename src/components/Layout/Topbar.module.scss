@@ -1,0 +1,27 @@
+.topbar {
+  transition: 0.4s ease-in-out;
+
+  :global {
+    ul {
+      flex-direction: row;
+
+      :not(:last-of-type) {
+        @apply pr-2.5;
+      }
+    }
+  }
+}
+
+.fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.sticky {
+  compose: fixed;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: saturate(180%) blur(5px);
+}
