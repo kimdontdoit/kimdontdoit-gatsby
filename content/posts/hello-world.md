@@ -6,8 +6,8 @@ description: Hello World
 authors:
   - Vladislav Kim
 category: rip sysadmin
-featured_img: salty_egg.jpeg
 ---
+
 This is my first post on my new fake blog! How exciting!
 
 I'm sure I'll write a lot more interesting things in the future.
@@ -126,15 +126,15 @@ Header 2
 >     Markdown.generate();
 ```
 
-* Red
-* Green
-* Blue
-* Red
-* Green
-* Blue
-* Red
-* Green
-* Blue
+- Red
+- Green
+- Blue
+- Red
+- Green
+- Blue
+- Red
+- Green
+- Blue
 
 ```markdown
 - Red
@@ -150,8 +150,8 @@ Header 2
 - Blue
 ```
 
-* `code goes` here in this line
-* **bold** goes here
+- `code goes` here in this line
+- **bold** goes here
 
 ```markdown
 - `code goes` here in this line
@@ -190,15 +190,15 @@ Paragraph:
     Code
 ```
 
-- - -
+---
 
-- - -
+---
 
-- - -
+---
 
-- - -
+---
 
-- - -
+---
 
 ```
 * * *
@@ -228,9 +228,9 @@ This is [an example] [id] reference-style link.
 [id]: http://example.com "Optional Title"
 ```
 
-*single asterisks*
+_single asterisks_
 
-*single underscores*
+_single underscores_
 
 **double asterisks**
 

@@ -1,14 +1,11 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import Seo from "../components/Seo";
 
 export default function PostTemplate({ data, location }) {
   const post = data.markdownRemark;
   //const { previous, next } = data;
-
-  const image = getImage(post.frontmatter.featured_img);
 
   return (
     <>
@@ -23,8 +20,6 @@ export default function PostTemplate({ data, location }) {
       >
         <section className={`my-16`}>
           <header className={`container text-center`}>
-            {image && <GatsbyImage image={image} />}
-
             <h1 itemProp="headline" className={`text-4xl font-black`}>
               {post.frontmatter.title}
             </h1>
@@ -58,11 +53,6 @@ export const templateQuery = graphql`
         title
         publish_date(formatString: "MMMM DD, YYYY")
         description
-        featured_img {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
