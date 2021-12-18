@@ -8,7 +8,7 @@ export default function PostTemplate({ data, location }) {
   const post = data.markdownRemark;
   //const { previous, next } = data;
 
-  const image = getImage(post.frontmatter.featuredImage);
+  const image = getImage(post.frontmatter.featured_img);
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function PostTemplate({ data, location }) {
             <h1 itemProp="headline" className={`text-4xl font-black`}>
               {post.frontmatter.title}
             </h1>
-            <p>{post.frontmatter.date}</p>
+            <p>{post.frontmatter.publish_date}</p>
           </header>
         </section>
 
@@ -56,9 +56,9 @@ export const templateQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        publish_date(formatString: "MMMM DD, YYYY")
         description
-        featuredImage {
+        featured_img {
           childImageSharp {
             gatsbyImageData
           }

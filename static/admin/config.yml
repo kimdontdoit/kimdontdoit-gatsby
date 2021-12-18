@@ -9,238 +9,162 @@ backend:
     deleteMedia: "[skip ci] Delete “{{path}}”"
 
 local_backend: true
-media_folder: static/img
-public_folder: /img
+publish_mode: editorial_workflow
+media_folder: src/images/uploads
+public_folder: /media
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "src/pages/blog"
+  - name: "post"
+    label: "Posts"
+    label_singular: "Post"
+    description: "Post Collection"
+    folder: "content/posts"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
       - {
-          label: "Template Key",
-          name: "templateKey",
-          widget: "hidden",
-          default: "blog-post",
+          label: "Template",
+          name: "template",
+          widget: hidden,
+          default: single-post,
         }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Featured Post", name: "featuredpost", widget: "boolean" }
-      - { label: "Featured Image", name: "featuredimage", widget: image }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list" }
+      - {
+          label: "Status",
+          name: "status",
+          widget: select,
+          options: ["Published", "Draft"],
+        }
+      - { label: "Publish Date", name: "publish_date", widget: "datetime" }
+      - {
+          label: "Author(s)",
+          name: "authors",
+          widget: "relation",
+          collection: "authors",
+          multiple: true,
+          searchFields: ["name"],
+          valueField: "name",
+          min: 1,
+        }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "relation",
+          collection: "categories",
+          searchFields: ["title"],
+          valueField: "title",
+        }
+      - {
+          label: "Featured Image",
+          name: "featured_img",
+          widget: image,
+          required: false,
+        }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+      - {
+          label: "Filetype(s)",
+          name: "file_types",
+          required: false,
+          widget: "relation",
+          collection: "file_types",
+          multiple: true,
+          searchFields: ["title"],
+          valueField: "title",
+        }
+      - {
+          label: "Tag(s)",
+          name: "tags",
+          required: false,
+          widget: "relation",
+          collection: "tags",
+          multiple: true,
+          searchFields: ["title"],
+          valueField: "title",
+        }
+      - {
+          label: "External Link",
+          name: "external_link",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Direct Link",
+          name: "direct_link",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Short description",
+          name: short_description,
+          widget: text,
+          required: false,
+        }
 
-  - name: "pages"
-    label: "Pages"
-    files:
-      - file: "src/pages/index.md"
-        label: "Landing Page"
-        name: "index"
-        fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "index-page",
-            }
-          - { label: Title, name: title, widget: string }
-          - { label: Image, name: image, widget: image }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Subheading, name: subheading, widget: string }
-          - {
-              label: Mainpitch,
-              name: mainpitch,
-              widget: object,
-              fields:
-                [
-                  { label: Title, name: title, widget: string },
-                  { label: Description, name: description, widget: text },
-                ],
-            }
-          - { label: Description, name: description, widget: string }
-          - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
-          - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
-      - file: "src/pages/about/index.md"
-        label: "About"
-        name: "about"
-        fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "about-page",
-            }
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
-      - file: "src/pages/products/index.md"
-        label: "Products Page"
-        name: "products"
-        fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "product-page",
-            }
-          - { label: Title, name: title, widget: string }
-          - { label: Image, name: image, widget: image }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Description, name: description, widget: string }
-          - {
-              label: Intro,
-              name: intro,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
-                ],
-            }
-          - {
-              label: Main,
-              name: main,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                ],
-            }
-          - {
-              label: Testimonials,
-              name: testimonials,
-              widget: list,
-              fields:
-                [
-                  { label: Quote, name: quote, widget: string },
-                  { label: Author, name: author, widget: string },
-                ],
-            }
-          - { label: Full_image, name: full_image, widget: image }
-          - {
-              label: Pricing,
-              name: pricing,
-              widget: object,
-              fields:
-                [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: string },
-                  {
-                    label: Plans,
-                    name: plans,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Plan, name: plan, widget: string },
-                        { label: Price, name: price, widget: string },
-                        {
-                          label: Description,
-                          name: description,
-                          widget: string,
-                        },
-                        { label: Items, name: items, widget: list },
-                      ],
-                  },
-                ],
-            }
+  ### CATEGORIES COLLECTION
+  - name: categories
+    label: "Categories"
+    label_singular: "Category"
+    preview: false
+    folder: content/categories
+    slug: "{{slug}}"
+    create: true
+    fields:
+      - {
+          label: Template,
+          name: template,
+          widget: hidden,
+          default: post_category,
+        }
+      - { label: Title, name: title, widget: string }
+      - { label: Subtitle, name: subtitle, widget: string, required: false }
+
+  ### TAGS COLLECTION
+  - name: tags
+    label: "Tags"
+    label_singular: "Tag"
+    preview: false
+    folder: content/tags
+    slug: "{{slug}}"
+    create: true
+    fields:
+      - { label: Template, name: template, widget: hidden, default: post_tag }
+      - { label: Title, name: title, widget: string }
+      - { label: Subtitle, name: subtitle, widget: string, required: false }
+
+  ### FILE TYPES COLLECTION
+  - name: file_types
+    label: "File types"
+    label_singular: "File type"
+    preview: false
+    folder: content/file_types
+    slug: "{{slug}}"
+    create: true
+    fields:
+      - { label: Template, name: template, widget: hidden, default: file_type }
+      - { label: Title, name: title, widget: string }
+      - { label: Icon, name: icon, widget: image, required: false }
+      - { label: Subtitle, name: subtitle, widget: string, required: false }
+
+  - name: authors
+    label: "Authors"
+    label_singular: "Author"
+    preview: false
+    folder: content/author
+    slug: "{{slug}}"
+    create: true
+    fields:
+      - {
+          label: Template,
+          name: template,
+          widget: hidden,
+          default: post_author,
+        }
+      - { label: Name, name: name, widget: string }
+      - { label: URL, name: url, widget: string, required: false }
+      - {
+          label: "Author image",
+          name: author_img,
+          widget: image,
+          required: false,
+        }
+      - { label: Bio, name: body, widget: markdown, required: false }
