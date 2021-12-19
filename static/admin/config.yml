@@ -59,16 +59,6 @@ collections:
         }
       - { label: "Body", name: "body", widget: "markdown", required: false }
       - {
-          label: "Tag(s)",
-          name: "tags",
-          required: false,
-          widget: "relation",
-          collection: "tags",
-          multiple: true,
-          searchFields: ["title"],
-          valueField: "title",
-        }
-      - {
           label: "Short description",
           name: short_description,
           widget: text,
