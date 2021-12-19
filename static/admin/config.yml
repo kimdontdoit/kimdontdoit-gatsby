@@ -9,7 +9,7 @@ backend:
     deleteMedia: "[skip ci] Delete “{{path}}”"
 
 local_backend: true
-publish_mode: editorial_workflow
+#publish_mode: editorial_workflow
 media_folder: static/media
 public_folder: /media
 
