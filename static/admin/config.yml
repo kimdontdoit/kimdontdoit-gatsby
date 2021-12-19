@@ -31,6 +31,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
         # defaults to current datetime
       - { label: "Publish Date", name: "publish_date", widget: "datetime" }
+        # defaults to Vladislav Kim
       - {
           label: "Author(s)",
           name: "authors",
@@ -40,6 +41,7 @@ collections:
           searchFields: ["name"],
           valueField: "name",
           min: 1,
+          default: ["Vladislav Kim"],
         }
       - {
           label: "Category",
