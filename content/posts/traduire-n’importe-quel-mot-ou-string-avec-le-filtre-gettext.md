@@ -6,6 +6,7 @@ authors:
   - Vladislav Kim
 category: WordPress
 ---
+
 Je vous assure, traduire WordPress, j’en ai vu de toutes les couleurs. Peu importe l’extension que vous utilisez, que ce soit WPML, TranslatePress ou une autre des (nombreuses) solutions disponibles qui aborde la traduction WordPress de manière, et je vous confirme, TRÈS différente l’une de l’autre (ahem, MultilingualPress…), avec l’accumulation de code et d’extensions, il se peut qu’un mot ou une phrase décide de ne pas s’entendre avec vous.
 
 En tout cas, c’était le cas pour moi où certaines strings ne traduisaient pas comme je le désirais.
@@ -36,7 +37,7 @@ Si vous ne connaissez pas le `$domain`, vous pouvez l’ignorer dans votre usag
 ```
 <?php
 
-add_filter( 'gettext', 'translate_strings', 20, 3 );    
+add_filter( 'gettext', 'translate_strings', 20, 3 );
 function translate_strings( $translated, $original, $domain ) {
 
 	switch ( $original ) {
@@ -47,7 +48,7 @@ function translate_strings( $translated, $original, $domain ) {
 			$translated = 'Paramètres';
 			break;
 	}
-	
+
 	return $translated;
 }
 ```

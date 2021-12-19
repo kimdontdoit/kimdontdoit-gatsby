@@ -4,8 +4,9 @@ title: Rediriger sans-www vers www (et vice-versa) avec Apache htaccess
 publish_date: 2020-08-24T17:48:49.104Z
 authors:
   - Vladislav Kim
-category: rip sysadmin
+category: Serveur
 ---
+
 Forcer l’url de votre site web en www ou sans-www est nécessaire pour éviter un dédoublement de vos pages dans Google et les autres moteurs de recherche. Si vos pages affichent en double, il se peut que vous ne bénéficiez pas de tout les avantages de référencement SEO hors-site qui pointent sur vos pages. Vous pouvez sauver du temps dans le futur également en utilisant cette technique avant que votre site soit indexé dans Google.
 
 Si vous n’êtes pas certain si votre site est hébergé sur Apache, contactez votre hébergement web. Vous pouvez également créer cette redirection dans Cpanel, Cloudflare ou Nginx, si applicable.

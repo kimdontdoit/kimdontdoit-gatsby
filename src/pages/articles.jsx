@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
+import { Pageheader } from "../components/Pageheader";
 import Seo from "../components/Seo";
 
 const Post = ({ post }) => {
@@ -21,11 +22,7 @@ export default function Blogue({ data, location }) {
       <Seo title="Articles" />
 
       <section className={`my-16`}>
-        <header className={`container text-center`}>
-          <h1 itemProp="headline" className={`text-4xl font-black`}>
-            Articles
-          </h1>
-        </header>
+        <Pageheader title="Articles" />
       </section>
 
       <section className={`pb-16`}>
