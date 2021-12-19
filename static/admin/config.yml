@@ -10,7 +10,7 @@ backend:
 
 local_backend: true
 publish_mode: editorial_workflow
-media_folder: src/images/uploads
+media_folder: static/media
 public_folder: /media
 
 collections:
@@ -90,6 +90,12 @@ collections:
         }
       - { label: Title, name: title, widget: string }
       - { label: Subtitle, name: subtitle, widget: string, required: false }
+      - {
+          label: "Short description",
+          name: short_description,
+          widget: text,
+          required: false,
+        }
       - { label: Color, name: color, widget: color, required: false }
 
   ### TAGS COLLECTION

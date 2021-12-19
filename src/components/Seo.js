@@ -38,7 +38,7 @@ const Seo = ({ title, description, image, article }) => {
     siteName: siteName,
     title: title ? `${title} - ${defaultTitle}` : defaultTitle,
     description: defaultDescription,
-    image: defaultImage,
+    image: `${siteUrl}${defaultImage}`,
     url: `${siteUrl}${pathname}`,
     author: author,
   };
@@ -59,6 +59,9 @@ const Seo = ({ title, description, image, article }) => {
       <meta name="twitter:card" content="summary_large_image" />
       {twitterUsername && (
         <meta name="twitter:creator" content={twitterUsername} />
+      )}
+      {twitterUsername && (
+        <meta name="twitter:site" content={twitterUsername} />
       )}
       {seo.title && <meta name="twitter:title" content={seo.title} />}
       {seo.description && (

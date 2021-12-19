@@ -14,8 +14,3 @@
 
 @import "base.scss";
 @import "components.scss";
-
-body {
-  @apply text-black;
-  font-feature-settings: "ss03" 1;
-}

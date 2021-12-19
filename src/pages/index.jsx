@@ -25,7 +25,10 @@ export default function IndexPage() {
             </span>
           </h1>
 
-          <Button href="/a-propos" className="bg-black text-white">
+          <Button
+            href="/vladislav-kim-a-propos"
+            className="bg-black text-white"
+          >
             En savoir plus
           </Button>
         </div>

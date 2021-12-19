@@ -4,8 +4,8 @@ module.exports = {
     defaultTitle: `Vladislav Kim`,
     defaultDescription: `Salut! Mon nom est Vladislav Kim et je suis un Développeur Front End qui expérimente avec du back end à l'occasion. Présentement chez O2, je me concentre sur du code Javascript et PHP. J'écris également sur ce site + blogue à propos des sujets que je croise pour aider des gens de tous les niveaux, programmeur ou non.`,
     author: `@kimdontdoit`,
-    siteUrl: `https://kimdontdoit.com/`,
-    defaultImage: "/cover.png",
+    siteUrl: `https://kimdontdoit.com`,
+    defaultImage: "/media/cover.png",
     twitterUsername: "@kimdontdoit",
   },
   flags: {
@@ -24,6 +24,20 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `uploads`,
+        path: `${__dirname}/static/media`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         path: `${__dirname}/content/posts`,
         name: `posts`,
       },
@@ -36,16 +50,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-relative-images`,
           {
             resolve: `gatsby-remark-images`, // resolve: "gatsby-remark-relative-images",
             options: {

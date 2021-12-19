@@ -37,8 +37,8 @@ const Topbar = (props) => {
 
           <ul className="flex ml-16 items-center">
             <li>
-              <Link to="/blogue" activeClassName="underline">
-                Blogue
+              <Link to="/articles" activeClassName="underline">
+                Articles
               </Link>
             </li>
             <li>

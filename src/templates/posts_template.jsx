@@ -13,11 +13,7 @@ export default function PostTemplate({ data, location }) {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
+      <article itemScope itemType="http://schema.org/Article">
         <section className={`my-16`}>
           <header className={`container text-center`}>
             <h1 itemProp="headline" className={`text-4xl font-black`}>
@@ -27,7 +23,7 @@ export default function PostTemplate({ data, location }) {
           </header>
         </section>
 
-        <section>
+        <section className="pb-16">
           <div
             dangerouslySetInnerHTML={{ __html: post.html }}
             className={`container max-w-screen-md text-lg`}

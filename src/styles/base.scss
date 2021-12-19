@@ -1,0 +1,9 @@
+@layer base {
+  body {
+    @apply text-black;
+    font-feature-settings: "ss03" 1;
+  }
+  p {
+    @apply mb-8;
+  }
+}

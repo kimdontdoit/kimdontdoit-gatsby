@@ -5,7 +5,7 @@ import Seo from "../components/Seo";
 
 const Post = ({ post }) => {
   return (
-    <div className="mb-8 text-center">
+    <div className="container mb-8 text-center">
       <Link className="font-bold" to={post.fields.slug}>
         Article: {post.frontmatter.title}
       </Link>
@@ -18,28 +18,22 @@ export default function Blogue({ data, location }) {
 
   return (
     <>
-      <Seo title="Blogue" />
+      <Seo title="Articles" />
 
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <section className={`my-16`}>
-          <header className={`container text-center`}>
-            <h1 itemProp="headline" className={`text-4xl font-black`}>
-              Blogue
-            </h1>
-          </header>
-        </section>
+      <section className={`my-16`}>
+        <header className={`container text-center`}>
+          <h1 itemProp="headline" className={`text-4xl font-black`}>
+            Articles
+          </h1>
+        </header>
+      </section>
 
-        <section>
-          {posts &&
-            posts.map((post) => {
-              return <Post key={post.id} post={post.childMarkdownRemark} />;
-            })}
-        </section>
-      </article>
+      <section className={`pb-16`}>
+        {posts &&
+          posts.map((post) => {
+            return <Post key={post.id} post={post.childMarkdownRemark} />;
+          })}
+      </section>
     </>
   );
 }
