@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import { Pageheader } from "../components/Pageheader";
 import Seo from "../components/Seo";
@@ -18,6 +18,7 @@ export default function PostTemplate({ data, location }) {
         <section className={`my-16`}>
           <Pageheader
             title={post.frontmatter.title}
+            category={post.frontmatter.category}
             date={post.frontmatter.publish_date}
           />
         </section>
@@ -46,6 +47,7 @@ export const templateQuery = graphql`
       html
       frontmatter {
         title
+        category
         publish_date(formatString: "MMMM DD, YYYY")
       }
     }
