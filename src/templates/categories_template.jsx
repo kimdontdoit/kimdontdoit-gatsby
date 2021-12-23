@@ -15,7 +15,7 @@ const Post = ({ post }) => {
 };
 
 export default function CategoryTemplate({ data, location }) {
-  const { category, next, previous } = data;
+  const { category } = data;
   const posts = data.posts.nodes;
 
   return (
@@ -26,7 +26,10 @@ export default function CategoryTemplate({ data, location }) {
       />
       <div>
         <section className={`my-16`}>
-          <Pageheader title={category.frontmatter.title} />
+          <Pageheader
+            title={category.frontmatter.title}
+            subtitle={category.frontmatter.subtitle}
+          />
         </section>
 
         {category.html && (
@@ -51,34 +54,15 @@ export default function CategoryTemplate({ data, location }) {
 }
 
 export const templateQuery = graphql`
-  query singleCategory(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-    $title: String
-  ) {
+  query singleCategory($id: String!, $title: String) {
     category: markdownRemark(id: { eq: $id }) {
       id
       excerpt
       html
       frontmatter {
         title
-      }
-    }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
+        subtitle
+        color
       }
     }
     posts: allFile(

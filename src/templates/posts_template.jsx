@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
+import { Pageheader } from "../components/Pageheader";
 import Seo from "../components/Seo";
 
 export default function PostTemplate({ data, location }) {
@@ -15,12 +16,10 @@ export default function PostTemplate({ data, location }) {
       />
       <article itemScope itemType="http://schema.org/Article">
         <section className={`my-16`}>
-          <header className={`container text-center`}>
-            <h1 itemProp="headline" className={`text-4xl font-black`}>
-              {post.frontmatter.title}
-            </h1>
-            <p>{post.frontmatter.publish_date}</p>
-          </header>
+          <Pageheader
+            title={post.frontmatter.title}
+            date={post.frontmatter.publish_date}
+          />
         </section>
 
         <section className="pb-16">

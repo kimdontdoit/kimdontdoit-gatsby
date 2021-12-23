@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Pageheader({ title, date }) {
+export function Pageheader({ title, subtitle, date }) {
   return (
     <header className={`container text-center`}>
       {title && (
@@ -9,7 +9,9 @@ export function Pageheader({ title, date }) {
         </h1>
       )}
 
-      {date && <p>{date}</p>}
+      {subtitle && <p className={`mt-2`}>{subtitle}</p>}
+
+      {date && <p className={`mt-2`}>{date}</p>}
     </header>
   );
 }
