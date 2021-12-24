@@ -1,10 +1,12 @@
+const siteUrl = process.env.siteUrl || `https://kimdontdoit.com`;
+
 module.exports = {
   siteMetadata: {
     siteName: `Kimdontdoit`,
     defaultTitle: `Vladislav Kim`,
     defaultDescription: `Salut! Mon nom est Vladislav Kim et je suis un Développeur Front End qui expérimente avec du back end à l'occasion. Présentement chez O2, je me concentre sur du code Javascript et PHP. J'écris également sur ce site + blogue à propos des sujets que je croise pour aider des gens de tous les niveaux, programmeur ou non.`,
     author: `@kimdontdoit`,
-    siteUrl: `https://kimdontdoit-gatsby.netlify.app`,
+    siteUrl,
     defaultImage: `/media/cover.png`,
     twitterUsername: `@kimdontdoit`,
   },
@@ -105,6 +107,8 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+    },
   ],
 };
