@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: main
   commit_messages:
     create: "Create {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -9,8 +9,8 @@ backend:
     deleteMedia: "[skip ci] Delete “{{path}}”"
 
 local_backend: true
-publish_mode: editorial_workflow
-media_folder: src/images/uploads
+#publish_mode: editorial_workflow
+media_folder: static/media
 public_folder: /media
 
 collections:
@@ -29,13 +29,9 @@ collections:
           default: single-post,
         }
       - { label: "Title", name: "title", widget: "string" }
-      - {
-          label: "Status",
-          name: "status",
-          widget: select,
-          options: ["Published", "Draft"],
-        }
+        # defaults to current datetime
       - { label: "Publish Date", name: "publish_date", widget: "datetime" }
+        # defaults to Vladislav Kim
       - {
           label: "Author(s)",
           name: "authors",
@@ -45,6 +41,7 @@ collections:
           searchFields: ["name"],
           valueField: "name",
           min: 1,
+          default: ["Vladislav Kim"],
         }
       - {
           label: "Category",
@@ -61,38 +58,6 @@ collections:
           required: false,
         }
       - { label: "Body", name: "body", widget: "markdown", required: false }
-      - {
-          label: "Filetype(s)",
-          name: "file_types",
-          required: false,
-          widget: "relation",
-          collection: "file_types",
-          multiple: true,
-          searchFields: ["title"],
-          valueField: "title",
-        }
-      - {
-          label: "Tag(s)",
-          name: "tags",
-          required: false,
-          widget: "relation",
-          collection: "tags",
-          multiple: true,
-          searchFields: ["title"],
-          valueField: "title",
-        }
-      - {
-          label: "External Link",
-          name: "external_link",
-          widget: "string",
-          required: false,
-        }
-      - {
-          label: "Direct Link",
-          name: "direct_link",
-          widget: "string",
-          required: false,
-        }
       - {
           label: "Short description",
           name: short_description,
@@ -117,33 +82,13 @@ collections:
         }
       - { label: Title, name: title, widget: string }
       - { label: Subtitle, name: subtitle, widget: string, required: false }
-
-  ### TAGS COLLECTION
-  - name: tags
-    label: "Tags"
-    label_singular: "Tag"
-    preview: false
-    folder: content/tags
-    slug: "{{slug}}"
-    create: true
-    fields:
-      - { label: Template, name: template, widget: hidden, default: post_tag }
-      - { label: Title, name: title, widget: string }
-      - { label: Subtitle, name: subtitle, widget: string, required: false }
-
-  ### FILE TYPES COLLECTION
-  - name: file_types
-    label: "File types"
-    label_singular: "File type"
-    preview: false
-    folder: content/file_types
-    slug: "{{slug}}"
-    create: true
-    fields:
-      - { label: Template, name: template, widget: hidden, default: file_type }
-      - { label: Title, name: title, widget: string }
-      - { label: Icon, name: icon, widget: image, required: false }
-      - { label: Subtitle, name: subtitle, widget: string, required: false }
+      - {
+          label: "Short description",
+          name: short_description,
+          widget: text,
+          required: false,
+        }
+      - { label: Color, name: color, widget: color, required: false }
 
   - name: authors
     label: "Authors"

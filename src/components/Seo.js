@@ -38,27 +38,36 @@ const Seo = ({ title, description, image, article }) => {
     siteName: siteName,
     title: title ? `${title} - ${defaultTitle}` : defaultTitle,
     description: defaultDescription,
-    image: defaultImage,
+    image: `${siteUrl}${defaultImage}`,
     url: `${siteUrl}${pathname}`,
     author: author,
   };
 
   return (
-    <Helmet title={seo.title}>
+    <Helmet htmlAttributes={{ lang: "fr" }} title={seo.title}>
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
+
+      <link rel="canonical" href={seo.url} />
+      <link rel="alternate" hreflang="x-default" href={seo.url} />
+
+      {/* Open Graph data */}
       {seo.url && <meta property="og:url" content={seo.url} />}
-
+      <meta property="og:locale" content="fr" />
       <meta property="og:site_name" content={seo.siteName} />
-
       {seo.title && <meta property="og:title" content={seo.title} />}
       {seo.description && (
         <meta property="og:description" content={seo.description} />
       )}
       {seo.image && <meta property="og:image" content={seo.image} />}
+
+      {/* Twitter Card data  */}
       <meta name="twitter:card" content="summary_large_image" />
       {twitterUsername && (
         <meta name="twitter:creator" content={twitterUsername} />
+      )}
+      {twitterUsername && (
+        <meta name="twitter:site" content={twitterUsername} />
       )}
       {seo.title && <meta name="twitter:title" content={seo.title} />}
       {seo.description && (

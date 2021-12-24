@@ -52,6 +52,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           component: template,
           context: {
             id: node.childMarkdownRemark.id,
+            title: node.childMarkdownRemark.frontmatter.title,
             previous,
             next,
           },

@@ -1,11 +1,22 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 
 import { Pageheader } from "../components/Pageheader";
 import Seo from "../components/Seo";
 
+const Post = ({ post }) => {
+  return (
+    <div className="container mb-8 text-center">
+      <Link className="font-bold" to={post.fields.slug}>
+        Article: {post.frontmatter.title}
+      </Link>
+    </div>
+  );
+};
+
 export default function CategoryTemplate({ data, location }) {
-  const category = data.markdownRemark;
+  const { category } = data;
+  const posts = data.posts.nodes;
 
   return (
     <>
@@ -15,7 +26,10 @@ export default function CategoryTemplate({ data, location }) {
       />
       <div>
         <section className={`my-16`}>
-          <Pageheader title={category.frontmatter.title} />
+          <Pageheader
+            title={category.frontmatter.title}
+            subtitle={category.frontmatter.subtitle}
+          />
         </section>
 
         {category.html && (
@@ -27,44 +41,49 @@ export default function CategoryTemplate({ data, location }) {
             ></div>
           </section>
         )}
+
+        <section className={`pb-16`}>
+          {posts &&
+            posts.map((post) => {
+              return <Post key={post.id} post={post.childMarkdownRemark} />;
+            })}
+        </section>
       </div>
     </>
   );
 }
 
 export const templateQuery = graphql`
-  query categoryById(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    markdownRemark(id: { eq: $id }) {
+  query singleCategory($id: String!, $title: String) {
+    category: markdownRemark(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 160)
+      excerpt
       html
       frontmatter {
         title
+        subtitle
+        color
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
+    posts: allFile(
+      filter: {
+        sourceInstanceName: { eq: "posts" }
+        internal: { mediaType: { eq: "text/markdown" } }
+        childMarkdownRemark: { frontmatter: { category: { eq: $title } } }
       }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
+    ) {
+      nodes {
+        id
+        sourceInstanceName
+        childMarkdownRemark {
+          id
+          frontmatter {
+            title
+          }
+          fields {
+            slug
+          }
+        }
       }
     }
   }
