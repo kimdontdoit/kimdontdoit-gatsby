@@ -11,7 +11,7 @@ module.exports = {
     twitterUsername: `@kimdontdoit`,
   },
   flags: {
-    //FAST_DEV: true,
+    FAST_DEV: true,
   },
   plugins: [
     /*`@kimdontdoit/the-great-gatsby-theme`, */

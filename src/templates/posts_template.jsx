@@ -4,6 +4,8 @@ import { graphql } from "gatsby";
 import { Pageheader } from "../components/Pageheader";
 import Seo from "../components/Seo";
 
+import * as classes from "./posts_template.module.scss";
+
 export default function PostTemplate({ data, location }) {
   const post = data.markdownRemark;
   //const { previous, next } = data;
@@ -24,10 +26,12 @@ export default function PostTemplate({ data, location }) {
         </section>
 
         <section className="pb-16">
-          <div
-            dangerouslySetInnerHTML={{ __html: post.html }}
-            className={`container max-w-screen-md text-lg`}
-          ></div>
+          <div className={classes.content}>
+            <div
+              dangerouslySetInnerHTML={{ __html: post.html }}
+              className={`container max-w-screen-md text-lg`}
+            ></div>
+          </div>
         </section>
       </article>
     </>
