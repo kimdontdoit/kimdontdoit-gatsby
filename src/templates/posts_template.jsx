@@ -11,7 +11,9 @@ export default function PostTemplate({ data, location }) {
   const post = data.markdownRemark;
   //const { previous, next } = data;
 
-  const date = dayjs(post.frontmatter.publish_date).format("DD MMMM YYYY");
+  const date = dayjs(post.frontmatter.publish_date)
+    .locale("fr")
+    .format("D MMMM YYYY");
 
   return (
     <>
