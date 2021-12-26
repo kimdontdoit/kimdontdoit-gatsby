@@ -1,14 +1,17 @@
 import React from "react";
 import { graphql } from "gatsby";
+import dayjs from "dayjs";
+import "dayjs/locale/fr";
 
 import { Pageheader } from "../components/Pageheader";
 import Seo from "../components/Seo";
-
 import * as classes from "./posts_template.module.scss";
 
 export default function PostTemplate({ data, location }) {
   const post = data.markdownRemark;
   //const { previous, next } = data;
+
+  const date = dayjs(post.frontmatter.publish_date).format("DD MMMM YYYY");
 
   return (
     <>
@@ -21,15 +24,15 @@ export default function PostTemplate({ data, location }) {
           <Pageheader
             title={post.frontmatter.title}
             category={post.frontmatter.category}
-            date={post.frontmatter.publish_date}
+            date={date}
           />
         </section>
 
         <section className="pb-16">
-          <div className={classes.content}>
+          <div className={`${classes.content}`}>
             <div
               dangerouslySetInnerHTML={{ __html: post.html }}
-              className={`container max-w-screen-md text-lg`}
+              className={`max-w-screen-md text-lg`}
             ></div>
           </div>
         </section>
@@ -52,7 +55,7 @@ export const templateQuery = graphql`
       frontmatter {
         title
         category
-        publish_date(formatString: "MMMM DD, YYYY")
+        publish_date
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

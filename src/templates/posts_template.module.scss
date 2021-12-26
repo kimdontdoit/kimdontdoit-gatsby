@@ -1,4 +1,6 @@
 .content {
+  @apply container;
+
   p {
     @apply mb-8;
   }
