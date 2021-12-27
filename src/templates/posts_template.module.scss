@@ -1,6 +1,4 @@
 .content {
-  @apply container;
-
   p {
     @apply mb-8;
   }
@@ -24,5 +22,28 @@
   h4 {
     @apply text-xl;
     @apply -mt-4 mb-4;
+  }
+}
+
+.toc {
+  @apply ml-auto;
+
+  /* h2 */
+  ul {
+    p {
+      @apply mb-1;
+    }
+
+    /* h3 */
+    ul {
+      li {
+        @apply pl-3;
+
+        /* h4 */
+        ul {
+          display: none;
+        }
+      }
+    }
   }
 }

@@ -25,11 +25,18 @@ export default function PostTemplate({ data, location }) {
           <Pageheader title={title} crumbs={crumbs} date={date} />
         </section>
 
-        <section className="pb-16">
-          <div className={`${classes.content}`}>
+        <section className="pb-16 container flex">
+          <div className={`${classes.content} flex-1`}>
             <div
               dangerouslySetInnerHTML={{ __html: post.html }}
               className={`max-w-screen-md text-lg`}
+            ></div>
+          </div>
+
+          <div className={`${classes.toc}`}>
+            <h3 className={`text-lg font-bold mb-4`}>Table des matières</h3>
+            <div
+              dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
             ></div>
           </div>
         </section>
@@ -53,6 +60,13 @@ export const templateQuery = graphql`
         title
         category
         publish_date
+      }
+      tableOfContents
+      timeToRead
+      wordCount {
+        paragraphs
+        sentences
+        words
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
