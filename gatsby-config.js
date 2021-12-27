@@ -62,6 +62,7 @@ module.exports = {
               maxWidth: 630,
             },
           },
+          `gatsby-remark-autolink-headers`, // before gatsby-remark-prismjs
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
         ],

@@ -11,23 +11,18 @@ export default function PostTemplate({ data, location }) {
   const post = data.markdownRemark;
   //const { previous, next } = data;
 
+  const title = post.frontmatter.title;
   const date = dayjs(post.frontmatter.publish_date)
     .locale("fr")
     .format("D MMMM YYYY");
+  const crumbs = [post.frontmatter.type, post.frontmatter.category];
 
   return (
     <>
-      <Seo
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-      />
+      <Seo title description={post.frontmatter.description || post.excerpt} />
       <article itemScope itemType="http://schema.org/Article">
         <section className={`my-16`}>
-          <Pageheader
-            title={post.frontmatter.title}
-            category={post.frontmatter.category}
-            date={date}
-          />
+          <Pageheader title={title} crumbs={crumbs} date={date} />
         </section>
 
         <section className="pb-16">

@@ -1,8 +1,8 @@
 import React from "react";
 
-export function Pageheader({ title, subtitle, category, date }) {
+export function Pageheader({ title, subtitle, category, date, center }) {
   return (
-    <header className={`container`}>
+    <header className={`container ${center ? "text-center" : ""}`}>
       {title && (
         <h1 itemProp="headline" className={`text-4xl font-black`}>
           {title}

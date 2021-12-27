@@ -22,7 +22,7 @@ export default function Blogue({ data, location }) {
       <Seo title="Articles" />
 
       <section className={`my-16`}>
-        <Pageheader title="Articles" />
+        <Pageheader title="Articles" center={true} />
       </section>
 
       <section className={`pb-16`}>
