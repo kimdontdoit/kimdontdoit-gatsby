@@ -12,7 +12,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section>
+      <section className={`pb-16`}>
         <div className={`container max-w-screen-md`}>
           <p className={`text-lg`}>
             Salut! Mon nom est Vladislav Kim et je suis un Développeur Front End

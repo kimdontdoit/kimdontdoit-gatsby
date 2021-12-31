@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
+import useWindowSize from "../../hooks/useWindowSize";
 import * as classes from "./Topbar.module.scss";
 
-const Topbar = (props) => {
-  const { topbarFixed } = props;
-
+const Topbar = ({ topbarFixed }) => {
+  const { width } = useWindowSize();
   const [sticky, setSticky] = useState(false);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const Topbar = (props) => {
               objectFit="contain"
               loading="eager"
               placeholder="none"
+              className={`${classes.logo}`}
               height={40}
               width={92}
             />
@@ -42,14 +43,18 @@ const Topbar = (props) => {
               </Link>
             </li>
             <li>
-              <Link to="/categories" activeClassName="underline">
+              <Link
+                to="/categories"
+                className={`hidden md:inline`}
+                activeClassName="underline"
+              >
                 Catégories
               </Link>
             </li>
           </ul>
         </div>
 
-        <div className={`flex flex-1 justify-end items-center`}>
+        <div className={`hidden md:flex flex-1 justify-end items-center `}>
           <ul className="flex">
             <li>
               <a

@@ -11,7 +11,7 @@ module.exports = {
     twitterUsername: `@kimdontdoit`,
   },
   flags: {
-    //FAST_DEV: true,
+    FAST_DEV: true,
   },
   plugins: [
     /*`@kimdontdoit/the-great-gatsby-theme`, */
@@ -62,6 +62,7 @@ module.exports = {
               maxWidth: 630,
             },
           },
+          `gatsby-remark-autolink-headers`, // before gatsby-remark-prismjs
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
         ],

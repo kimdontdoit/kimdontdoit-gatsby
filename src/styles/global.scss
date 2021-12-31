@@ -1,4 +1,5 @@
-@import "fonts.scss";
+@import "./fonts.scss";
+@import "./prism.scss";
 
 /* 
  * Colors, fonts
@@ -12,5 +13,5 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import "base.scss";
-@import "components.scss";
+@import "./tailwind/base.scss";
+@import "./tailwind/components.scss";

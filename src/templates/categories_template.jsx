@@ -29,6 +29,7 @@ export default function CategoryTemplate({ data, location }) {
           <Pageheader
             title={category.frontmatter.title}
             subtitle={category.frontmatter.subtitle}
+            center={true}
           />
         </section>
 
