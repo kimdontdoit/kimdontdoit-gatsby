@@ -1,8 +1,8 @@
 /** Prism customizations */
 
 pre[class*="language-"] {
-  @apply -ml-8;
-  @apply -mr-8;
+  @apply md:-ml-8;
+  @apply md:-mr-8;
   @apply mb-8;
 }
 

@@ -4,6 +4,8 @@ import dayjs from "dayjs";
 import "dayjs/locale/fr";
 
 import { Pageheader } from "../components/Pageheader";
+
+import { ScrollProgress } from "../components/ScrollProgress";
 import Seo from "../components/Seo";
 
 import * as classes from "./posts_template.module.scss";
@@ -11,17 +13,21 @@ import * as classes from "./posts_template.module.scss";
 export default function PostTemplate({ data, location }) {
   const post = data.markdownRemark;
   //const { previous, next } = data;
-
   const title = post.frontmatter.title;
   const date = dayjs(post.frontmatter.publish_date)
     .locale("fr")
     .format("D MMMM YYYY");
   const crumbs = [post.frontmatter.type, post.frontmatter.category];
 
+  const target = React.createRef();
+
   return (
     <>
       <Seo title description={post.frontmatter.description || post.excerpt} />
-      <article itemScope itemType="http://schema.org/Article">
+
+      <ScrollProgress target={target} />
+
+      <article itemScope itemType="http://schema.org/Article" ref={target}>
         <section className={`my-16`}>
           <Pageheader title={title} crumbs={crumbs} date={date} />
         </section>
@@ -33,6 +39,7 @@ export default function PostTemplate({ data, location }) {
               className={`max-w-screen-md text-lg`}
             ></div>
           </div>
+
           {post.tableOfContents && (
             <div className={`${classes.toc}`}>
               <h3 className={`text-lg font-bold mb-4`}>Table des matières</h3>
