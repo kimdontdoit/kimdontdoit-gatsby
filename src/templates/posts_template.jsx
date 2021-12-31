@@ -5,6 +5,7 @@ import "dayjs/locale/fr";
 
 import { Pageheader } from "../components/Pageheader";
 import Seo from "../components/Seo";
+
 import * as classes from "./posts_template.module.scss";
 
 export default function PostTemplate({ data, location }) {
@@ -32,13 +33,14 @@ export default function PostTemplate({ data, location }) {
               className={`max-w-screen-md text-lg`}
             ></div>
           </div>
-
-          <div className={`${classes.toc}`}>
-            <h3 className={`text-lg font-bold mb-4`}>Table des matières</h3>
-            <div
-              dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
-            ></div>
-          </div>
+          {post.tableOfContents && (
+            <div className={`${classes.toc}`}>
+              <h3 className={`text-lg font-bold mb-4`}>Table des matières</h3>
+              <div
+                dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
+              ></div>
+            </div>
+          )}
         </section>
       </article>
     </>

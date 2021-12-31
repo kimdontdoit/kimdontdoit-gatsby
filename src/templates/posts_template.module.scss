@@ -27,6 +27,7 @@
 
 .toc {
   @apply ml-auto;
+  @apply hidden md:block;
 
   /* h2 */
   ul {
