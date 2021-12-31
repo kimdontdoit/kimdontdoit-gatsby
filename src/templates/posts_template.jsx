@@ -23,7 +23,10 @@ export default function PostTemplate({ data, location }) {
 
   return (
     <>
-      <Seo title description={post.frontmatter.description || post.excerpt} />
+      <Seo
+        title={title}
+        description={post.frontmatter.description || post.excerpt}
+      />
 
       <ScrollProgress target={target} />
 
