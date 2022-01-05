@@ -38,6 +38,10 @@ export default function Blogue({ data, location }) {
 export const pageQuery = graphql`
   query posts {
     posts: allFile(
+      sort: {
+        fields: childrenMarkdownRemark___frontmatter___publish_date
+        order: DESC
+      }
       filter: {
         sourceInstanceName: { eq: "posts" }
         internal: { mediaType: { eq: "text/markdown" } }
