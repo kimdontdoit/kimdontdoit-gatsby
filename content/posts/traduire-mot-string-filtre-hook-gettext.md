@@ -4,6 +4,7 @@ title: Traduire n’importe quel mot ou string avec le filtre gettext
 publish_date: 2021-12-19T05:10:43.105Z
 authors:
   - Vladislav Kim
+type: Article
 category: WordPress
 ---
 
@@ -34,7 +35,7 @@ Il faudra adapter les `if / else` et la variable `$translated` pour votre ca
 
 Si vous ne connaissez pas le `$domain`, vous pouvez l’ignorer dans votre usage de ce filtre. Comme dans cet exemple, qui utilise l’instruction [`switch`](https://www.php.net/manual/fr/control-structures.switch.php) à la place.
 
-```
+```php
 <?php
 
 add_filter( 'gettext', 'translate_strings', 20, 3 );
