@@ -1,3 +1,13 @@
+---
+title: Créer une barre de progrès (scroll) en React
+publish_date: 2021-12-31
+authors:
+  - Vladislav Kim
+type: Snippet
+category: JavaScript
+---
+
+```js
 import React, { useState, useEffect } from "react";
 
 import * as classes from "./ScrollProgress.module.scss";
@@ -47,3 +57,4 @@ const ScrollProgress = ({ target }) => {
 };
 
 export { ScrollProgress };
+```

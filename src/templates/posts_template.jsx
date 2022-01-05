@@ -11,13 +11,26 @@ import Seo from "../components/Seo";
 import * as classes from "./posts_template.module.scss";
 
 export default function PostTemplate({ data, location }) {
-  const post = data.markdownRemark;
+  const { post, category, type } = data;
+
   //const { previous, next } = data;
   const title = post.frontmatter.title;
+
   const date = dayjs(post.frontmatter.publish_date)
     .locale("fr")
     .format("D MMMM YYYY");
-  const crumbs = [post.frontmatter.type, post.frontmatter.category];
+  const crumbs = [];
+
+  if (category) {
+    crumbs.push({
+      label: category.frontmatter.title,
+      url: category.fields.slug,
+    });
+  }
+
+  if (type) {
+    crumbs.push({ label: type.frontmatter.title, url: type.fields.slug });
+  }
 
   const target = React.createRef();
 
@@ -58,20 +71,20 @@ export default function PostTemplate({ data, location }) {
 }
 
 export const templateQuery = graphql`
-  query postById($id: String!, $previousPostId: String, $nextPostId: String) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    markdownRemark(id: { eq: $id }) {
+  query postById(
+    $id: String!
+    $category: String!
+    $previousPostId: String
+    $nextPostId: String
+  ) {
+    post: markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)
       html
       frontmatter {
         title
-        category
         publish_date
+        type
       }
       tableOfContents
       timeToRead
@@ -79,6 +92,17 @@ export const templateQuery = graphql`
         paragraphs
         sentences
         words
+      }
+    }
+    category: markdownRemark(frontmatter: { title: { eq: $category } }) {
+      excerpt
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+        subtitle
+        color
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

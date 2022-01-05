@@ -4,6 +4,7 @@ title: Rediriger sans-www vers www (et vice-versa) avec Apache htaccess
 publish_date: 2020-08-24T17:48:49.104Z
 authors:
   - Vladislav Kim
+type: Article
 category: Serveur
 ---
 
@@ -23,7 +24,7 @@ Si vous utiliser WordPress, .htaccess va se trouver dans le dossier de base de W
 
 Voici à quoi ressemble le fichier .htaccess de base de WordPress, si vous avez besoin de le rétablir.
 
-```
+```apacheconf
 # BEGIN WordPress
 
 RewriteEngine On RewriteRule .* - [E=HTTP_AUTHORIZATION:%
@@ -41,18 +42,20 @@ Noter que le code fourni ci-bas considère que vous utilisez https. Insérez les
 
 ## Rediriger www vers sans-www
 
-```
+```apacheconf
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www.(.)$ [NC]
 RewriteRule ^(.)$ https://%1/$1 [R=301,L]
+
 ```
 
 ## Rediriger sans-www vers www
 
-```
+```apacheconf
 RewriteEngine On
 RewriteCond %{HTTP_HOST} !^www. [NC]
-RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^(.\*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
 ```
 
 C’est terminé! La redirection devrait être immédiatement disponible. Tester le tout en naviguant les deux URL possible de votre site (ex.: https://www.kimdontdoit.com et https://kimdontdoit.com) et vérifier dans la barre de votre navigateur (Chrome: Cliquer deux fois la barre, car https://www va être caché par défaut).

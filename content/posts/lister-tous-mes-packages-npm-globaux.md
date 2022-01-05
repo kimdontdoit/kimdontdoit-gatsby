@@ -5,8 +5,8 @@ status: Published
 publish_date: 2021-06-02T17:25:54.439Z
 authors:
   - Vladislav Kim
-category: Serveur
 type: Snippet
+category: Serveur
 ---
 
 ```bash
