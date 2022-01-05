@@ -11,7 +11,6 @@ const ScrollProgress = ({ target }) => {
     }
 
     const element = target.current;
-    console.log(element.getBoundingClientRect());
 
     const windowScrollTop =
       window.pageYOffset ||
