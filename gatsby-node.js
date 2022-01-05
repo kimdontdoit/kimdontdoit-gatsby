@@ -15,6 +15,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               id
               frontmatter {
                 title
+                category
+                type
               }
               fields {
                 slug
@@ -53,6 +55,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           context: {
             id: node.childMarkdownRemark.id,
             title: node.childMarkdownRemark.frontmatter.title,
+            category: node.childMarkdownRemark.frontmatter.category,
+            type: node.childMarkdownRemark.frontmatter.type,
             previous,
             next,
           },
