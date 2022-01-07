@@ -38,7 +38,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const nodes = result.data.allFile.nodes;
 
-  const validSources = ["posts", "categories"];
+  const validSources = ["post", "category"];
 
   if (nodes.length > 0) {
     nodes.forEach((node, index) => {

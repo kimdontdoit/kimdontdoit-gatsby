@@ -48,7 +48,7 @@ export const pageQuery = graphql`
   query categories {
     categories: allFile(
       filter: {
-        sourceInstanceName: { eq: "categories" }
+        sourceInstanceName: { eq: "category" }
         internal: { mediaType: { eq: "text/markdown" } }
       }
     ) {

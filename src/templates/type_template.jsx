@@ -14,29 +14,22 @@ const Post = ({ post }) => {
   );
 };
 
-export default function CategoryTemplate({ data, location }) {
-  const { category } = data;
+export default function TypeTemplate({ data, location }) {
+  const { type } = data;
   const posts = data.posts.nodes;
 
   return (
     <>
-      <Seo
-        title={category.frontmatter.title}
-        description={category.frontmatter.description || category.excerpt}
-      />
+      <Seo title={type.frontmatter.title} />
       <div>
         <section className={`my-16`}>
-          <Pageheader
-            title={category.frontmatter.title}
-            subtitle={category.frontmatter.subtitle}
-            center={true}
-          />
+          <Pageheader title={type.frontmatter.title} center={true} />
         </section>
 
-        {category.html && (
+        {type.html && (
           <section>
             <div
-              dangerouslySetInnerHTML={{ __html: category.html }}
+              dangerouslySetInnerHTML={{ __html: type.html }}
               itemProp="articleBody"
               className={`container max-w-screen-md text-lg`}
             ></div>
@@ -55,22 +48,18 @@ export default function CategoryTemplate({ data, location }) {
 }
 
 export const templateQuery = graphql`
-  query singleCategory($id: String!, $title: String) {
-    category: markdownRemark(id: { eq: $id }) {
+  query singleType($id: String!, $title: String) {
+    type: markdownRemark(id: { eq: $id }) {
       id
-      excerpt
-      html
       frontmatter {
         title
-        subtitle
-        color
       }
     }
     posts: allFile(
       filter: {
-        sourceInstanceName: { eq: "posts" }
+        sourceInstanceName: { eq: "post" }
         internal: { mediaType: { eq: "text/markdown" } }
-        childMarkdownRemark: { frontmatter: { category: { eq: $title } } }
+        childMarkdownRemark: { frontmatter: { type: { eq: $title } } }
       }
     ) {
       nodes {

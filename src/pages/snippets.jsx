@@ -19,10 +19,10 @@ export default function Blogue({ data, location }) {
 
   return (
     <>
-      <Seo title="Articles" />
+      <Seo title="Snippets" />
 
       <section className={`my-16`}>
-        <Pageheader title="Articles" center={true} />
+        <Pageheader title="Snippets" center={true} />
       </section>
 
       <section className={`pb-16`}>
@@ -36,7 +36,7 @@ export default function Blogue({ data, location }) {
 }
 
 export const pageQuery = graphql`
-  query posts {
+  query snippets {
     posts: allFile(
       sort: {
         fields: childrenMarkdownRemark___frontmatter___publish_date
@@ -45,6 +45,7 @@ export const pageQuery = graphql`
       filter: {
         sourceInstanceName: { eq: "post" }
         internal: { mediaType: { eq: "text/markdown" } }
+        childMarkdownRemark: { frontmatter: { type: { eq: "Snippet" } } }
       }
     ) {
       nodes {
