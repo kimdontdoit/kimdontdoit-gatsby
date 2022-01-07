@@ -13,6 +13,8 @@ import * as classes from "./posts_template.module.scss";
 export default function PostTemplate({ data, location }) {
   const { post, category, type } = data;
 
+  console.log(type);
+
   //const { previous, next } = data;
   const title = post.frontmatter.title;
 
@@ -74,6 +76,7 @@ export const templateQuery = graphql`
   query postById(
     $id: String!
     $category: String!
+    $type: String!
     $previousPostId: String
     $nextPostId: String
   ) {
@@ -103,6 +106,14 @@ export const templateQuery = graphql`
         title
         subtitle
         color
+      }
+    }
+    type: markdownRemark(frontmatter: { title: { eq: $type } }) {
+      fields {
+        slug
+      }
+      frontmatter {
+        title
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

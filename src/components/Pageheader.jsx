@@ -12,6 +12,9 @@ export function Pageheader({ title, subtitle, crumbs, date, center }) {
 
       {crumbs && (
         <div className={`crumbs font-bold opacity-60 mt-4`}>
+          <Link to={`/`}>{`Home`}</Link>
+          <span> / </span>
+
           {crumbs.map((val, index) => {
             const isLast = index === crumbs.length - 1;
 
@@ -21,7 +24,8 @@ export function Pageheader({ title, subtitle, crumbs, date, center }) {
 
             return (
               <>
-                <Link to={val.url}>{val.label}</Link>;<span> / </span>
+                <Link to={val.url}>{val.label}</Link>
+                <span> / </span>
               </>
             );
           })}

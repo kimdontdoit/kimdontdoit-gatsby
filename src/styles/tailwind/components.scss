@@ -1,9 +1,7 @@
 @layer components {
   .bigTitle {
-    line-height: 110%;
-    font-weight: 900;
-
-    @apply text-4xl md:text-6xl; // 3.75rem;
+    @apply font-black;
+    @apply text-4xl md:text-6xl md:leading-tight; // 3.75rem;
   }
 
   .highlight {
