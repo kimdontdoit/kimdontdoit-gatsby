@@ -1,4 +1,4 @@
-const siteUrl = process.env.siteUrl || `https://kimdontdoit.com`;
+const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com`;
 
 module.exports = {
   siteMetadata: {
@@ -41,15 +41,22 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `post`,
         path: `${__dirname}/content/posts`,
-        name: `posts`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `category`,
         path: `${__dirname}/content/categories`,
-        name: `categories`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `type`,
+        path: `${__dirname}/content/types`,
       },
     },
     {
