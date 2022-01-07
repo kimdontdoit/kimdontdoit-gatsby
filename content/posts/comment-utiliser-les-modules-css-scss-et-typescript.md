@@ -4,6 +4,7 @@ title: Comment utiliser les modules CSS/SCSS et TypeScript
 publish_date: 2021-01-13T18:43:36.588Z
 authors:
   - Vladislav Kim
+type: Article
 category: JavaScript
 ---
 
@@ -15,16 +16,14 @@ Quelques hooks converti vers TypeScript plus tard… Je passe aux composants et 
 
 Créer un fichier avec un nom représentant ce qu’on va mettre dedans, dans ce cas, `scss.d.ts` et rajoutez-y cette définition :
 
-```
+```ts
 declare module "*.scss" {
   const styles: { [className: string]: string };
   export default styles;
 }
-Code language: TypeScript (typescript)
 ```
 
-\
-Selon le cas, il soit possible que vous ayez besoin de mentionner ce dernier fichier dans votre `tsconfig.json`.
+Selon le cas, il soit possible que vous ayez besoin de mentionner ce dernier fichier dans votre `tsconfig.json`.
 
 Attention! Cette solution courte ne permettra pas à TypeScript de vérifier l’existence des noms de classes lorsque vous les utilisez (ex. : styles.maClasse). Si vous cherchez quelque chose de plus complet, je vous conseille de jeter un coup d’oeil parmi les modules mentionné dans l’article de [Spencer Miskoviak](https://skovy.dev/generating-typescript-definitions-for-css-modules-using-sass/) qui a même pris le temps de développer son propre package pour supporter les modules SCSS en TypeScript.
 

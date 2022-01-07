@@ -10,7 +10,7 @@ export default function IndexPage() {
   return (
     <>
       <Seo />
-      <section className={`${classes.section} pt-40 pb-8`}>
+      <section className={`${classes.section} pt-16 md:pt-40 pb-8`}>
         <div className="container">
           <h1 className={`bigTitle mb-12`}>
             Salut 👋 moi c’est Vlad.{" "}
@@ -32,7 +32,7 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section className={`${classes.section} pt-16 pb-40`}>
+      <section className={`${classes.section} pt-16 pb-16 md:pb-40`}>
         <div className="container">
           <h1 className={`bigTitle`}>
             <span className={`highlight`}>Kimdontdoit</span>, ce n’était qu’un
@@ -43,12 +43,12 @@ export default function IndexPage() {
       </section>
 
       <section
-        className={`${classes.section} ${classes.workSection} bg-gray-100 py-40`}
+        className={`${classes.section} ${classes.workSection} bg-gray-100 py-16 md:py-40`}
       >
         <div className="container">
           <div>
             <h2 className={`bigTitle mb-8`}>Travaille récemment sur :</h2>
-            <div className={`grid grid-cols-3 gap-8`}>
+            <div className={`grid md:grid-cols-3 grid-cols-1 gap-8 `}>
               <div
                 className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}
               >
@@ -88,7 +88,7 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section className={`${classes.section} bg-primary py-40`}>
+      <section className={`${classes.section} bg-primary py-16 md:py-40`}>
         <div className="container">
           <h1 className={`bigTitle`}>
             Objectif : utiliser des techno modernes pour offrir de belles
@@ -100,7 +100,7 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section className={`${classes.section} py-32`}>
+      <section className={`${classes.section} py-16 md:py-40`}>
         <div className={`container`}>
           <h2 className={`bigTitle mb-8`}>
             Organisation <span className={`opacity-30`}>O2web</span>
@@ -125,7 +125,7 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section className={`${classes.section} bg-primary pt-32 pb-16`}>
+      <section className={`${classes.section} bg-primary pt-16 md:pt-40 pb-16`}>
         <div className={`container text-center`}>
           <p className={`bigTitle mb-16`}>
             Avez-vous une question? Soumettez une idée d’article

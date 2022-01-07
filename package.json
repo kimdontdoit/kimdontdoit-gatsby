@@ -14,6 +14,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "dayjs": "^1.10.7",
     "gatsby": "^4.4.0",
     "gatsby-plugin-image": "^2.4.0",
     "gatsby-plugin-manifest": "^4.4.0",
@@ -23,6 +24,7 @@
     "gatsby-plugin-sass": "^5.4.0",
     "gatsby-plugin-sharp": "^4.4.0",
     "gatsby-plugin-sitemap": "^5.4.0",
+    "gatsby-remark-autolink-headers": "^5.4.0",
     "gatsby-remark-copy-linked-files": "^5.4.0",
     "gatsby-remark-images": "^6.4.0",
     "gatsby-remark-prismjs": "^6.4.0",
@@ -30,16 +32,15 @@
     "gatsby-source-filesystem": "^4.4.0",
     "gatsby-transformer-remark": "^5.4.0",
     "gatsby-transformer-sharp": "^4.4.0",
-    "netlify-cms-app": "^2.15.61",
+    "netlify-cms-app": "^2.15.62",
     "prismjs": "^1.25.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
-    "sass": "^1.45.0"
+    "sass": "^1.45.1"
   },
   "devDependencies": {
-    "@netlify/plugin-gatsby": "^2.0.0-beta",
     "prettier": "^2.5.1",
     "resolve-url-loader": "^4.0.0",
     "tailwindcss": "^2.2.19"

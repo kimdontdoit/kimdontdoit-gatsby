@@ -13,7 +13,7 @@
 }
 
 .fixed {
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   left: 0;
@@ -24,4 +24,8 @@
   composes: fixed;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: saturate(180%) blur(5px);
+}
+
+.logo {
+  width: 92px;
 }

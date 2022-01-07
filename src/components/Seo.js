@@ -44,18 +44,24 @@ const Seo = ({ title, description, image, article }) => {
   };
 
   return (
-    <Helmet title={seo.title}>
+    <Helmet htmlAttributes={{ lang: "fr" }} title={seo.title}>
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
+
+      <link rel="canonical" href={seo.url} />
+      <link rel="alternate" hreflang="x-default" href={seo.url} />
+
+      {/* Open Graph data */}
       {seo.url && <meta property="og:url" content={seo.url} />}
-
+      <meta property="og:locale" content="fr" />
       <meta property="og:site_name" content={seo.siteName} />
-
       {seo.title && <meta property="og:title" content={seo.title} />}
       {seo.description && (
         <meta property="og:description" content={seo.description} />
       )}
       {seo.image && <meta property="og:image" content={seo.image} />}
+
+      {/* Twitter Card data  */}
       <meta name="twitter:card" content="summary_large_image" />
       {twitterUsername && (
         <meta name="twitter:creator" content={twitterUsername} />
@@ -73,39 +79,33 @@ const Seo = ({ title, description, image, article }) => {
         {`
         {
           "@context": "https://schema.org",
-          "@type": [
-            "http://schema.org/Organization",
-            "http://schema.org/Person"
+          "@type": "Person",
+          "url": "https://kimdontdoit.com",
+          "name": "Vladislav Kim",
+          "familyName": "Kim",
+          "givenName": "Vladislav",
+          "knowsLanguage": ["en-US", "fr-CA", "ru-RU"],
+          "image": "https://kimdontdoit.com/media/wow-vladislav-kim.jpeg",
+          "jobTitle": "Frontend Developer",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "O2 Web"
+          },
+          "alternateName": ["Kimdontdoit", "Vlad Kim"],
+          "sameAs": [
+            "https://github.com/kimdontdoit",
+            "https://www.instagram.com/kimdontdoit/",
+            "https://www.linkedin.com/in/vladislav-kim-3ba4a1172",
+            "https://twitter.com/kimdontdoit",
+            "https://kimdontdoit.tumblr.com/"
           ],
-          "url": "${seo.siteUrl}",
-          "name": "${seo.siteName}",
-          "http://schema.org/email": [
-            {
-                "@value": "info@kimdontdoit.com"
-            }
-          ],
-          "http://schema.org/address": [
-            {
-              "@type": [
-                "http://schema.org/PostalAddress"
-              ],
-              "http://schema.org/addressCountry": [
-                {
-                  "@value": "Canada"
-                }
-              ],
-              "http://schema.org/addressLocality": [
-                {
-                  "@value": "Montreal"
-                }
-              ],
-              "http://schema.org/addressRegion": [
-                {
-                  "@value": "Quebec"
-                }
-              ]
-            }
-          ]
+          "email": "mailto:info@kimdontdoit.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Montreal",
+            "addressCountry": "Canada",
+            "addressRegion": "Quebec"
+          }
         }
       `}
       </script>

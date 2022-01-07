@@ -15,6 +15,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               id
               frontmatter {
                 title
+                category
+                type
               }
               fields {
                 slug
@@ -36,7 +38,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const nodes = result.data.allFile.nodes;
 
-  const validSources = ["posts", "categories"];
+  const validSources = ["post", "category"];
 
   if (nodes.length > 0) {
     nodes.forEach((node, index) => {
@@ -53,6 +55,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           context: {
             id: node.childMarkdownRemark.id,
             title: node.childMarkdownRemark.frontmatter.title,
+            category: node.childMarkdownRemark.frontmatter.category,
+            type: node.childMarkdownRemark.frontmatter.type,
             previous,
             next,
           },

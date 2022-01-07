@@ -9,8 +9,14 @@ const Footer = () => {
         <div>
           <p className={`opacity-30`}>
             Kimdontdoit copyright 2021 Roule sans stress sur{" "}
-            <a href="https://www.gatsbyjs.com/">Gatsby</a> — logiciel open
-            source
+            <a
+              href="https://www.gatsbyjs.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Gatsby
+            </a>{" "}
+            — logiciel open source
           </p>
         </div>
       </div>
