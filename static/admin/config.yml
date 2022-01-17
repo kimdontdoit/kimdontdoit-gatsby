@@ -1,3 +1,8 @@
+i18n:
+  structure: multiple_folders
+  locales: [en, fr]
+  default_locale: fr
+
 backend:
   name: git-gateway
   branch: main
@@ -21,6 +26,7 @@ collections:
     folder: "content/posts"
     create: true
     slug: "{{slug}}"
+    i18n: true
     fields:
       - {
           label: "Template",
@@ -73,6 +79,7 @@ collections:
     folder: content/categories
     slug: "{{slug}}"
     create: true
+    i18n: true
     fields:
       - {
           label: Template,
@@ -97,6 +104,7 @@ collections:
     folder: content/author
     slug: "{{slug}}"
     create: true
+    i18n: true
     fields:
       - {
           label: Template,
