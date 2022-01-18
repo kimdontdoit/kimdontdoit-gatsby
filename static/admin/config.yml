@@ -56,6 +56,7 @@ collections:
           valueField: "name",
           min: 1,
           default: ["Vladislav Kim"],
+          i18n: duplicate,
         }
       - {
           label: "Category",
@@ -64,6 +65,17 @@ collections:
           collection: "categories",
           searchFields: ["title"],
           valueField: "title",
+          i18n: duplicate,
+        }
+      - {
+          label: "Type",
+          name: "type",
+          widget: "relation",
+          collection: "types",
+          searchFields: ["title"],
+          valueField: "title",
+          default: "Article",
+          i18n: duplicate,
         }
       - {
           label: "Featured Image",
@@ -163,6 +175,39 @@ collections:
           label: Bio,
           name: body,
           widget: markdown,
+          required: false,
+          i18n: true,
+        }
+
+  ### POST TYPES COLLECTION
+  - name: types
+    label: "Post Types"
+    label_singular: "Post Type"
+    preview: false
+    folder: content/types
+    slug: "{{slug}}"
+    create: true
+    i18n: true
+    fields:
+      - {
+          label: Template,
+          name: template,
+          widget: hidden,
+          default: post_type,
+          i18n: duplicate,
+        }
+      - { label: Title, name: title, widget: string, i18n: true }
+      - {
+          label: Subtitle,
+          name: subtitle,
+          widget: string,
+          required: false,
+          i18n: true,
+        }
+      - {
+          label: "Short description",
+          name: short_description,
+          widget: text,
           required: false,
           i18n: true,
         }
