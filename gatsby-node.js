@@ -1,6 +1,17 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
+const PATH_TO_MD_PAGES = path.resolve("content");
+
+const _getMarkdownNodeIdAndLanguage = (node) => {
+
+  const slug = node.childMarkdownRemark.fields.slug;
+  const _slug = slug.split("/");
+  const lang = _slug[0];
+
+  return { lang };
+};
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
@@ -42,6 +53,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (nodes.length > 0) {
     nodes.forEach((node, index) => {
+      const { lang } = _getMarkdownNodeIdAndLanguage(node);
+
       if (validSources.includes(node.sourceInstanceName)) {
         const previous = index === 0 ? null : nodes[index - 1].id;
         const next = index === nodes.length - 1 ? null : nodes[index + 1].id;

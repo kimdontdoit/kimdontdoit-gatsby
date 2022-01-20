@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
-import Seo from "../components/Seo";
+import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 const Category = ({ category }) => {
   return (

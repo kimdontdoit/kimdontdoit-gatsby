@@ -1,7 +1,13 @@
 const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com`;
 
+const supportedLanguages = [
+  { id: "en", label: "English" },
+  { id: "fr", label: "French" },
+];
+
 module.exports = {
   siteMetadata: {
+    supportedLanguages,
     siteName: `Kimdontdoit`,
     defaultTitle: `Vladislav Kim`,
     defaultDescription: `Salut! Mon nom est Vladislav Kim et je suis un Développeur Front End qui expérimente avec du back end à l'occasion. Présentement chez O2, je me concentre sur du code Javascript et PHP. J'écris également sur ce site + blogue à propos des sujets que je croise pour aider des gens de tous les niveaux, programmeur ou non.`,
@@ -15,7 +21,7 @@ module.exports = {
     LAZY_IMAGES: true,
   },
   plugins: [
-    /*`@kimdontdoit/the-great-gatsby-theme`, */
+    `@kimdontdoit/the-great-gatsby-theme`,
     `gatsby-plugin-image`,
     `gatsby-plugin-netlify`,
     {

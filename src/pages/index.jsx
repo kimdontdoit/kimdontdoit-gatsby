@@ -1,8 +1,8 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 
-import Button from "../components/button";
-import Seo from "../components/Seo";
+import Button from "@kimdontdoit/the-great-gatsby-theme/src/components/Button";
+import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 import * as classes from "./index.module.scss";
 
