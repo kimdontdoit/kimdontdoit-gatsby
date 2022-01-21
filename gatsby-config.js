@@ -1,4 +1,4 @@
-const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com`;
+const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com/`;
 
 const supportedLanguages = [
   { id: "en", label: "English" },
@@ -16,10 +16,6 @@ module.exports = {
     defaultImage: `/media/cover.png`,
     twitterUsername: `@kimdontdoit`,
   },
-  flags: {
-    //FAST_DEV: true,
-    LAZY_IMAGES: true,
-  },
   plugins: [
     `@kimdontdoit/the-great-gatsby-theme`,
     `gatsby-plugin-image`,
@@ -30,6 +26,38 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
+    // Source locales
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/locales`,
+        name: `locale`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
+        languages: [`en`, `fr`],
+        defaultLanguage: `fr`,
+        redirect: false,
+        siteUrl: siteUrl,
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false, // not needed for react as it escapes by default
+          },
+          keySeparator: false,
+          nsSeparator: false,
+        },
+        pages: [
+          {
+            matchPath: "/:lang?/:uid",
+            getLanguageFromPath: true,
+          },
+        ],
+      },
+    },
+    /** Theme/Design images */
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -37,6 +65,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    /** CMS/Content images */
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -44,6 +73,7 @@ module.exports = {
         path: `${__dirname}/static/media`,
       },
     },
+    // Markdown content
     {
       resolve: `gatsby-source-filesystem`,
       options: {
