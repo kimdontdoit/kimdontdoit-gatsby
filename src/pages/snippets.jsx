@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
-import { Pageheader } from "../components/Pageheader";
-import Seo from "../components/Seo";
+import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 const Post = ({ post }) => {
   return (

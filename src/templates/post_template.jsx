@@ -3,10 +3,10 @@ import { graphql } from "gatsby";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 
-import { Pageheader } from "../components/Pageheader";
+import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 
-import { ScrollProgress } from "../components/ScrollProgress";
-import Seo from "../components/Seo";
+import ScrollProgress from "@kimdontdoit/the-great-gatsby-theme/src/components/ScrollProgress";
+import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 import * as classes from "./posts_template.module.scss";
 
