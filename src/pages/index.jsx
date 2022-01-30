@@ -138,7 +138,6 @@ export default function IndexPage() {
   );
 }
 
-/* TODO is this wrong in the exemple
 export const query = graphql`
   query ($language: String!) {
     locales: allLocale(filter: { language: { eq: $language } }) {
@@ -152,4 +151,3 @@ export const query = graphql`
     }
   }
 `;
-*/

@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
-
+import { graphql } from "gatsby";
+import { Link, useI18next } from "gatsby-plugin-react-i18next";
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
@@ -14,7 +14,12 @@ const Post = ({ post }) => {
   );
 };
 
-export default function CategoryTemplate({ data, location }) {
+export default function CategoryTemplate({ pageContext, data, location }) {
+  console.log(pageContext);
+  console.log(data);
+
+  const { languages, originalPath } = useI18next();
+
   const { category } = data;
   const posts = data.posts.nodes;
 
@@ -25,6 +30,15 @@ export default function CategoryTemplate({ data, location }) {
         description={category.frontmatter.description || category.excerpt}
       />
       <div>
+        <ul className="languages">
+          {languages.map((lang) => (
+            <li key={lang}>
+              <Link to={originalPath} language={lang}>
+                {lang}
+              </Link>
+            </li>
+          ))}
+        </ul>
         <section className={`my-16`}>
           <Pageheader
             title={category.frontmatter.title}
@@ -55,7 +69,16 @@ export default function CategoryTemplate({ data, location }) {
 }
 
 export const templateQuery = graphql`
-  query singleCategory($id: String!, $title: String) {
+  query singleCategory($id: String!, $title: String, $language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
     category: markdownRemark(id: { eq: $id }) {
       id
       excerpt
