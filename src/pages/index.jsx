@@ -1,27 +1,21 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import { Link, Trans, useTranslation } from "gatsby-plugin-react-i18next";
-
 import Button from "@kimdontdoit/the-great-gatsby-theme/src/components/Button";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 import * as classes from "./index.module.scss";
 
 export default function IndexPage() {
-  const { t } = useTranslation();
-
   return (
     <>
-      <Seo title={t(`Kimdontdoit, or also Vladislav Kim`)} />
+      <Seo title={`Kimdontdoit, or also Vladislav Kim`} />
       <section className={`${classes.section} pt-16 md:pt-40 pb-8`}>
         <div className="container">
           <h1 className={`bigTitle mb-12`}>
-            <Trans>Salut 👋 moi c’est Vlad.</Trans>{" "}
+            Salut 👋 moi c’est Vlad.{" "}
             <span className={`opacity-30`}>
-              <Trans>
-                Je développe, j’apprends et j’améliore — spécialisé Front-end
-              </Trans>
+              Je développe, j’apprends et j’améliore — spécialisé Front-end
             </span>
           </h1>
 
@@ -144,7 +138,7 @@ export default function IndexPage() {
   );
 }
 
-// TODO is this wrong in the exemple
+/* TODO is this wrong in the exemple
 export const query = graphql`
   query ($language: String!) {
     locales: allLocale(filter: { language: { eq: $language } }) {
@@ -158,3 +152,4 @@ export const query = graphql`
     }
   }
 `;
+*/

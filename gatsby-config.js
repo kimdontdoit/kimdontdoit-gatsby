@@ -34,29 +34,7 @@ module.exports = {
         name: `locale`,
       },
     },
-    {
-      resolve: `gatsby-plugin-react-i18next`,
-      options: {
-        localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
-        languages: [`en`, `fr`],
-        defaultLanguage: `fr`,
-        redirect: false,
-        siteUrl: siteUrl,
-        i18nextOptions: {
-          interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
-          },
-          keySeparator: false,
-          nsSeparator: false,
-        },
-        pages: [
-          {
-            matchPath: "/:lang?/:uid",
-            getLanguageFromPath: true,
-          },
-        ],
-      },
-    },
+
     /** Theme/Design images */
     {
       resolve: `gatsby-source-filesystem`,

@@ -4,7 +4,6 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 const PATH_TO_MD_PAGES = path.resolve("content");
 
 const _getMarkdownNodeIdAndLanguage = (node) => {
-
   const slug = node.childMarkdownRemark.fields.slug;
   const _slug = slug.split("/");
   const lang = _slug[0];
@@ -85,10 +84,21 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
 
+    const value_removed_fr = value.replace("/fr", "");
+
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: value_removed_fr,
+    });
+
+    // Format: ['', 'fr', 'slug_key', '']
+    const value_removed_lang = value.split("/")[2];
+
+    createNodeField({
+      name: `slug_key`,
+      node,
+      value: value_removed_lang,
     });
   }
 };
