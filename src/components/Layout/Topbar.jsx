@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { Link, graphql } from "gatsby";
+import { Link } from "gatsby";
+
 import * as classes from "./Topbar.module.scss";
 
 const Topbar = ({ topbarFixed }) => {

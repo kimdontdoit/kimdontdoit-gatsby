@@ -5,7 +5,10 @@ const Footer = () => {
   return (
     <footer className={`${classes.footer} bg-primary`}>
       <div className={`${classes.footerContainer} container text-center py-12`}>
-        <div className={`${classes.scrollTopLink} mb-8`}>Back to the top</div>
+        <div className={`${classes.scrollTopLink} mb-8`}>
+          Retour en haut de page
+        </div>
+
         <div>
           <p className={`opacity-30`}>
             Kimdontdoit copyright 2021 Roule sans stress sur{" "}

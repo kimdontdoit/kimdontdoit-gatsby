@@ -1,8 +1,7 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-const PATH_TO_MD_PAGES = path.resolve("content");
-console.log(PATH_TO_MD_PAGES);
+// const PATH_TO_MD_PAGES = path.resolve("content");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
@@ -42,7 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const nodes = result.data.allFile.nodes;
 
-  const validSources = ["category"];
+  const validSources = ["post", "category", "type"];
 
   if (nodes.length > 0) {
     nodes.forEach((node, index) => {
@@ -52,23 +51,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
         const language = node.childMarkdownRemark.fields.language;
 
-        const template = path.resolve(
-          `./src/templates/${node.sourceInstanceName}_template.jsx`
-        );
-
-        let prepareSlug = [""];
+        // let prepareSlug = [""];
 
         if (language !== "fr") {
-          prepareSlug.push(node.childMarkdownRemark.fields.language);
+          return;
+
+          //prepareSlug.push(node.childMarkdownRemark.fields.language);
         }
 
-        prepareSlug.push(node.sourceInstanceName);
+        /*
+        //prepareSlug.push(node.sourceInstanceName);
         prepareSlug.push(node.childMarkdownRemark.fields.slug);
 
         const slug = prepareSlug.join("/");
 
+        console.log(prepareSlug);
+        console.log(slug);
+        */
+        const template = path.resolve(
+          `./src/templates/${node.sourceInstanceName}_template.jsx`
+        );
+
         createPage({
-          path: slug,
+          path: node.childMarkdownRemark.fields.slug,
           component: template,
           context: {
             id: node.childMarkdownRemark.id,
@@ -95,7 +100,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const filePathArray = filePath.split("/");
 
     const lang = filePathArray[1];
-    const slug = filePathArray[2];
+
+    let slug = [...filePathArray];
+    slug.splice(1, 1);
+    slug = slug.join("/");
+
+    const slug_key = filePathArray[2];
 
     createNodeField({
       name: `language`,
@@ -107,6 +117,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: `slug`,
       node,
       value: slug,
+    });
+
+    createNodeField({
+      name: `slug_key`,
+      node,
+      value: slug_key,
     });
   }
 };

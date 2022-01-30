@@ -1,11 +1,10 @@
 import React from "react";
 
-import Cursor from "@kimdontdoit/the-great-gatsby-theme/src/components/Cursor";
-
 import Topbar from "./Topbar";
 import Footer from "./Footer";
 
-import cursorImage from "../../images/cursor.png";
+//import cursorImage from "../../images/cursor.png";
+
 export function Layout({ children, ...props }) {
   const { className = "", topbarFixed = false } = props;
 
@@ -16,7 +15,6 @@ export function Layout({ children, ...props }) {
       <main className={`flex-1 ${className}`}>{children}</main>
 
       <Footer />
-      <Cursor />
     </div>
   );
 }

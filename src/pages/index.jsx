@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import Button from "@kimdontdoit/the-great-gatsby-theme/src/components/Button";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+import Cursor from "@kimdontdoit/the-great-gatsby-theme/src/components/Cursor";
 
 import * as classes from "./index.module.scss";
 
@@ -10,6 +10,9 @@ export default function IndexPage() {
   return (
     <>
       <Seo title={`Kimdontdoit, or also Vladislav Kim`} />
+
+      <Cursor />
+
       <section className={`${classes.section} pt-16 md:pt-40 pb-8`}>
         <div className="container">
           <h1 className={`bigTitle mb-12`}>
@@ -137,17 +140,3 @@ export default function IndexPage() {
     </>
   );
 }
-
-export const query = graphql`
-  query ($language: String!) {
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      edges {
-        node {
-          ns
-          data
-          language
-        }
-      }
-    }
-  }
-`;

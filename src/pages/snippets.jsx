@@ -4,6 +4,8 @@ import { Link, graphql } from "gatsby";
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
+import { Layout } from "../components/Layout/Layout";
+
 const Post = ({ post }) => {
   return (
     <div className="container mb-8 text-center">
@@ -21,16 +23,18 @@ export default function Blogue({ data, location }) {
     <>
       <Seo title="Snippets" />
 
-      <section className={`my-16`}>
-        <Pageheader title="Snippets" center={true} />
-      </section>
+      <Layout>
+        <section className={`my-16`}>
+          <Pageheader title="Snippets" center={true} />
+        </section>
 
-      <section className={`pb-16`}>
-        {posts &&
-          posts.map((post) => {
-            return <Post key={post.id} post={post.childMarkdownRemark} />;
-          })}
-      </section>
+        <section className={`pb-16`}>
+          {posts &&
+            posts.map((post) => {
+              return <Post key={post.id} post={post.childMarkdownRemark} />;
+            })}
+        </section>
+      </Layout>
     </>
   );
 }

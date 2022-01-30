@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 
@@ -13,8 +13,6 @@ import * as classes from "./posts_template.module.scss";
 export default function PostTemplate({ data, location }) {
   const { post, category, type } = data;
 
-  console.log(type);
-
   //const { previous, next } = data;
   const title = post.frontmatter.title;
 
@@ -23,12 +21,12 @@ export default function PostTemplate({ data, location }) {
     .format("D MMMM YYYY");
   const crumbs = [];
 
-  if (category) {
+  /*if (category) {
     crumbs.push({
       label: category.frontmatter.title,
       url: category.fields.slug,
     });
-  }
+  }*/
 
   if (type) {
     crumbs.push({ label: type.frontmatter.title, url: type.fields.slug });
