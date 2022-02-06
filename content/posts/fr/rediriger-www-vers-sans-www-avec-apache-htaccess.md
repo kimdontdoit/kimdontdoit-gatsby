@@ -4,7 +4,7 @@ title: Rediriger sans-www vers www (et vice-versa) avec Apache htaccess
 publish_date: 2020-08-24T17:48:49.104Z
 authors:
   - Vladislav Kim
-type: Article
+type: Articles
 category: Serveur
 ---
 

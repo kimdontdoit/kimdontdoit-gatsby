@@ -19,6 +19,7 @@ export default function PostTemplate({ data, location }) {
   const date = dayjs(post.frontmatter.publish_date)
     .locale("fr")
     .format("D MMMM YYYY");
+
   const crumbs = [];
 
   /*if (category) {

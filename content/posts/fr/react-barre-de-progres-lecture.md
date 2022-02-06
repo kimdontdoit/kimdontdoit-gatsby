@@ -3,7 +3,7 @@ title: Créer une barre de progrès (scroll) en React
 publish_date: 2021-12-31
 authors:
   - Vladislav Kim
-type: Snippet
+type: Snippets
 category: JavaScript
 ---
 

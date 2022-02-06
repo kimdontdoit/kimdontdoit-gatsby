@@ -41,6 +41,11 @@ const Topbar = ({ topbarFixed }) => {
               </Link>
             </li>
             <li>
+              <Link to="/snippets" activeClassName="underline">
+                Snippets
+              </Link>
+            </li>
+            <li>
               <Link
                 to="/categories"
                 className={`hidden md:inline`}

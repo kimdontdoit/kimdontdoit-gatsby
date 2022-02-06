@@ -4,7 +4,7 @@ title: Traduire n’importe quel mot ou string avec le filtre gettext
 publish_date: 2021-12-19T05:10:43.105Z
 authors:
   - Vladislav Kim
-type: Article
+type: Articles
 category: WordPress
 ---
 

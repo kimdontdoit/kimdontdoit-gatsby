@@ -5,9 +5,9 @@ import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 const Post = ({ post }) => {
   return (
-    <div className="container mb-8 text-center">
+    <div className="container mb-8">
       <Link className="font-bold" to={post.fields.slug}>
-        Article: {post.frontmatter.title}
+        {post.frontmatter.title}
       </Link>
     </div>
   );
@@ -16,6 +16,12 @@ const Post = ({ post }) => {
 export default function CategoryTemplate({ pageContext, data, location }) {
   const { category } = data;
   const posts = data.posts.nodes;
+  const crumbs = [];
+
+  crumbs.push({
+    label: "Catégories",
+    url: "/categories",
+  });
 
   return (
     <>
@@ -28,7 +34,7 @@ export default function CategoryTemplate({ pageContext, data, location }) {
           <Pageheader
             title={category.frontmatter.title}
             subtitle={category.frontmatter.subtitle}
-            center={true}
+            crumbs={crumbs}
           />
         </section>
 
