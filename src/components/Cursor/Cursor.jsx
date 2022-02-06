@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+
+import ThemeContext from "../../context/ThemeContext";
 
 import "./Cursor.scss";
 
-const Cursor = (props) => {
-  const { image } = props;
+const Cursor = () => {
+  const { cursorImage } = useContext(ThemeContext);
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    addEventListeners();
-    return () => removeEventListeners();
-  });
-
-  const addEventListeners = () => {
-    document.addEventListener("mousemove", onMouseMove);
-  };
-
-  const removeEventListeners = () => {
-    document.removeEventListener("mousemove", onMouseMove);
-  };
-
-  const onMouseMove = (e) => {
-    console.log(e.clientX + ", " + e.clientY);
+  const updatePosition = (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
   };
+
+  useEffect(() => {
+    document.addEventListener("mousemove", updatePosition, false);
+    document.addEventListener("mouseenter", updatePosition, false);
+
+    return () => {
+      document.removeEventListener("mousemove", updatePosition);
+      document.removeEventListener("mouseenter", updatePosition);
+    };
+  }, []);
 
   return (
     <div
@@ -33,9 +31,9 @@ const Cursor = (props) => {
         top: `${position.y}px`,
       }}
     >
-      {image && (
+      {cursorImage && (
         <div className="cursorImage">
-          <img src={image} alt="cursor" />
+          <img src={cursorImage} alt="cursor" />
         </div>
       )}
     </div>
