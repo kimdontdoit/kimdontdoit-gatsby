@@ -3,8 +3,6 @@ import React from "react";
 import Topbar from "./Topbar";
 import Footer from "./Footer";
 
-//import cursorImage from "../../images/cursor.png";
-
 export function Layout({ children, ...props }) {
   const { className = "", topbarFixed = false } = props;
 

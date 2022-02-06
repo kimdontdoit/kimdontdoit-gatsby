@@ -1,22 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import Button from "@kimdontdoit/the-great-gatsby-theme/src/components/Button";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
-import Cursor from "@kimdontdoit/the-great-gatsby-theme/src/components/Cursor";
+
+import Cursor from "../components/Cursor";
+import memoji from "../images/memoji_bump.png";
 
 import * as classes from "./index.module.scss";
 
 export default function IndexPage() {
+  const [cursorImage, setCursorImage] = useState(undefined);
+
+  const handleMouseEnter = (e) => {
+    setCursorImage(memoji);
+  };
+  const handleMouseLeave = (e) => {
+    setCursorImage(undefined);
+  };
+
   return (
     <>
       <Seo title={`Kimdontdoit, or also Vladislav Kim`} />
 
-      <Cursor />
+      <Cursor image={cursorImage} />
 
       <section className={`${classes.section} pt-16 md:pt-40 pb-8`}>
         <div className="container">
           <h1 className={`bigTitle mb-12`}>
-            Salut 👋 moi c’est Vlad.{" "}
+            Salut 👋 moi c’est{" "}
+            <span
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              Vlad
+            </span>
+            .{" "}
             <span className={`opacity-30`}>
               Je développe, j’apprends et j’améliore — spécialisé Front-end
             </span>
