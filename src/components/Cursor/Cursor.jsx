@@ -1,22 +1,39 @@
-import React, { useEffect, useState } from "react";
-import useCursorPosition from "@kimdontdoit/the-great-gatsby-theme/src/hooks/useCursorPosition";
+import React, { useContext, useState, useEffect } from "react";
+
+import ThemeContext from "../../context/ThemeContext";
+
 import "./Cursor.scss";
 
-const Cursor = (props) => {
-  const { mouseX, mouseY } = useCursorPosition();
-  const { image } = props;
+const Cursor = () => {
+  const { cursorImage } = useContext(ThemeContext);
+
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const updatePosition = (e) => {
+    setPosition({ x: e.clientX, y: e.clientY });
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousemove", updatePosition, false);
+    document.addEventListener("mouseenter", updatePosition, false);
+
+    return () => {
+      document.removeEventListener("mousemove", updatePosition);
+      document.removeEventListener("mouseenter", updatePosition);
+    };
+  }, []);
 
   return (
     <div
       className="cursor fixed"
       style={{
-        left: `${mouseX}px`,
-        top: `${mouseY}px`,
+        left: `${position.x}px`,
+        top: `${position.y}px`,
       }}
     >
-      {image && (
+      {cursorImage && (
         <div className="cursorImage">
-          <img src={image} alt="cursor" />
+          <img src={cursorImage} alt="cursor" />
         </div>
       )}
     </div>
