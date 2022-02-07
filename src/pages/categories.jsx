@@ -1,13 +1,14 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
-import Seo from "../components/Seo";
+import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 const Category = ({ category }) => {
   return (
-    <div className="mb-8 text-center">
-      <Link className="font-bold" to={category.fields.slug}>
-        Catégorie: {category.frontmatter.title}
+    <div className="mb-8">
+      <Link className="font-bold" to={`${category.fields.slug}`}>
+        {category.frontmatter.title}
       </Link>
     </div>
   );
@@ -15,20 +16,18 @@ const Category = ({ category }) => {
 
 export default function CategoriesPage({ data }) {
   const categories = data.categories.nodes;
+  const crumbs = [];
 
   return (
     <>
       <Seo title="Catégories" />
+
       <section className={`my-16`}>
-        <header className={`container text-center`}>
-          <h1 itemProp="headline" className={`text-4xl font-black`}>
-            Catégories
-          </h1>
-        </header>
+        <Pageheader title="Catégories" />
       </section>
 
       <section>
-        <div className="container max-w-screen-md text-lg">
+        <div className="container text-lg">
           {categories &&
             categories.map((category) => {
               return (
@@ -50,6 +49,7 @@ export const pageQuery = graphql`
       filter: {
         sourceInstanceName: { eq: "category" }
         internal: { mediaType: { eq: "text/markdown" } }
+        childMarkdownRemark: { fields: { language: { eq: "fr" } } }
       }
     ) {
       nodes {
@@ -61,6 +61,7 @@ export const pageQuery = graphql`
             title
           }
           fields {
+            language
             slug
           }
         }

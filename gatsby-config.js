@@ -1,4 +1,4 @@
-const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com`;
+const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com/`;
 
 module.exports = {
   siteMetadata: {
@@ -10,12 +10,8 @@ module.exports = {
     defaultImage: `/media/cover.png`,
     twitterUsername: `@kimdontdoit`,
   },
-  flags: {
-    //FAST_DEV: true,
-    LAZY_IMAGES: true,
-  },
   plugins: [
-    /*`@kimdontdoit/the-great-gatsby-theme`, */
+    `@kimdontdoit/the-great-gatsby-theme`,
     `gatsby-plugin-image`,
     `gatsby-plugin-netlify`,
     {
@@ -24,6 +20,43 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
+
+    /*
+    // Source locales
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/locales`,
+        name: `locale`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
+        languages: [`en`, `fr`],
+        defaultLanguage: `fr`,
+        // if you are using Helmet, you must include siteUrl, and make sure you add http:https
+        siteUrl: `https://kimdontdoit.com/`,
+        redirect: false,
+        // you can pass any i18next options
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false, // not needed for react as it escapes by default
+          },
+          keySeparator: false,
+          nsSeparator: false,
+        },
+        pages: [
+          {
+            matchPath: "/:lang?/category/:uid",
+            getLanguageFromPath: true,
+          },
+        ],
+      },
+    },
+    */
+    /** Theme/Design images */
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -31,6 +64,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    /** CMS/Content images */
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -38,6 +72,7 @@ module.exports = {
         path: `${__dirname}/static/media`,
       },
     },
+    // Markdown content
     {
       resolve: `gatsby-source-filesystem`,
       options: {

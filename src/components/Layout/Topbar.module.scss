@@ -1,18 +1,16 @@
 .topbar {
   transition: 0.4s ease-in-out;
 
-  :global {
-    ul {
-      flex-direction: row;
+  ul {
+    flex-direction: row;
 
-      :not(:last-of-type) {
-        @apply pr-2.5;
-      }
+    :not(:last-of-type) {
+      @apply pr-2.5;
     }
   }
 }
 
-.fixed {
+.fixedHeader {
   position: sticky;
   width: 100%;
   top: 0;
@@ -21,7 +19,7 @@
 }
 
 .sticky {
-  composes: fixed;
+  composes: fixedHeader;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: saturate(180%) blur(5px);
 }

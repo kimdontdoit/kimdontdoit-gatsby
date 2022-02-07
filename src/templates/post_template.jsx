@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { graphql } from "gatsby";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 
-import { Pageheader } from "../components/Pageheader";
+import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
-import { ScrollProgress } from "../components/ScrollProgress";
-import Seo from "../components/Seo";
+import ThemeContext from "../context/ThemeContext";
 
 import * as classes from "./posts_template.module.scss";
 
 export default function PostTemplate({ data, location }) {
   const { post, category, type } = data;
+  const { scrollProgressTarget } = useContext(ThemeContext);
 
-  console.log(type);
+  useEffect(() => {
+    return () => {
+      // Anything in here is fired on component unmount.
+    };
+  }, []);
 
   //const { previous, next } = data;
   const title = post.frontmatter.title;
@@ -21,20 +26,19 @@ export default function PostTemplate({ data, location }) {
   const date = dayjs(post.frontmatter.publish_date)
     .locale("fr")
     .format("D MMMM YYYY");
+
   const crumbs = [];
 
-  if (category) {
+  /*if (category) {
     crumbs.push({
       label: category.frontmatter.title,
       url: category.fields.slug,
     });
-  }
+  }*/
 
   if (type) {
     crumbs.push({ label: type.frontmatter.title, url: type.fields.slug });
   }
-
-  const target = React.createRef();
 
   return (
     <>
@@ -43,9 +47,11 @@ export default function PostTemplate({ data, location }) {
         description={post.frontmatter.description || post.excerpt}
       />
 
-      <ScrollProgress target={target} />
-
-      <article itemScope itemType="http://schema.org/Article" ref={target}>
+      <article
+        itemScope
+        itemType="http://schema.org/Article"
+        ref={scrollProgressTarget}
+      >
         <section className={`my-16`}>
           <Pageheader title={title} crumbs={crumbs} date={date} />
         </section>

@@ -1,11 +1,21 @@
 import React from "react";
 import * as classes from "./Footer.module.scss";
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
 const Footer = () => {
   return (
     <footer className={`${classes.footer} bg-primary`}>
       <div className={`${classes.footerContainer} container text-center py-12`}>
-        <div className={`${classes.scrollTopLink} mb-8`}>Back to the top</div>
+        <div className={`${classes.scrollTopLink} mb-8`} onClick={scrollToTop}>
+          Retour en haut de page
+        </div>
+
         <div>
           <p className={`opacity-30`}>
             Kimdontdoit copyright 2021 Roule sans stress sur{" "}

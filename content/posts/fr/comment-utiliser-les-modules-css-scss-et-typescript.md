@@ -4,7 +4,7 @@ title: Comment utiliser les modules CSS/SCSS et TypeScript
 publish_date: 2021-01-13T18:43:36.588Z
 authors:
   - Vladislav Kim
-type: Article
+type: Articles
 category: JavaScript
 ---
 

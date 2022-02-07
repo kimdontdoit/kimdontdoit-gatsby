@@ -1,14 +1,14 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
-import { Pageheader } from "../components/Pageheader";
-import Seo from "../components/Seo";
+import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 const Post = ({ post }) => {
   return (
-    <div className="container mb-8 text-center">
+    <div className="container mb-8">
       <Link className="font-bold" to={post.fields.slug}>
-        Article: {post.frontmatter.title}
+        {post.frontmatter.title}
       </Link>
     </div>
   );
@@ -18,12 +18,19 @@ export default function TypeTemplate({ data, location }) {
   const { type } = data;
   const posts = data.posts.nodes;
 
+  const crumbs = [];
+
+  crumbs.push({
+    label: "Retour à l'accueil",
+    url: "/",
+  });
+
   return (
     <>
       <Seo title={type.frontmatter.title} />
       <div>
         <section className={`my-16`}>
-          <Pageheader title={type.frontmatter.title} center={true} />
+          <Pageheader title={type.frontmatter.title} crumbs={crumbs} />
         </section>
 
         {type.html && (
@@ -58,8 +65,10 @@ export const templateQuery = graphql`
     posts: allFile(
       filter: {
         sourceInstanceName: { eq: "post" }
-        internal: { mediaType: { eq: "text/markdown" } }
-        childMarkdownRemark: { frontmatter: { type: { eq: $title } } }
+        childMarkdownRemark: {
+          fields: { language: { eq: "fr" } }
+          frontmatter: { type: { eq: $title } }
+        }
       }
     ) {
       nodes {

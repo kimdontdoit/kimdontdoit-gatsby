@@ -1,13 +1,14 @@
 import React from "react";
 
-import Seo from "../components/Seo";
+import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 export default function AboutPage() {
   return (
     <>
       <Seo title="Vladislav Kim, c’est qui?" />
+
       <section className={`my-16`}>
-        <div className={`container text-center`}>
+        <div className={`container`}>
           <h1 className={`text-4xl font-black`}>Vladislav Kim, c’est qui?</h1>
         </div>
       </section>
