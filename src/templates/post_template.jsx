@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { graphql } from "gatsby";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
-
-import ScrollProgress from "@kimdontdoit/the-great-gatsby-theme/src/components/ScrollProgress";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+
+import ThemeContext from "../context/ThemeContext";
 
 import * as classes from "./posts_template.module.scss";
 
 export default function PostTemplate({ data, location }) {
   const { post, category, type } = data;
+  const { scrollProgressTarget } = useContext(ThemeContext);
+
+  useEffect(() => {
+    return () => {
+      // Anything in here is fired on component unmount.
+    };
+  }, []);
 
   //const { previous, next } = data;
   const title = post.frontmatter.title;
@@ -33,8 +40,6 @@ export default function PostTemplate({ data, location }) {
     crumbs.push({ label: type.frontmatter.title, url: type.fields.slug });
   }
 
-  const target = React.createRef();
-
   return (
     <>
       <Seo
@@ -42,9 +47,11 @@ export default function PostTemplate({ data, location }) {
         description={post.frontmatter.description || post.excerpt}
       />
 
-      <ScrollProgress target={target} />
-
-      <article itemScope itemType="http://schema.org/Article" ref={target}>
+      <article
+        itemScope
+        itemType="http://schema.org/Article"
+        ref={scrollProgressTarget}
+      >
         <section className={`my-16`}>
           <Pageheader title={title} crumbs={crumbs} date={date} />
         </section>

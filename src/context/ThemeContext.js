@@ -1,62 +1,30 @@
-import React from "react";
+import React, { createContext, useState, useRef } from "react";
 
-const defaultState = {
-  dark: false,
-  toggleDark: () => {},
+const ThemeContext = createContext({
   cursorImage: undefined,
-  setCursorImage: () => {},
-};
+  readingProgress: 0,
+  scrollProgressTarget: undefined,
+});
 
-const ThemeContext = React.createContext(defaultState);
+function ThemeProvider({ children }) {
+  const [cursorImage, setCursorImage] = useState(undefined);
+  const [readingProgress, setReadingProgress] = useState(0);
 
-// Getting dark mode information from OS!
-// You need macOS Mojave + Safari Technology Preview Release 68 to test this currently.
-const supportsDarkMode = () =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches === true;
+  const scrollProgressTarget = useRef();
 
-class ThemeProvider extends React.Component {
-  state = {
-    dark: false,
-    cursorImage: undefined,
-  };
-
-  toggleDark = () => {
-    let dark = !this.state.dark;
-    localStorage.setItem("dark", JSON.stringify(dark));
-    this.setState({ dark });
-  };
-
-  setCursorImage = (cursorImage) => {
-    this.setState({ cursorImage });
-  };
-
-  componentDidMount() {
-    // Getting dark mode value from localStorage!
-    const lsDark = JSON.parse(localStorage.getItem("dark"));
-    if (lsDark) {
-      this.setState({ dark: lsDark });
-    } else if (supportsDarkMode()) {
-      this.setState({ dark: true });
-    }
-  }
-
-  render() {
-    const { children } = this.props;
-    const { dark, cursorImage } = this.state;
-
-    return (
-      <ThemeContext.Provider
-        value={{
-          dark,
-          toggleDark: this.toggleDark,
-          cursorImage,
-          setCursorImage: this.setCursorImage,
-        }}
-      >
-        {children}
-      </ThemeContext.Provider>
-    );
-  }
+  return (
+    <ThemeContext.Provider
+      value={{
+        cursorImage,
+        setCursorImage,
+        scrollProgressTarget,
+        readingProgress,
+        setReadingProgress,
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
+  );
 }
 
 export default ThemeContext;

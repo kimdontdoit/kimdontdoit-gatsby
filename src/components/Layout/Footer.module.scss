@@ -1,11 +1,9 @@
 .footer {
-  :global {
-    a {
-      text-decoration: underline;
+  a {
+    text-decoration: underline;
 
-      &:hover {
-        text-decoration: none;
-      }
+    &:hover {
+      text-decoration: none;
     }
   }
 }
