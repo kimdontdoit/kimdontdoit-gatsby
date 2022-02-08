@@ -94,6 +94,7 @@ export const templateQuery = graphql`
         title
         publish_date
         type
+        needs_update
       }
       tableOfContents
       timeToRead
