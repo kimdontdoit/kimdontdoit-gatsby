@@ -1,0 +1,23 @@
+@import "./fonts";
+@import "./prism";
+
+/* 
+ * Colors, fonts
+ * also fed to tailwindcss config */
+@import "variables";
+
+/*
+ * Preflight
+ * https://tailwindcss.com/docs/preflight 
+ * Work with PostCSS
+ * `@import` statements must come first
+ * https://tailwindcss.com/docs/using-with-preprocessors
+ *
+ */
+@import "tailwindcss/base";
+@import "./tailwind/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+@import "./tailwind/utilities";

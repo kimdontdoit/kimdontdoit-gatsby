@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 
 import ThemeContext from "../../context/ThemeContext";
 
-import "./Cursor.scss";
+import "./Cursor.css";
 
 const Cursor = () => {
   const { cursorImage } = useContext(ThemeContext);
