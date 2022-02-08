@@ -1,7 +1,11 @@
 @layer components {
   .bigTitle {
     @apply font-black;
-    @apply text-4xl md:text-6xl md:leading-tight; // 3.75rem;
+    @apply text-4xl md:text-6xl md:leading-tight;
+  }
+
+  .text-grey-40 {
+    color: --grey-40;
   }
 
   .highlight {

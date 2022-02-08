@@ -20,7 +20,7 @@ const Topbar = () => {
       <ScrollProgress />
       <div className={`${classes.topbar} ${sticky ? classes.sticky : ""}`}>
         <div className={`container flex flex-row py-4`}>
-          <div className={`flex-1 flex`}>
+          <div className={`flex-1 flex text-lg`}>
             <Link to="/">
               <StaticImage
                 src="../../images/kimdontdoit_logo_dark.svg"
@@ -36,12 +36,12 @@ const Topbar = () => {
 
             <ul className="flex ml-16 items-center">
               <li>
-                <Link to="/articles" activeClassName="underline">
+                <Link to="/articles" activeClassName={classes.activeLink}>
                   Articles
                 </Link>
               </li>
               <li>
-                <Link to="/snippets" activeClassName="underline">
+                <Link to="/snippets" activeClassName={classes.activeLink}>
                   Snippets
                 </Link>
               </li>
@@ -49,7 +49,7 @@ const Topbar = () => {
                 <Link
                   to="/categories"
                   className={`hidden md:inline`}
-                  activeClassName="underline"
+                  activeClassName={classes.activeLink}
                 >
                   Catégories
                 </Link>

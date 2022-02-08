@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import Button from "@kimdontdoit/the-great-gatsby-theme/src/components/Button";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
+import Button from "../components/Button";
 import memoji from "../images/memoji_bump.png";
 import ThemeContext from "../context/ThemeContext";
 
@@ -34,13 +34,13 @@ export default function IndexPage() {
               Vlad
             </span>
             .{" "}
-            <span className={`opacity-30`}>
+            <span className={classes.sub}>
               Je développe, j’apprends et j’améliore — spécialisé Front-end
             </span>
           </h1>
 
-          <h1 className={`${classes.mediumTitle} mb-16`}>
-            <span className={`opacity-30`}>basé à Tiohtià:ke / Montréal.</span>
+          <h1 className={[classes.mediumTitle, classes.sub, "mb-16"].join(" ")}>
+            basé à Tiohtià:ke / Montréal.
           </h1>
 
           <Button
@@ -113,7 +113,7 @@ export default function IndexPage() {
           <h1 className={`bigTitle`}>
             Objectif : utiliser des techno modernes pour offrir de belles
             expériences et écrire du code réutilisable.{" "}
-            <span className={`opacity-30`}>
+            <span className={`text-gray-500`}>
               #react #web #magento #wordpress #gatsby
             </span>
           </h1>
@@ -123,7 +123,7 @@ export default function IndexPage() {
       <section className={`${classes.section} py-16 md:py-40`}>
         <div className={`container`}>
           <h2 className={`bigTitle mb-8`}>
-            Organisation <span className={`opacity-30`}>O2web</span>
+            Organisation <span className={`text-gray-500`}>O2web</span>
           </h2>
 
           <div className={`${classes.block} bg-gray-100`}>
@@ -135,7 +135,7 @@ export default function IndexPage() {
               />
               <p className={`font-medium text-2xl`}>
                 O2web est une agence numérique unique qui excelle en e-commerce{" "}
-                <span className={`opacity-30`}>
+                <span className={`text-gray-500`}>
                   et apporte à ses clients tout ce dont ils ont besoin pour
                   atteindre leurs objectifs
                 </span>
