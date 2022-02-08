@@ -34,12 +34,14 @@ export default function IndexPage() {
               Vlad
             </span>
             .{" "}
-            <span className={classes.sub}>
+            <span className={`text-opa-30`}>
               Je développe, j’apprends et j’améliore — spécialisé Front-end
             </span>
           </h1>
 
-          <h1 className={[classes.mediumTitle, classes.sub, "mb-16"].join(" ")}>
+          <h1
+            className={[classes.mediumTitle, `text-opa-30`, "mb-16"].join(" ")}
+          >
             basé à Tiohtià:ke / Montréal.
           </h1>
 
@@ -113,7 +115,7 @@ export default function IndexPage() {
           <h1 className={`bigTitle`}>
             Objectif : utiliser des techno modernes pour offrir de belles
             expériences et écrire du code réutilisable.{" "}
-            <span className={`text-gray-500`}>
+            <span className={`text-opa-30`}>
               #react #web #magento #wordpress #gatsby
             </span>
           </h1>
@@ -123,7 +125,7 @@ export default function IndexPage() {
       <section className={`${classes.section} py-16 md:py-40`}>
         <div className={`container`}>
           <h2 className={`bigTitle mb-8`}>
-            Organisation <span className={`text-gray-500`}>O2web</span>
+            Organisation <span className={`text-opa-30`}>O2web</span>
           </h2>
 
           <div className={`${classes.block} bg-gray-100`}>
@@ -135,7 +137,7 @@ export default function IndexPage() {
               />
               <p className={`font-medium text-2xl`}>
                 O2web est une agence numérique unique qui excelle en e-commerce{" "}
-                <span className={`text-gray-500`}>
+                <span className={`text-opa-30`}>
                   et apporte à ses clients tout ce dont ils ont besoin pour
                   atteindre leurs objectifs
                 </span>
