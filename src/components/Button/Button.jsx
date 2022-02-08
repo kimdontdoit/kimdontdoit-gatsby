@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import * as classes from "./button.module.scss";
+import * as classes from "./button.module.css";
 
 const Button = (props) => {
   const { children, className = "", href } = props;

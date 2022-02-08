@@ -112,20 +112,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        postCssPlugins: [
-          require(`tailwindcss`),
-          require(`./tailwind.config.js`), // Optional: Load custom Tailwind CSS configuration
-        ],
-        sassOptions: {},
-        useResolveUrlLoader: {
-          options: {
-            sourceMap: true,
-          },
-        },
-        // additionalData: `@import `${__dirname}/src/styles/variables`;`,
-      },
+      resolve: `gatsby-plugin-postcss`,
     },
     `gatsby-transformer-sharp`,
     {

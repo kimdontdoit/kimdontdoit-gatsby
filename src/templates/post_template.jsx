@@ -8,10 +8,10 @@ import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 import ThemeContext from "../context/ThemeContext";
 
-import * as classes from "./posts_template.module.scss";
+import * as classes from "./posts_template.module.css";
 
 export default function PostTemplate({ data, location }) {
-  const { post, category, type } = data;
+  const { post, /* category,*/ type } = data;
   const { scrollProgressTarget } = useContext(ThemeContext);
 
   useEffect(() => {

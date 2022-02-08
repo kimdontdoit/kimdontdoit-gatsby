@@ -7,19 +7,7 @@
     :not(:last-of-type) {
       @apply mr-8;
     }
-
-    a {
-      font-weight: 700;
-
-      &:hover {
-        @apply text-opa-30;
-      }
-    }
   }
-}
-
-.activeLink {
-  @apply text-opa-30;
 }
 
 .fixedHeader {
