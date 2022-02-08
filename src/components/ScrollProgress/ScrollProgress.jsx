@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 
 import ThemeContext from "../../context/ThemeContext";
 
-import * as classes from "./ScrollProgress.module.scss";
+import * as classes from "./ScrollProgress.module.css";
 
 const ScrollProgress = () => {
   const { readingProgress, setReadingProgress, scrollProgressTarget } =

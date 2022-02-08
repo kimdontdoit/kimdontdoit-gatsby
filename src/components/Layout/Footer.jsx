@@ -1,5 +1,5 @@
 import React from "react";
-import * as classes from "./Footer.module.scss";
+import * as classes from "./Footer.module.css";
 
 const scrollToTop = () => {
   window.scrollTo({

@@ -1,4 +1,4 @@
-@layer components {
+@layer utilities {
   .bigTitle {
     @apply font-black;
     @apply text-4xl md:text-6xl md:leading-tight;

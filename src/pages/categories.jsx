@@ -18,12 +18,17 @@ export default function CategoriesPage({ data }) {
   const categories = data.categories.nodes;
   const crumbs = [];
 
+  crumbs.push({
+    label: "Retour à l'accueil",
+    url: "/",
+  });
+
   return (
     <>
       <Seo title="Catégories" />
 
       <section className={`my-16`}>
-        <Pageheader title="Catégories" />
+        <Pageheader title="Catégories" crumbs={crumbs} />
       </section>
 
       <section>

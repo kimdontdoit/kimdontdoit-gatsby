@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import memoji from "../images/memoji_bump.png";
 import ThemeContext from "../context/ThemeContext";
 
-import * as classes from "./index.module.scss";
+import * as classes from "./index.module.css";
 
 export default function IndexPage() {
   const { setCursorImage } = useContext(ThemeContext);
