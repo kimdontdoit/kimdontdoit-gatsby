@@ -5,9 +5,21 @@
     flex-direction: row;
 
     :not(:last-of-type) {
-      @apply pr-2.5;
+      @apply mr-8;
+    }
+
+    a {
+      font-weight: 700;
+
+      &:hover {
+        @apply text-opa-30;
+      }
     }
   }
+}
+
+.activeLink {
+  @apply text-opa-30;
 }
 
 .fixedHeader {
