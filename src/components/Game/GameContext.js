@@ -14,7 +14,7 @@ function GameProvider({ children }) {
   useEffect(() => {
     const profile = JSON.parse(window.localStorage.getItem("gameProfile"));
 
-    profile.gold ? setGold(profile.gold) : setGold(0);
+    profile?.gold ? setGold(profile.gold) : setGold(0);
   }, []);
 
   function incrementGold() {
