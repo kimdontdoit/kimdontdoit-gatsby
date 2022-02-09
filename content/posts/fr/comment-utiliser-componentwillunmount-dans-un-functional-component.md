@@ -9,12 +9,12 @@ type: Snippets
 needs_update: true
 ---
 
-`useEffect(() => {
+```js
+useEffect(() => {
+  return () => {
 
-return () => {
+  // Anything in here is fired on component unmount.
 
-// Anything in here is fired on component unmount.
-
-};
-
-}, \[]);`
+  };
+}, \[]);
+```

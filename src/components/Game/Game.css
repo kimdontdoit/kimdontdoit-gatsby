@@ -1,0 +1,22 @@
+.game {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+
+  @apply p-6 w-full max-w-xs bg-white rounded-lg shadow-md;
+}
+.gamePrompts {
+  display: none;
+}
+
+.gameFrame {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.actionButton {
+}
+
+.saveButton {
+  @apply text-gray-900 py-2.5 px-5 bg-white rounded-lg border border-gray-200 hover:bg-gray-100;
+}

@@ -2,10 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { graphql } from "gatsby";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
-
+import { BiRefresh } from "react-icons/bi";
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
+import Button from "../components/Button";
+import GameContext from "../components/Game/GameContext";
 import ThemeContext from "../context/ThemeContext";
 
 import * as classes from "./posts_template.module.css";
@@ -13,6 +15,7 @@ import * as classes from "./posts_template.module.css";
 export default function PostTemplate({ data, location }) {
   const { post, /* category,*/ type } = data;
   const { scrollProgressTarget } = useContext(ThemeContext);
+  const { incrementGold } = useContext(GameContext);
 
   useEffect(() => {
     return () => {
@@ -21,11 +24,9 @@ export default function PostTemplate({ data, location }) {
   }, []);
 
   //const { previous, next } = data;
-  const title = post.frontmatter.title;
+  const { title, description, publish_date, needs_update } = post.frontmatter;
 
-  const date = dayjs(post.frontmatter.publish_date)
-    .locale("fr")
-    .format("D MMMM YYYY");
+  const date = dayjs(publish_date).locale("fr").format("D MMMM YYYY");
 
   const crumbs = [];
 
@@ -42,10 +43,7 @@ export default function PostTemplate({ data, location }) {
 
   return (
     <>
-      <Seo
-        title={title}
-        description={post.frontmatter.description || post.excerpt}
-      />
+      <Seo title={title} description={description || post.excerpt} />
 
       <article
         itemScope
@@ -55,6 +53,24 @@ export default function PostTemplate({ data, location }) {
         <section className={`my-16`}>
           <Pageheader title={title} crumbs={crumbs} date={date} />
         </section>
+
+        {needs_update && (
+          <section className="pb-16 container flex" onClick={incrementGold}>
+            <div
+              className={`${classes.notice} w-full max-w-screen-md p-4  bg-gray-100  rounded-lg `}
+            >
+              <div className="text-gray-700 text-sm">
+                <span className="flex items-center font-bold mb-2 text-base">
+                  <BiRefresh className="text-lg mr-2" /> Cet article requiert
+                  une mise à jour.
+                </span>
+                De temps à autre, une de mes publications à besoin de révision.
+                Si vous avez des suggestions ou voulez +1 pour voir cet article
+                révisé plus vite, n'hésitez pas à cliquer dans cet encadré
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="pb-16 container flex">
           <div className={`${classes.content} flex-1`}>
