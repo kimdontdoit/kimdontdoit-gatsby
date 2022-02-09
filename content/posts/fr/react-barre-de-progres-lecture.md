@@ -30,8 +30,6 @@ const ScrollProgress = ({ target }) => {
 
     if (windowScrollTop <= element.offsetTop) {
       setReadingProgress(0);
-    } else if (false) {
-      setReadingProgress(100);
     } else {
       setReadingProgress(
         ((windowScrollTop - element.offsetTop) /

@@ -8,6 +8,9 @@
   font-weight: 900;
 }
 
+.kim {
+}
+
 .card {
   border-radius: 12px;
 }
@@ -22,9 +25,7 @@
 }
 
 .workSection {
-  :global {
-    img {
-      border-radius: 8px;
-    }
+  img {
+    border-radius: 8px;
   }
 }

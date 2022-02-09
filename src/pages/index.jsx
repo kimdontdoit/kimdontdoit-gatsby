@@ -27,6 +27,7 @@ export default function IndexPage() {
           <h1 className={`bigTitle mb-12`}>
             Salut 👋 moi c’est{" "}
             <span
+              className={`${classes.kim}`}
               role="tooltip"
               onMouseEnter={setMemojiCursor}
               onMouseLeave={resetCursorImage}

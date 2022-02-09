@@ -1,3 +1,23 @@
+.notice {
+  font-family: "League Mono";
+  transition: 0.4s;
+
+  &:hover {
+    transform: scale(1.025) translateZ(1px);
+    cursor: pointer;
+  }
+
+  p {
+    cursor: auto;
+  }
+
+  &:active {
+    filter: brightness(0.85);
+    transform: scale(0.975);
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
 .content {
   p {
     @apply mb-8;
