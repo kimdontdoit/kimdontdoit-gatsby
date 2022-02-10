@@ -4,4 +4,8 @@
 
     font-feature-settings: "ss03" 1;
   }
+
+  a {
+    transition: 0.2s color ease-in-out;
+  }
 }

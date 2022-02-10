@@ -2,8 +2,9 @@
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+  background: white;
 
-  @apply p-6 w-full max-w-xs bg-white rounded-lg shadow-md;
+  @apply p-6 w-full max-w-xs rounded-lg shadow-md;
 }
 .gamePrompts {
   display: none;
@@ -18,5 +19,28 @@
 }
 
 .saveButton {
-  @apply text-gray-900 py-2.5 px-5 bg-white rounded-lg border border-gray-200 hover:bg-gray-100;
+  @apply text-gray-900 py-2.5 px-5 rounded-lg border hover:bg-gray-100;
+}
+
+#coin {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  transform: translateX(-50%);
+
+  &.active {
+    animation: coin-flip 500ms;
+  }
+}
+
+@keyframes coin-flip {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -30px;
+  }
+  100% {
+    top: 0;
+  }
 }

@@ -16,6 +16,8 @@ const Footer = () => {
           role="link"
           className={`${classes.scrollTopLink} mb-8`}
           onClick={scrollToTop}
+          onKeyDown={scrollToTop}
+          tabIndex={0}
         >
           Retour en haut de page
         </div>

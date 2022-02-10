@@ -6,7 +6,6 @@ import { BiRefresh } from "react-icons/bi";
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
-import Button from "../components/Button";
 import GameContext from "../components/Game/GameContext";
 import ThemeContext from "../context/ThemeContext";
 
@@ -51,11 +50,20 @@ export default function PostTemplate({ data, location }) {
         ref={scrollProgressTarget}
       >
         <section className={`my-16`}>
-          <Pageheader title={title} crumbs={crumbs} date={date} />
+          <Pageheader title={title} crumbs={crumbs}>
+            {date && (
+              <p className={`font-bold mt-4 opacity-60`}>Publié le {date}</p>
+            )}
+          </Pageheader>
         </section>
 
         {needs_update && (
-          <section className="pb-16 container flex" onClick={incrementGold}>
+          <section
+            className="pb-16 container flex "
+            onClick={incrementGold}
+            role="button"
+            tabIndex={0}
+          >
             <div
               className={`${classes.notice} w-full max-w-screen-md p-4  bg-gray-100  rounded-lg `}
             >
