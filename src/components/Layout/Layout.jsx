@@ -16,6 +16,7 @@ export function Layout({ children, ...props }) {
       <main className={`flex-1 ${className}`}>{children}</main>
 
       <Cursor />
+      {/* <Game /> */}
       <Footer />
     </div>
   );

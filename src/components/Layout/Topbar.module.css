@@ -4,7 +4,7 @@
   ul {
     flex-direction: row;
 
-    :not(:last-of-type) {
+    li:not(:last-of-type) {
       @apply mr-8;
     }
   }
