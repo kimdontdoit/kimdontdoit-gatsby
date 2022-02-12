@@ -27,25 +27,25 @@ const Cursor = () => {
   }, []);
 
   return (
-    <div
-      className="cursor fixed"
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
+    <CSSTransition
+      unmountOnExit
+      in={showCursorImage}
+      timeout={{ appear: 0, enter: 0, exit: 300 }}
+      classNames="roll"
+      appear
     >
-      <CSSTransition
-        unmountOnExit
-        in={showCursorImage}
-        timeout={{ appear: 0, enter: 0, exit: 300 }}
-        classNames="roll"
-        appear
+      <div
+        className="cursor fixed"
+        style={{
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+        }}
       >
         <div className="cursorImage" key="cursor-image">
           <img src={cursorImage} alt="cursor" />
-        </div>
-      </CSSTransition>
-    </div>
+        </div>{" "}
+      </div>
+    </CSSTransition>
   );
 };
 

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, graphql } from "gatsby";
+
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+
+import ThemeContext from "../context/ThemeContext";
 
 const Post = ({ post }) => {
   return (
@@ -14,6 +17,8 @@ const Post = ({ post }) => {
 };
 
 export default function CategoryTemplate({ pageContext, data, location }) {
+  const { setTopbarTransparent } = useContext(ThemeContext);
+
   const { category } = data;
   const posts = data.posts.nodes;
   const crumbs = [];
@@ -23,6 +28,14 @@ export default function CategoryTemplate({ pageContext, data, location }) {
     url: "/categories",
   });
 
+  useEffect(() => {
+    category.frontmatter.color && setTopbarTransparent(true);
+
+    return () => {
+      setTopbarTransparent(false);
+    };
+  });
+
   return (
     <>
       <Seo
@@ -30,11 +43,18 @@ export default function CategoryTemplate({ pageContext, data, location }) {
         description={category.frontmatter.description || category.excerpt}
       />
       <div>
-        <section className={`my-16`}>
+        <section
+          className={`pt-16 ${category.frontmatter.color && "pb-16"}`}
+          style={{
+            backgroundColor: category.frontmatter.color,
+            paddingTop: category.frontmatter.color && "8.5rem",
+          }}
+        >
           <Pageheader
             title={category.frontmatter.title}
             subtitle={category.frontmatter.subtitle}
             crumbs={crumbs}
+            color={category.frontmatter.color}
           />
         </section>
 
@@ -48,7 +68,7 @@ export default function CategoryTemplate({ pageContext, data, location }) {
           </section>
         )}
 
-        <section className={`pb-16`}>
+        <section className={`py-16`}>
           {posts &&
             posts.map((post) => {
               return <Post key={post.id} post={post.childMarkdownRemark} />;

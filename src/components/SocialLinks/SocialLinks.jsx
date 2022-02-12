@@ -27,7 +27,7 @@ const SocialLinks = () => {
   return (
     <ul className={classes.socialLinks}>
       {links.map((link) => (
-        <li>
+        <li key={link.className}>
           <a
             className={classes[link.className]}
             href={link.url}

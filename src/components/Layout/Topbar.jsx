@@ -1,25 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
+import classNames from "@kimdontdoit/the-great-gatsby-theme/src/utils/classNames";
+
 import ScrollProgress from "../ScrollProgress";
 import SocialLinks from "../SocialLinks";
+import ThemeContext from "../../context/ThemeContext";
 
 import * as classes from "./Topbar.module.css";
 
 const Topbar = () => {
   const [sticky, setSticky] = useState(false);
+  const { topbarTransparent } = useContext(ThemeContext);
+
+  const handleScroll = () => {
+    window.scrollY > 150 ? setSticky(true) : setSticky(false);
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      window.scrollY > 150 ? setSticky(true) : setSticky(false);
-    });
+    window.addEventListener("scroll", () => handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   });
 
   return (
     <>
       <ScrollProgress />
-      <div className={`${classes.topbar} ${sticky ? classes.sticky : ""}`}>
+      <div
+        className={classNames(
+          classes.topbar,
+          topbarTransparent && classes.topbarTransparent,
+          sticky && classes.sticky
+        )}
+      >
         <div className={`container flex flex-row py-4`}>
           <div className={`flex-1 flex text-lg`}>
             <Link to="/">
