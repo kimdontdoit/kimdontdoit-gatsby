@@ -6,7 +6,6 @@ i18n:
 show_preview_links: false
 
 #local_backend: true
-publish_mode: editorial_workflow
 media_folder: static/media
 public_folder: /media
 
