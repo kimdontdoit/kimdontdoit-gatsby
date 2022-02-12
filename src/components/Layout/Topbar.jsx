@@ -3,6 +3,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
 import ScrollProgress from "../ScrollProgress";
+import SocialLinks from "../SocialLinks";
 
 import * as classes from "./Topbar.module.css";
 
@@ -65,37 +66,11 @@ const Topbar = () => {
             </ul>
           </div>
 
-          <div className={`hidden md:flex flex-1 justify-end items-center `}>
-            <ul className="flex">
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/vladislav-kim-3ba4a1172"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Linkedin
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/kimdontdoit"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Github
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/kimdontdoit/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Instagram
-                </a>
-              </li>
-            </ul>
-          </div>
+          {!sticky && (
+            <div className={`hidden md:flex flex-1 justify-end items-center `}>
+              <SocialLinks />
+            </div>
+          )}
         </div>
       </div>
     </>
