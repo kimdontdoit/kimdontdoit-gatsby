@@ -13,7 +13,7 @@
 
 .btn:hover {
   filter: brightness(1.15);
-  transform: scale(1.025) translateZ(1px);
+  transform: scale(1.125) translateZ(1px);
 }
 
 .btn:active {
