@@ -2,12 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { graphql } from "gatsby";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
-import { BiRefresh } from "react-icons/bi";
+
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 import ThemeContext from "../context/ThemeContext";
-
+import Alert from "../components/Alert";
 import * as classes from "./posts_template.module.css";
 
 export default function PostTemplate({ data, location }) {
@@ -55,23 +55,7 @@ export default function PostTemplate({ data, location }) {
           </Pageheader>
         </section>
 
-        {needs_update && (
-          <section className="pb-16 container flex" role="button" tabIndex={0}>
-            <div
-              className={`${classes.notice} w-full max-w-screen-md p-4  bg-gray-100  rounded-lg `}
-            >
-              <div className="text-gray-700 text-sm">
-                <span className="flex items-center font-bold mb-2 text-base">
-                  <BiRefresh className="text-lg mr-2" /> Cet article requiert
-                  une mise à jour.
-                </span>
-                De temps à autre, une de mes publications à besoin de révision.
-                Si vous avez des suggestions ou voulez +1 pour voir cet article
-                révisé plus vite, n'hésitez pas à cliquer dans cet encadré
-              </div>
-            </div>
-          </section>
-        )}
+        {needs_update && <Alert />}
 
         <section className="pb-16 container flex">
           <div className={`${classes.content} flex-1`}>

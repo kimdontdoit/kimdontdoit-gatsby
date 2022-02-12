@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 
 import ThemeContext from "../../context/ThemeContext";
 
 import "./Cursor.css";
 
 const Cursor = () => {
-  const { cursorImage } = useContext(ThemeContext);
+  const { cursorImage, showCursorImage, setCursorImage } =
+    useContext(ThemeContext);
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -20,6 +22,7 @@ const Cursor = () => {
     return () => {
       document.removeEventListener("mousemove", updatePosition);
       document.removeEventListener("mouseenter", updatePosition);
+      setCursorImage(undefined);
     };
   }, []);
 
@@ -31,11 +34,17 @@ const Cursor = () => {
         top: `${position.y}px`,
       }}
     >
-      {cursorImage && (
-        <div className="cursorImage">
+      <CSSTransition
+        unmountOnExit
+        in={showCursorImage}
+        timeout={{ appear: 0, enter: 0, exit: 300 }}
+        classNames="roll"
+        appear
+      >
+        <div className="cursorImage" key="cursor-image">
           <img src={cursorImage} alt="cursor" />
         </div>
-      )}
+      </CSSTransition>
     </div>
   );
 };

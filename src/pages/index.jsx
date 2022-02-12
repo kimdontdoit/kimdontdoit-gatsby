@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
+
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 import Button from "../components/Button";
@@ -9,13 +10,15 @@ import ThemeContext from "../context/ThemeContext";
 import * as classes from "./index.module.css";
 
 export default function IndexPage() {
-  const { setCursorImage } = useContext(ThemeContext);
+  const { setCursorImage, setShowCursorImage } = useContext(ThemeContext);
 
   const setMemojiCursor = (e) => {
     setCursorImage(memoji);
+    setShowCursorImage(true);
   };
   const resetCursorImage = (e) => {
-    setCursorImage(undefined);
+    // move this to cursor component setCursorImage(undefined);
+    setShowCursorImage(false);
   };
 
   return (
