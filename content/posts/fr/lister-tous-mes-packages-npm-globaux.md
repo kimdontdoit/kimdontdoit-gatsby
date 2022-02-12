@@ -1,12 +1,13 @@
 ---
-template: single-post
-title: Lister tous mes packages NPM globaux
-status: Published
-publish_date: 2021-06-02T17:25:54.439Z
 authors:
   - Vladislav Kim
-type: Snippets
+needs_update: true
+status: Published
+template: single-post
+title: Lister tous mes packages NPM globaux
+publish_date: 2021-06-02T17:25:54.439Z
 category: Serveur
+type: Snippets
 ---
 
 ```bash
