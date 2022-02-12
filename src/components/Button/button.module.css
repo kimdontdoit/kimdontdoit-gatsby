@@ -4,17 +4,16 @@
   justify-content: center;
   align-items: center;
 
-  border-radius: 0.5em;
+  @apply rounded-lg;
+  @apply text-lg font-black;
 
   padding: 0.75em 1em;
   transition: 0.4s;
-
-  @apply text-lg font-black;
 }
 
 .btn:hover {
   filter: brightness(1.15);
-  transform: scale(1.025) translateZ(1px);
+  transform: scale(1.125) translateZ(1px);
 }
 
 .btn:active {

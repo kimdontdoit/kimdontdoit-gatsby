@@ -12,7 +12,13 @@ const Footer = () => {
   return (
     <footer className={`${classes.footer} bg-primary`}>
       <div className={`${classes.footerContainer} container text-center py-12`}>
-        <div className={`${classes.scrollTopLink} mb-8`} onClick={scrollToTop}>
+        <div
+          role="link"
+          className={`${classes.scrollTopLink} mb-8`}
+          onClick={scrollToTop}
+          onKeyDown={scrollToTop}
+          tabIndex={0}
+        >
           Retour en haut de page
         </div>
 

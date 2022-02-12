@@ -31,7 +31,7 @@ export default function CategoriesPage({ data }) {
         <Pageheader title="Catégories" crumbs={crumbs} />
       </section>
 
-      <section>
+      <section className="pb-16">
         <div className="container text-lg">
           {categories &&
             categories.map((category) => {

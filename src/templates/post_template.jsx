@@ -7,7 +7,7 @@ import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageh
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 import ThemeContext from "../context/ThemeContext";
-
+import Alert from "../components/Alert";
 import * as classes from "./posts_template.module.css";
 
 export default function PostTemplate({ data, location }) {
@@ -21,11 +21,9 @@ export default function PostTemplate({ data, location }) {
   }, []);
 
   //const { previous, next } = data;
-  const title = post.frontmatter.title;
+  const { title, description, publish_date, needs_update } = post.frontmatter;
 
-  const date = dayjs(post.frontmatter.publish_date)
-    .locale("fr")
-    .format("D MMMM YYYY");
+  const date = dayjs(publish_date).locale("fr").format("D MMMM YYYY");
 
   const crumbs = [];
 
@@ -42,10 +40,7 @@ export default function PostTemplate({ data, location }) {
 
   return (
     <>
-      <Seo
-        title={title}
-        description={post.frontmatter.description || post.excerpt}
-      />
+      <Seo title={title} description={description || post.excerpt} />
 
       <article
         itemScope
@@ -53,8 +48,14 @@ export default function PostTemplate({ data, location }) {
         ref={scrollProgressTarget}
       >
         <section className={`my-16`}>
-          <Pageheader title={title} crumbs={crumbs} date={date} />
+          <Pageheader title={title} crumbs={crumbs}>
+            {date && (
+              <p className={`font-bold mt-4 opacity-60`}>Publié le {date}</p>
+            )}
+          </Pageheader>
         </section>
+
+        {needs_update && <Alert />}
 
         <section className="pb-16 container flex">
           <div className={`${classes.content} flex-1`}>

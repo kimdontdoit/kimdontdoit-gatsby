@@ -1,5 +1,5 @@
 ---
 template: post_category
 title: WordPress
-color: "#21749b"
+color: "#117ac9"
 ---

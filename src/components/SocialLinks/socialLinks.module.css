@@ -1,0 +1,26 @@
+.socialLinks {
+  @apply flex text-sm font-bold;
+
+  a {
+    transition: 200ms all ease-in-out;
+  }
+}
+
+.linkedin {
+  &:hover {
+    color: #0a66c2;
+  }
+}
+
+.github {
+  &:hover {
+    color: transparent;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.69);
+  }
+}
+
+.instagram {
+  &:hover {
+    color: #e4405f;
+  }
+}
