@@ -14,7 +14,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "@kimdontdoit/the-great-gatsby-theme": "^1.1.5",
+    "@kimdontdoit/the-great-gatsby-theme": "^1.1.6",
     "dayjs": "^1.10.7",
     "gatsby": "^4.7.1",
     "gatsby-plugin-image": "^2.7.0",
