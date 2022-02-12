@@ -22,13 +22,27 @@ La base de la base : la recherche récursive à travers tous les fichiers d'un d
 
 ```
 grep -r "pattern" .
+
+```
+
+## Inclure / exclure un dossier dans grep
+
+Il est possible également de fournir plusieurs dossiers à la commande.
+
+```
 grep -r --exclude-dir=node_modules "pattern" .
-grep -r --exclude-dir={node_modules,vendor}
+grep -r --exclude-dir={node_modules,vendor} "pattern" .
+```
+
+## Inclure / Exclure un type de fichier dans grep
+
+```
+grep -r --exclude=\*.min.css "pattern" .
 ```
 
 ## Utiliser grep en affichant le nom des fichiers seulement
 
-Utile pour une meilleure visibilité
+Utile pour une meilleure visibilité dans son terminal.
 
 ```
 grep -l
