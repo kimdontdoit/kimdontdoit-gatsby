@@ -20,7 +20,7 @@
 .roll-enter-done {
   transform: scale(1);
   opacity: 1;
-  transition: transform 200ms ease-out, opacity 200ms;
+  transition: transform 200ms ease-out, opacity 100ms;
 }
 
 .roll-exit {
@@ -31,5 +31,5 @@
 .roll-exit-active {
   transform: scale(0);
   opacity: 0;
-  transition: transform 200ms ease-out, opacity 200ms;
+  transition: transform 200ms ease-in, opacity 1000ms;
 }
