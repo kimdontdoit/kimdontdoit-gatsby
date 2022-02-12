@@ -6,7 +6,6 @@ import { BiRefresh } from "react-icons/bi";
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
-import GameContext from "../components/Game/GameContext";
 import ThemeContext from "../context/ThemeContext";
 
 import * as classes from "./posts_template.module.css";
@@ -14,7 +13,6 @@ import * as classes from "./posts_template.module.css";
 export default function PostTemplate({ data, location }) {
   const { post, /* category,*/ type } = data;
   const { scrollProgressTarget } = useContext(ThemeContext);
-  const { incrementGold } = useContext(GameContext);
 
   useEffect(() => {
     return () => {
@@ -58,12 +56,7 @@ export default function PostTemplate({ data, location }) {
         </section>
 
         {needs_update && (
-          <section
-            className="pb-16 container flex "
-            onClick={incrementGold}
-            role="button"
-            tabIndex={0}
-          >
+          <section className="pb-16 container flex" role="button" tabIndex={0}>
             <div
               className={`${classes.notice} w-full max-w-screen-md p-4  bg-gray-100  rounded-lg `}
             >
