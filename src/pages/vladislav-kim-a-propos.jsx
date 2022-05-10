@@ -8,14 +8,14 @@ export default function AboutPage() {
       <Seo title="Vladislav Kim, c’est qui?" />
 
       <section className={`my-16`}>
-        <div className={`container max-w-screen-md text-center`}>
+        <div className={`container max-w-screen-md mx-auto`}>
           <h1 className={`text-4xl font-black`}>Vladislav Kim, c’est qui?</h1>
         </div>
       </section>
 
       <section className={`pb-16`}>
-        <div className={`container max-w-screen-md`}>
-          <p className={`text-lg text-center`}>
+        <div className={`container max-w-screen-md mx-auto`}>
+          <p className={`text-lg `}>
             Salut! Mon nom est Vladislav Kim et je suis un Développeur Front End
             qui expérimente avec du back end à l’occasion. Présentement chez
             O2web à Montréal, je me concentre sur du code Javascript et PHP.

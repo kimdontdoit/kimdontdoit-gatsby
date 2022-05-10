@@ -35,7 +35,10 @@ export default function PostTemplate({ data, location }) {
   }*/
 
   if (type) {
-    crumbs.push({ label: type.frontmatter.title, url: type.fields.slug });
+    crumbs.push({
+      label: `Tous les ${type.frontmatter.title}`,
+      url: type.fields.slug,
+    });
   }
 
   return (
@@ -47,12 +50,8 @@ export default function PostTemplate({ data, location }) {
         itemType="http://schema.org/Article"
         ref={scrollProgressTarget}
       >
-        <section className={`my-16`}>
-          <Pageheader title={title} crumbs={crumbs}>
-            {date && (
-              <p className={`font-bold mt-4 opacity-60`}>Publié le {date}</p>
-            )}
-          </Pageheader>
+        <section className={`my-16 container`}>
+          <Pageheader title={title} crumbs={crumbs} />
         </section>
 
         {needs_update && <Alert />}
@@ -61,18 +60,24 @@ export default function PostTemplate({ data, location }) {
           <div className={`${classes.content} flex-1`}>
             <div
               dangerouslySetInnerHTML={{ __html: post.html }}
-              className={`max-w-screen-md text-lg`}
+              className={`max-w-screen-md mx-auto text-lg`}
             ></div>
+
+            <div className="max-w-screen-md mx-auto">
+              {date && (
+                <p className={`font-bold mt-4 opacity-60`}>Publié le {date}</p>
+              )}
+            </div>
           </div>
 
-          {post.tableOfContents && (
+          {/*post.tableOfContents && (
             <div className={`${classes.toc}`}>
               <h3 className={`text-lg font-bold mb-4`}>Table des matières</h3>
               <div
                 dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
               ></div>
             </div>
-          )}
+          )*/}
         </section>
       </article>
     </>

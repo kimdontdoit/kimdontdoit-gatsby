@@ -14,7 +14,7 @@ export default function AboutPage() {
       </section>
 
       <section className={`pb-16`}>
-        <div className={`container max-w-screen-md `}>
+        <div className={`container max-w-screen-md mx-auto`}>
           <p className={`text-lg`}></p>
         </div>
       </section>
