@@ -20,10 +20,10 @@ export default function PostTemplate({ data, location }) {
     };
   }, []);
 
-  //const { previous, next } = data;
   const { title, description, publish_date, needs_update } = post.frontmatter;
 
   const date = dayjs(publish_date).locale("fr").format("D MMMM YYYY");
+  const shortDate = dayjs(publish_date).locale("fr").format("D MMM YYYY");
 
   const crumbs = [];
 
@@ -51,7 +51,14 @@ export default function PostTemplate({ data, location }) {
         ref={scrollProgressTarget}
       >
         <section className={`my-16 container`}>
-          <Pageheader title={title} crumbs={crumbs} />
+          <Pageheader title={title} crumbs={crumbs}>
+            {shortDate && (
+              <p className={`font-bold mt-4 opacity-60`}>
+                {shortDate}
+                {post.timeToRead > 1 && ` • ${post.timeToRead} min. de lecture`}
+              </p>
+            )}
+          </Pageheader>
         </section>
 
         {needs_update && <Alert />}
@@ -60,13 +67,19 @@ export default function PostTemplate({ data, location }) {
           <div className={`${classes.content} flex-1`}>
             <div
               dangerouslySetInnerHTML={{ __html: post.html }}
-              className={`max-w-screen-md mx-auto text-lg`}
+              className={`md:max-w-screen-md mx-auto text-lg`}
             ></div>
 
-            <div className="max-w-screen-md mx-auto">
+            <div className="md:max-w-screen-md mx-auto">
               {date && (
-                <p className={`font-bold mt-4 opacity-60`}>Publié le {date}</p>
+                <p className={`font-bold mt-4 mb-0 opacity-60`}>
+                  Publié le {date}
+                </p>
               )}
+
+              <p className={`font-bold opacity-60`}>
+                Composé par Vladislav Kim
+              </p>
             </div>
           </div>
 
