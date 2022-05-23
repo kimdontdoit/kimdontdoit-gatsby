@@ -5,16 +5,7 @@ import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageh
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 import ThemeContext from "../context/ThemeContext";
-
-const Post = ({ post }) => {
-  return (
-    <div className="mb-8">
-      <Link className="font-bold" to={post.fields.slug}>
-        {post.frontmatter.title}
-      </Link>
-    </div>
-  );
-};
+import Post from "../components/Post";
 
 export default function CategoryTemplate({ pageContext, data, location }) {
   const { setTopbarTransparent } = useContext(ThemeContext);
@@ -34,7 +25,9 @@ export default function CategoryTemplate({ pageContext, data, location }) {
     return () => {
       setTopbarTransparent(false);
     };
-  });
+  }, [category.frontmatter.color]);
+
+  console.log(posts);
 
   return (
     <>
@@ -107,6 +100,7 @@ export const templateQuery = graphql`
           id
           frontmatter {
             title
+            type
           }
           fields {
             slug

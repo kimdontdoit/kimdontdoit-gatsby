@@ -1,18 +1,10 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
-const Post = ({ post }) => {
-  return (
-    <div className="mb-8">
-      <Link className="font-bold" to={post.fields.slug}>
-        {post.frontmatter.title}
-      </Link>
-    </div>
-  );
-};
+import Post from "../components/Post";
 
 export default function TypeTemplate({ data, location }) {
   const { type } = data;
@@ -28,6 +20,7 @@ export default function TypeTemplate({ data, location }) {
   return (
     <>
       <Seo title={type.frontmatter.title} />
+
       <div>
         <section className={`my-16 container`}>
           <Pageheader title={type.frontmatter.title} crumbs={crumbs} />
@@ -71,6 +64,10 @@ export const templateQuery = graphql`
           frontmatter: { type: { eq: $title } }
         }
       }
+      sort: {
+        fields: childrenMarkdownRemark___frontmatter___publish_date
+        order: DESC
+      }
     ) {
       nodes {
         id
@@ -79,6 +76,8 @@ export const templateQuery = graphql`
           id
           frontmatter {
             title
+            publish_date
+            category
           }
           fields {
             slug
