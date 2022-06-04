@@ -27,12 +27,12 @@ export default function CategoriesPage({ data }) {
     <>
       <Seo title="Catégories" />
 
-      <section className={`my-16`}>
+      <section className={`my-16 container`}>
         <Pageheader title="Catégories" crumbs={crumbs} />
       </section>
 
-      <section className="pb-16">
-        <div className="container text-lg">
+      <section className="pb-16 container">
+        <div className="max-w-screen-md mx-auto text-lg">
           {categories &&
             categories.map((category) => {
               return (

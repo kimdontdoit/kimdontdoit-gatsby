@@ -6,7 +6,7 @@ import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
 
 const Post = ({ post }) => {
   return (
-    <div className="container mb-8">
+    <div className="mb-8">
       <Link className="font-bold" to={post.fields.slug}>
         {post.frontmatter.title}
       </Link>
@@ -29,25 +29,26 @@ export default function TypeTemplate({ data, location }) {
     <>
       <Seo title={type.frontmatter.title} />
       <div>
-        <section className={`my-16`}>
+        <section className={`my-16 container`}>
           <Pageheader title={type.frontmatter.title} crumbs={crumbs} />
         </section>
 
         {type.html && (
-          <section>
+          <section className="container">
             <div
               dangerouslySetInnerHTML={{ __html: type.html }}
               itemProp="articleBody"
-              className={`container max-w-screen-md text-lg`}
+              className={`max-w-screen-md text-lg`}
             ></div>
           </section>
         )}
-
-        <section className={`pb-16`}>
-          {posts &&
-            posts.map((post) => {
-              return <Post key={post.id} post={post.childMarkdownRemark} />;
-            })}
+        <section className={`container pb-16`}>
+          <div className="max-w-screen-md mx-auto">
+            {posts &&
+              posts.map((post) => {
+                return <Post key={post.id} post={post.childMarkdownRemark} />;
+              })}
+          </div>
         </section>
       </div>
     </>

@@ -8,7 +8,7 @@ import ThemeContext from "../context/ThemeContext";
 
 const Post = ({ post }) => {
   return (
-    <div className="container mb-8">
+    <div className="mb-8">
       <Link className="font-bold" to={post.fields.slug}>
         {post.frontmatter.title}
       </Link>
@@ -44,9 +44,9 @@ export default function CategoryTemplate({ pageContext, data, location }) {
       />
       <div>
         <section
-          className={`pt-16 ${category.frontmatter.color && "pb-16"}`}
+          className={`pt-16 container ${category.frontmatter.color && "pb-16"}`}
           style={{
-            backgroundColor: category.frontmatter.color,
+            //backgroundColor: category.frontmatter.color,
             paddingTop: category.frontmatter.color && "8.5rem",
           }}
         >
@@ -59,20 +59,22 @@ export default function CategoryTemplate({ pageContext, data, location }) {
         </section>
 
         {category.html && (
-          <section>
+          <section className="container">
             <div
               dangerouslySetInnerHTML={{ __html: category.html }}
               itemProp="articleBody"
-              className={`container max-w-screen-md text-lg`}
+              className={`max-w-screen-md mx-auto text-lg`}
             ></div>
           </section>
         )}
 
-        <section className={`py-16`}>
-          {posts &&
-            posts.map((post) => {
-              return <Post key={post.id} post={post.childMarkdownRemark} />;
-            })}
+        <section className={`container pb-16`}>
+          <div className="max-w-screen-md mx-auto">
+            {posts &&
+              posts.map((post) => {
+                return <Post key={post.id} post={post.childMarkdownRemark} />;
+              })}
+          </div>
         </section>
       </div>
     </>
