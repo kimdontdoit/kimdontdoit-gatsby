@@ -135,3 +135,27 @@
   font-weight: 700;
   src: url("./fonts/LeagueMono/LeagueMonoBold.woff") format("woff");
 }
+
+/* Graphik */
+@font-face {
+  font-family: "Graphik";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/Graphik/Graphik-Regular-Web.woff") format("woff");
+}
+
+/* Jakarta */
+@font-face {
+  font-family: "Jakarta";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/Jakarta/PlusJakartaSans-Regular.woff") format("woff");
+}
+
+/* Graphik */
+@font-face {
+  font-family: "Jakarta";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/Jakarta/PlusJakartaSans-Bold.woff") format("woff");
+}
