@@ -9,6 +9,11 @@
 }
 
 .kim {
+  display: inline-block;
+
+  & button {
+    cursor: default;
+  }
 }
 
 .card {
@@ -25,7 +30,7 @@
 }
 
 .workSection {
-  img {
+  & img {
     border-radius: 8px;
   }
 }
