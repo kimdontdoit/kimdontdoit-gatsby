@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link, graphql } from "gatsby";
 
 import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";

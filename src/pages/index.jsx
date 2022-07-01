@@ -16,6 +16,7 @@ export default function IndexPage() {
     setCursorImage(memoji);
     setShowCursorImage(true);
   };
+
   const resetCursorImage = (e) => {
     // move this to cursor component setCursorImage(undefined);
     setShowCursorImage(false);
@@ -29,14 +30,14 @@ export default function IndexPage() {
         <div className="container">
           <h1 className={`bigTitle mb-12`}>
             Salut 👋 moi c’est{" "}
-            <span
-              className={`${classes.kim}`}
-              role="tooltip"
-              onMouseEnter={setMemojiCursor}
-              onMouseLeave={resetCursorImage}
-            >
-              Vlad
-            </span>
+            <div className={`${classes.kim}`} role="tooltip">
+              <button
+                onMouseEnter={setMemojiCursor}
+                onMouseLeave={resetCursorImage}
+              >
+                Vlad
+              </button>
+            </div>
             .{" "}
             <span className={`text-opa-30`}>
               Je développe, j’apprends et j’améliore — spécialisé Front-end

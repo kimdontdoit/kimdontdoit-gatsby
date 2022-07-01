@@ -24,7 +24,7 @@ const Cursor = () => {
       document.removeEventListener("mouseenter", updatePosition);
       setCursorImage(undefined);
     };
-  }, []);
+  }, [setCursorImage]);
 
   return (
     <CSSTransition
