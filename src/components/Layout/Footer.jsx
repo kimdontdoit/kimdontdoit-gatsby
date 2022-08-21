@@ -17,19 +17,17 @@ const Footer = () => {
           className={`${classes.scrollTopLink} mb-8`}
           onClick={scrollToTop}
           onKeyDown={scrollToTop}
-          tabIndex={0}
-        >
+          tabIndex={0}>
           Retour en haut de page
         </div>
 
         <div>
           <p className={`opacity-30`}>
-            Kimdontdoit copyright 2021 Roule sans stress sur{" "}
+            Kimdontdoit copyright 2022 Roule sans stress sur{" "}
             <a
               href="https://www.gatsbyjs.com/"
               target="_blank"
-              rel="noreferrer noopener"
-            >
+              rel="noreferrer noopener">
               Gatsby
             </a>{" "}
             — logiciel open source
