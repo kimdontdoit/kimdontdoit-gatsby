@@ -5,9 +5,10 @@ module.exports = {
 
   theme: {
     fontFamily: {
-      sans: "Satoshi, Helvetica, Arial, sans-serif",
-      display: "Satoshi, Helvetica, Arial, sans-serif",
-      body: "Satoshi, Helvetica, Arial, sans-serif",
+      sans: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
+      display:
+        'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
+      body: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
     },
     extend: {
       colors: {
@@ -32,18 +33,6 @@ module.exports = {
           marginRight: "auto",
           paddingLeft: "1rem",
           paddingRight: "1rem",
-          "@screen sm": {
-            maxWidth: "640px",
-          },
-          "@screen md": {
-            maxWidth: "768px",
-          },
-          "@screen lg": {
-            maxWidth: "1024px",
-          },
-          "@screen xl": {
-            maxWidth: "1200px",
-          },
         },
       };
 

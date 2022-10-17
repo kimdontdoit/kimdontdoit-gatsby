@@ -5,7 +5,7 @@
     flex-direction: row;
 
     li:not(:last-of-type) {
-      @apply mr-8;
+      @apply mr-4 md:mr-8;
     }
   }
 }

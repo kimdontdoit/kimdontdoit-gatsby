@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 
-import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import Button from "../components/Button";
 import memoji from "../images/memoji_bump.png";
@@ -26,42 +26,38 @@ export default function IndexPage() {
     <>
       <Seo title={`Kimdontdoit, or also Vladislav Kim`} />
 
-      <section className={`${classes.section} pt-16 md:pt-40 pb-8`}>
-        <div className="container">
+      <section className={`${classes.section} pt-16 md:pt-36 pb-8`}>
+        <div className="container max-w-screen-lg">
           <h1 className={`bigTitle mb-12`}>
             Salut 👋 moi c’est{" "}
             <div className={`${classes.kim}`} role="tooltip">
               <button
                 onMouseEnter={setMemojiCursor}
-                onMouseLeave={resetCursorImage}
-              >
+                onMouseLeave={resetCursorImage}>
                 Vlad
               </button>
             </div>
             .{" "}
-            <span className={`text-opa-30`}>
+            <span className={`opacity-30`}>
               Je développe, j’apprends et j’améliore — spécialisé Front-end
             </span>
           </h1>
 
-          <h1
-            className={[classes.mediumTitle, `text-opa-30`, "mb-16"].join(" ")}
-          >
+          <h1 className={[`opacity-30`, "mb-16", "font-medium"].join(" ")}>
             basé à Tiohtià:ke / Montréal.
           </h1>
 
           <Button
             href="/vladislav-kim-a-propos"
-            className="bg-black text-white"
-          >
+            className="bg-black text-white">
             En savoir plus
           </Button>
         </div>
       </section>
 
       <section className={`${classes.section} pt-16 pb-16 md:pb-40`}>
-        <div className="container">
-          <h1 className={`bigTitle`}>
+        <div className="container max-w-screen-lg">
+          <h1 className={`headingTitle`}>
             <span className={`highlight`}>Kimdontdoit</span>, ce n’était qu’un
             pseudonyme. Aujourd’hui, c’est mon blogue avec lequel j’espère vous
             partager quelque chose d’utile
@@ -70,15 +66,13 @@ export default function IndexPage() {
       </section>
 
       <section
-        className={`${classes.section} ${classes.workSection} bg-gray-100 py-16 md:py-40`}
-      >
-        <div className="container">
+        className={`${classes.section} ${classes.workSection} bg-gray-100 py-16 md:py-40`}>
+        <div className="container max-w-screen-lg">
           <div>
-            <h2 className={`bigTitle mb-8`}>Travaille récemment sur :</h2>
+            <h2 className={`headingTitle mb-8`}>Travaille récemment sur :</h2>
             <div className={`grid md:grid-cols-3 grid-cols-1 gap-8 `}>
               <div
-                className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}
-              >
+                className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}>
                 <h3 className={`font-medium text-2xl mb-8`}>24/7 Magento 2</h3>
 
                 <StaticImage
@@ -87,8 +81,7 @@ export default function IndexPage() {
                 />
               </div>
               <div
-                className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}
-              >
+                className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}>
                 <h3 className={`font-medium text-2xl mb-8`}>
                   Gatsby + Headless Magento
                 </h3>
@@ -99,8 +92,7 @@ export default function IndexPage() {
                 />
               </div>
               <div
-                className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}
-              >
+                className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}>
                 <h3 className={`font-medium text-2xl mb-8`}>
                   Sites Salon/Conférence
                 </h3>
@@ -116,11 +108,11 @@ export default function IndexPage() {
       </section>
 
       <section className={`${classes.section} bg-primary py-16 md:py-40`}>
-        <div className="container">
-          <h1 className={`bigTitle`}>
+        <div className="container max-w-screen-lg">
+          <h1 className={`headingTitle`}>
             Objectif : utiliser des techno modernes pour offrir de belles
             expériences et écrire du code réutilisable.{" "}
-            <span className={`text-opa-30`}>
+            <span className={`opacity-30`}>
               #react #web #magento #wordpress #gatsby
             </span>
           </h1>
@@ -128,9 +120,9 @@ export default function IndexPage() {
       </section>
 
       <section className={`${classes.section} py-16 md:py-40`}>
-        <div className={`container`}>
-          <h2 className={`bigTitle mb-8`}>
-            Organisation <span className={`text-opa-30`}>O2web</span>
+        <div className={`container max-w-screen-lg`}>
+          <h2 className={`headingTitle mb-8`}>
+            Organisation <span className={`opacity-30`}>O2web</span>
           </h2>
 
           <div className={`${classes.block} bg-gray-100`}>
@@ -142,7 +134,7 @@ export default function IndexPage() {
               />
               <p className={`font-medium text-2xl`}>
                 O2web est une agence numérique unique qui excelle en e-commerce{" "}
-                <span className={`text-opa-30`}>
+                <span className={`opacity-30`}>
                   et apporte à ses clients tout ce dont ils ont besoin pour
                   atteindre leurs objectifs
                 </span>
@@ -152,13 +144,15 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section className={`${classes.section} bg-primary pt-16 md:pt-40 pb-16`}>
-        <div className={`container text-center`}>
-          <p className={`bigTitle mb-16`}>
-            Avez-vous une question? Soumettez une idée d’article
+      <section className={`${classes.section} bg-dark pt-16 md:pt-40 pb-16 `}>
+        <div className={`container max-w-screen-lg text-center`}>
+          <p className={`headingTitle mb-16 text-white`}>
+            Avez-vous une question?
+            <br />
+            Soumettez une idée d’article
           </p>
 
-          <Button className="bg-black text-white">Posez votre question</Button>
+          <Button className="bg-primary">Posez votre question</Button>
         </div>
       </section>
     </>

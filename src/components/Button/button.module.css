@@ -1,23 +1,22 @@
 .btn {
+  /* font-family: Satoshi, Helvetica, Arial, sans-serif; */
   display: inline-grid;
   grid-auto-flow: column;
   justify-content: center;
   align-items: center;
 
-  @apply rounded-lg;
-  @apply text-lg font-black;
+  @apply rounded-xl;
+  @apply text-lg font-medium;
 
   padding: 0.75em 1em;
   transition: 0.4s;
 }
 
 .btn:hover {
-  filter: brightness(1.15);
-  transform: scale(1.125) translateZ(1px);
+  transform: scale(1.025) translateZ(1px);
 }
 
 .btn:active {
-  filter: brightness(0.85);
   transform: scale(0.975);
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }

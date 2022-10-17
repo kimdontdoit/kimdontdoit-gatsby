@@ -1,0 +1,11 @@
+.crumbs {
+  @apply font-medium mb-4;
+}
+
+.headline {
+  @apply text-4xl md:text-6xl leading-tight md:leading-tight font-bold;
+}
+
+.subtitle {
+  @apply mt-4;
+}

@@ -11,7 +11,7 @@ module.exports = {
     twitterUsername: `@kimdontdoit`,
   },
   plugins: [
-    `@kimdontdoit/the-great-gatsby-theme`,
+    `the-great-gatsby-theme`,
     `gatsby-plugin-image`,
     `gatsby-plugin-netlify`,
     {

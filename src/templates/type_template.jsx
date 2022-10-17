@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
-import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
-import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 const Post = ({ post }) => {
   return (
     <div className="mb-8">
-      <Link className="font-bold" to={post.fields.slug}>
+      <Link className="font-medium" to={post.fields.slug}>
         {post.frontmatter.title}
       </Link>
     </div>
@@ -38,12 +38,11 @@ export default function TypeTemplate({ data, location }) {
             <div
               dangerouslySetInnerHTML={{ __html: type.html }}
               itemProp="articleBody"
-              className={`max-w-screen-md text-lg`}
-            ></div>
+              className={`max-w-screen-lg text-lg`}></div>
           </section>
         )}
         <section className={`container pb-16`}>
-          <div className="max-w-screen-md mx-auto">
+          <div className="max-w-screen-lg mx-auto">
             {posts &&
               posts.map((post) => {
                 return <Post key={post.id} post={post.childMarkdownRemark} />;

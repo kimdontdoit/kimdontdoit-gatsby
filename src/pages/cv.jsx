@@ -1,6 +1,6 @@
 import React from "react";
 
-import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import * as classes from "./cv.module.css";
 
@@ -10,7 +10,7 @@ export default function AboutPage() {
       <Seo title="Vladislav Kim, c’est qui?" />
 
       <section className={`pb-16`}>
-        <div className={`container max-w-screen-md mx-auto`}>
+        <div className={`container max-w-screen-lg mx-auto`}>
           <div className={classes.cvWrapper}>
             <table>
               <thead>

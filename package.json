@@ -6,7 +6,7 @@
   "author": "kimdontdoit",
   "scripts": {
     "start": "yarn develop",
-    "develop": "gatsby develop -S",
+    "develop": "gatsby develop -S -o",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -14,7 +14,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "@kimdontdoit/the-great-gatsby-theme": "^1.1.8",
+    "the-great-gatsby-theme": "^1.1.9",
     "dayjs": "^1.10.7",
     "gatsby": "^4.7.1",
     "gatsby-plugin-image": "^2.7.0",
