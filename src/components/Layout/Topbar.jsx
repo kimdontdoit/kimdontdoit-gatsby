@@ -32,8 +32,7 @@ const Topbar = () => {
           classes.topbar,
           topbarTransparent && classes.topbarTransparent,
           sticky && classes.sticky
-        )}
-      >
+        )}>
         <div className={`container flex flex-row py-4`}>
           <div className={`flex-1 flex text-lg`}>
             <Link to="/">
@@ -42,7 +41,6 @@ const Topbar = () => {
                 alt="Kimdontdoit Wavy Logo"
                 objectFit="contain"
                 loading="eager"
-                placeholder="none"
                 className={`${classes.logo}`}
                 height={40}
                 width={92}
@@ -54,8 +52,7 @@ const Topbar = () => {
                 <Link
                   to="/articles"
                   className={`font-bold hover:text-opa-30`}
-                  activeClassName={`text-opa-30`}
-                >
+                  activeClassName={`text-opa-30`}>
                   Articles
                 </Link>
               </li>
@@ -63,8 +60,7 @@ const Topbar = () => {
                 <Link
                   to="/snippets"
                   className={`font-bold hover:text-opa-30`}
-                  activeClassName={`text-opa-30`}
-                >
+                  activeClassName={`text-opa-30`}>
                   Snippets
                 </Link>
               </li>
@@ -72,8 +68,7 @@ const Topbar = () => {
                 <Link
                   to="/categories"
                   className={`hidden md:inline font-bold hover:text-opa-30`}
-                  activeClassName={`text-opa-30`}
-                >
+                  activeClassName={`text-opa-30`}>
                   Catégories
                 </Link>
               </li>

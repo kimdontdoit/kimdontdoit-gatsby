@@ -6,6 +6,8 @@
  * also fed to tailwindcss config */
 @import "variables";
 
+@import "forms";
+
 /*
  * Preflight
  * https://tailwindcss.com/docs/preflight 
