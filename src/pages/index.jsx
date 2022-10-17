@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 
-import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import Button from "../components/Button";
 import memoji from "../images/memoji_bump.png";

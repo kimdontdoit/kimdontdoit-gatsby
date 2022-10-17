@@ -1,12 +1,12 @@
 .btn {
-  font-family: "Satoshi";
+  /* font-family: Satoshi, Helvetica, Arial, sans-serif; */
   display: inline-grid;
   grid-auto-flow: column;
   justify-content: center;
   align-items: center;
 
   @apply rounded-xl;
-  @apply text-lg font-bold;
+  @apply text-lg font-medium;
 
   padding: 0.75em 1em;
   transition: 0.4s;

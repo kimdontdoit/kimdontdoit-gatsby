@@ -4,7 +4,7 @@
   }
 
   .headingTitle {
-    @apply text-5xl font-bold leading-tight;
+    @apply text-5xl font-bold leading-snug;
   }
 
   .opacity-69 {

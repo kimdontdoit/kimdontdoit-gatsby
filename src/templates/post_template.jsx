@@ -3,8 +3,8 @@ import { graphql } from "gatsby";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 
-import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
-import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import ThemeContext from "../context/ThemeContext";
 import Alert from "../components/Alert";

@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
-import Pageheader from "@kimdontdoit/the-great-gatsby-theme/src/components/Pageheader";
-import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 const Category = ({ category }) => {
   return (
     <div className="mb-8">
-      <Link className="font-bold" to={`${category.fields.slug}`}>
+      <Link className="font-medium" to={`${category.fields.slug}`}>
         {category.frontmatter.title}
       </Link>
     </div>

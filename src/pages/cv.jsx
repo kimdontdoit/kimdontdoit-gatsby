@@ -1,6 +1,6 @@
 import React from "react";
 
-import Seo from "@kimdontdoit/the-great-gatsby-theme/src/components/Seo";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import * as classes from "./cv.module.css";
 

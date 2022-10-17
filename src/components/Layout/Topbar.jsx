@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
-import classNames from "@kimdontdoit/the-great-gatsby-theme/src/utils/classNames";
+import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
 import ScrollProgress from "../ScrollProgress";
 import SocialLinks from "../SocialLinks";

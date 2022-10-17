@@ -9,7 +9,7 @@ const Alert = () => {
       <div
         className={` w-full md:max-w-screen-lg mx-auto p-4  bg-yellow-100  rounded-lg `}>
         <div className="text-yellow-700 text-sm">
-          <span className="flex items-center font-bold text-base">
+          <span className="flex items-center font-medium text-base">
             <BiRefresh className="text-lg mr-2" /> Cet article requiert une mise
             à jour
           </span>
