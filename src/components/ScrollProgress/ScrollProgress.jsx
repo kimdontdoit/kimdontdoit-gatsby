@@ -42,7 +42,7 @@ const ScrollProgress = () => {
   return (
     <div className={classes.progressContainer}>
       <div
-        className={classes.progress}
+        className={`${classes.progress}`}
         style={{ width: `${readingProgress}%` }}
       />
     </div>

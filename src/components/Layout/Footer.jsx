@@ -10,7 +10,7 @@ const scrollToTop = () => {
 
 const Footer = () => {
   return (
-    <footer className={`${classes.footer} bg-primary`}>
+    <footer className={`${classes.footer} bg-dark text-white`}>
       <div className={`${classes.footerContainer} container text-center py-12`}>
         <div
           role="link"

@@ -1,14 +1,14 @@
 .progressContainer {
   position: fixed;
   width: 100%;
-  height: 4px;
+  height: 6px;
   left: 0;
   top: 0;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.4);
 
   .progress {
-    background: #db0a40;
+    background: #90adcf;
     height: 100%;
     transition: width 0.3s ease-out;
   }

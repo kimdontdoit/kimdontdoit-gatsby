@@ -1,5 +1,5 @@
 .socialLinks {
-  @apply flex text-sm font-bold;
+  @apply flex font-medium;
 
   a {
     transition: 200ms all ease-in-out;

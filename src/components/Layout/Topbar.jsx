@@ -32,59 +32,58 @@ const Topbar = () => {
           classes.topbar,
           topbarTransparent && classes.topbarTransparent,
           sticky && classes.sticky
-        )}
-      >
-        <div className={`container flex flex-row py-4`}>
-          <div className={`flex-1 flex text-lg`}>
-            <Link to="/">
-              <StaticImage
-                src="../../images/kimdontdoit_logo_dark.svg"
-                alt="Kimdontdoit Wavy Logo"
-                objectFit="contain"
-                loading="eager"
-                placeholder="none"
-                className={`${classes.logo}`}
-                height={40}
-                width={92}
-              />
-            </Link>
+        )}>
+        <div className={`container`}>
+          <div class="max-w-screen-lg mx-auto  flex flex-row py-4">
+            <div className={`flex-1 flex text-base`}>
+              <Link to="/">
+                <StaticImage
+                  src="../../images/kimdontdoit_logo_dark.svg"
+                  alt="Kimdontdoit Wavy Logo"
+                  objectFit="contain"
+                  loading="eager"
+                  placeholder="none"
+                  className={`${classes.logo}`}
+                  height={40}
+                  width={92}
+                />
+              </Link>
 
-            <ul className="flex ml-16 items-center">
-              <li>
-                <Link
-                  to="/articles"
-                  className={`font-bold hover:text-opa-30`}
-                  activeClassName={`text-opa-30`}
-                >
-                  Articles
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/snippets"
-                  className={`font-bold hover:text-opa-30`}
-                  activeClassName={`text-opa-30`}
-                >
-                  Snippets
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/categories"
-                  className={`hidden md:inline font-bold hover:text-opa-30`}
-                  activeClassName={`text-opa-30`}
-                >
-                  Catégories
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {!sticky && (
-            <div className={`hidden md:flex flex-1 justify-end items-center `}>
-              <SocialLinks />
+              <ul className="flex ml-8 md:ml-16 items-center">
+                <li>
+                  <Link
+                    to="/articles"
+                    className={`font-medium hover:opacity-30`}
+                    activeClassName={`opacity-30`}>
+                    Articles
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/snippets"
+                    className={`font-medium hover:opacity-30`}
+                    activeClassName={`opacity-30`}>
+                    Snippets
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/categories"
+                    className={`hidden md:inline font-medium hover:opacity-30`}
+                    activeClassName={`opacity-30`}>
+                    Catégories
+                  </Link>
+                </li>
+              </ul>
             </div>
-          )}
+
+            {!sticky && (
+              <div
+                className={`hidden md:flex flex-1 justify-end items-center `}>
+                <SocialLinks />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

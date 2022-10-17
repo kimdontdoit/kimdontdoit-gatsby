@@ -48,12 +48,11 @@ export default function PostTemplate({ data, location }) {
       <article
         itemScope
         itemType="http://schema.org/Article"
-        ref={scrollProgressTarget}
-      >
+        ref={scrollProgressTarget}>
         <section className={`my-16 container`}>
-          <Pageheader title={title} crumbs={crumbs}>
+          <Pageheader title={title} center={true} crumbs={crumbs}>
             {shortDate && (
-              <p className={`font-bold mt-4 opacity-60`}>
+              <p className={`font-medium mt-4 opacity-69`}>
                 {shortDate}
                 {post.timeToRead > 1 && ` • ${post.timeToRead} min. de lecture`}
               </p>
@@ -67,17 +66,16 @@ export default function PostTemplate({ data, location }) {
           <div className={`${classes.content} flex-1`}>
             <div
               dangerouslySetInnerHTML={{ __html: post.html }}
-              className={`md:max-w-screen-md mx-auto text-lg`}
-            ></div>
+              className={`md:max-w-screen-lg mx-auto text-lg`}></div>
 
-            <div className="md:max-w-screen-md mx-auto">
+            <div className="md:max-w-screen-lg mx-auto">
               {date && (
-                <p className={`font-bold mt-4 mb-0 opacity-60`}>
+                <p className={`font-medium mt-4 mb-0 opacity-69`}>
                   Publié le {date}
                 </p>
               )}
 
-              <p className={`font-bold opacity-60`}>
+              <p className={`font-medium opacity-69`}>
                 Composé par Vladislav Kim
               </p>
             </div>

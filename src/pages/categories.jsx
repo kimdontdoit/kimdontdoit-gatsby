@@ -32,7 +32,7 @@ export default function CategoriesPage({ data }) {
       </section>
 
       <section className="pb-16 container">
-        <div className="max-w-screen-md mx-auto text-lg">
+        <div className="max-w-screen-lg mx-auto text-lg">
           {categories &&
             categories.map((category) => {
               return (

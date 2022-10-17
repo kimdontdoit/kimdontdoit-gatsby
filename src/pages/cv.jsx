@@ -10,7 +10,7 @@ export default function AboutPage() {
       <Seo title="Vladislav Kim, c’est qui?" />
 
       <section className={`pb-16`}>
-        <div className={`container max-w-screen-md mx-auto`}>
+        <div className={`container max-w-screen-lg mx-auto`}>
           <div className={classes.cvWrapper}>
             <table>
               <thead>
