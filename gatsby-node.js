@@ -1,5 +1,16 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const locales = {
+  en: {
+    path: "en",
+    locale: "English",
+  },
+  fr: {
+    path: "fr",
+    locale: "Français",
+    default: true,
+  },
+};
 
 // const PATH_TO_MD_PAGES = path.resolve("content");
 
@@ -88,6 +99,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     });
   }
+};
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions;
+
+  return new Promise((resolve) => {
+    deletePage(page);
+
+    Object.keys(locales).map((lang) => {
+      const localizedPath = locales[lang].default
+        ? page.path
+        : locales[lang].path + page.path;
+
+      return createPage({
+        ...page,
+        path: localizedPath,
+        context: {
+          locale: lang,
+        },
+      });
+    });
+
+    resolve();
+  });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

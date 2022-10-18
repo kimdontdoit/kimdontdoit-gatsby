@@ -14,7 +14,6 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "the-great-gatsby-theme": "^1.1.9",
     "dayjs": "^1.10.7",
     "gatsby": "^4.7.1",
     "gatsby-plugin-image": "^2.7.0",
@@ -41,7 +40,9 @@
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.15.4",
     "react-icons": "^4.3.1",
-    "react-transition-group": "^4.4.2"
+    "react-intl": "^6.2.1",
+    "react-transition-group": "^4.4.2",
+    "the-great-gatsby-theme": "^1.1.9"
   },
   "devDependencies": {
     "gatsby-plugin-postcss": "^5.17.0",

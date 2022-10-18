@@ -10,5 +10,7 @@ export const wrapRootElement = ({ element }) => (
 );
 
 export function wrapPageElement({ element, props }) {
-  return <Layout>{element}</Layout>;
+  const { pageContext } = props;
+
+  return <Layout locale={pageContext.locale}>{element}</Layout>;
 }

@@ -34,7 +34,7 @@ const Topbar = () => {
           sticky && classes.sticky
         )}>
         <div className={`container`}>
-          <div class="max-w-screen-lg mx-auto  flex flex-row py-4">
+          <div className="max-w-screen-lg mx-auto  flex flex-row py-4">
             <div className={`flex-1 flex text-base`}>
               <Link to="/">
                 <StaticImage
