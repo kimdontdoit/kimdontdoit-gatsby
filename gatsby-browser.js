@@ -9,8 +9,6 @@ export const wrapRootElement = ({ element }) => (
   <ThemeProvider>{element}</ThemeProvider>
 );
 
-export function wrapPageElement({ element, props }) {
-  const { pageContext } = props;
-
-  return <Layout locale={pageContext.locale}>{element}</Layout>;
+export function wrapPageElement({ element }) {
+  return <Layout>{element}</Layout>;
 }

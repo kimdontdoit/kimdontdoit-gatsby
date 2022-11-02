@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
+//import { Link } from "gatsby";
 
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
 import ScrollProgress from "../ScrollProgress";
 import SocialLinks from "../SocialLinks";
+import { Link, useI18next } from "gatsby-plugin-react-i18next";
 import ThemeContext from "../../context/ThemeContext";
 
 import * as classes from "./Topbar.module.css";
@@ -13,7 +14,9 @@ import * as classes from "./Topbar.module.css";
 const Topbar = () => {
   const [sticky, setSticky] = useState(false);
   const { topbarTransparent } = useContext(ThemeContext);
+  const { t, languages, originalPath } = useI18next();
 
+  console.log(languages);
   const handleScroll = () => {
     window.scrollY > 150 ? setSticky(true) : setSticky(false);
   };
@@ -34,7 +37,7 @@ const Topbar = () => {
           sticky && classes.sticky
         )}>
         <div className={`container`}>
-          <div className="max-w-screen-lg mx-auto  flex flex-row py-4">
+          <div className="max-w-screen-lg mx-auto flex flex-row py-4">
             <div className={`flex-1 flex text-base`}>
               <Link to="/">
                 <StaticImage
@@ -55,7 +58,7 @@ const Topbar = () => {
                     to="/articles"
                     className={`font-medium hover:opacity-30`}
                     activeClassName={`opacity-30`}>
-                    Articles
+                    {t("posts")}
                   </Link>
                 </li>
                 <li>
@@ -83,6 +86,22 @@ const Topbar = () => {
                 <SocialLinks />
               </div>
             )}
+
+            <div>
+              <ul className="languages">
+                {languages.map((lng) => {
+                  console.log(lng);
+
+                  return (
+                    <li key={lng}>
+                      <Link to={originalPath} language={lng}>
+                        {lng}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

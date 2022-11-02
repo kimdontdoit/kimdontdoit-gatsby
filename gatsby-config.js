@@ -1,4 +1,5 @@
 const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com/`;
+const { languages, defaultLanguage } = require("./languages");
 
 module.exports = {
   siteMetadata: {
@@ -13,20 +14,17 @@ module.exports = {
   plugins: [
     `the-great-gatsby-theme`,
     `gatsby-plugin-image`,
-    `gatsby-plugin-netlify`,
+    /*`gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-netlify-cms`,
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
-    },
-
-    /*
-    // Source locales
+    },*/
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/locales`,
+        path: `${__dirname}/src/locales`,
         name: `locale`,
       },
     },
@@ -34,28 +32,22 @@ module.exports = {
       resolve: `gatsby-plugin-react-i18next`,
       options: {
         localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
-        languages: [`en`, `fr`],
-        defaultLanguage: `fr`,
+        languages,
+        defaultLanguage,
         // if you are using Helmet, you must include siteUrl, and make sure you add http:https
-        siteUrl: `https://kimdontdoit.com/`,
+        siteUrl,
         redirect: false,
         // you can pass any i18next options
         i18nextOptions: {
+          fallbackLng: defaultLanguage,
+          supportedLngs: languages,
+          defaultNS: "common",
           interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
           },
-          keySeparator: false,
-          nsSeparator: false,
         },
-        pages: [
-          {
-            matchPath: "/:lang?/category/:uid",
-            getLanguageFromPath: true,
-          },
-        ],
       },
     },
-    */
     /** Theme/Design images */
     {
       resolve: `gatsby-source-filesystem`,

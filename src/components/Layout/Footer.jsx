@@ -1,4 +1,6 @@
 import React from "react";
+import { Link, useI18next } from "gatsby-plugin-react-i18next";
+import { useHeader } from "./useHeader.js";
 import * as classes from "./Footer.module.css";
 
 const scrollToTop = () => {
@@ -9,6 +11,12 @@ const scrollToTop = () => {
 };
 
 const Footer = () => {
+  const { languages } = useI18next();
+
+  console.log(languages);
+
+  const { t } = useHeader();
+
   return (
     <footer className={`${classes.footer} bg-dark text-white`}>
       <div className={`${classes.footerContainer} container text-center py-12`}>
@@ -18,19 +26,19 @@ const Footer = () => {
           onClick={scrollToTop}
           onKeyDown={scrollToTop}
           tabIndex={0}>
-          Retour en haut de page
+          {t("title")}
         </div>
 
         <div>
           <p className={`opacity-30`}>
-            Kimdontdoit copyright 2022 Roule sans stress sur{" "}
+            {`Kimdontdoit copyright 2022 ${t("copyright-line")}`}
             <a
               href="https://www.gatsbyjs.com/"
               target="_blank"
               rel="noreferrer noopener">
               Gatsby
-            </a>{" "}
-            — logiciel open source
+            </a>
+            {` — ${t("open-source")}`}
           </p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
+import { graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import { FormattedMessage } from "react-intl";
+import { useI18next } from "gatsby-plugin-react-i18next";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
@@ -11,6 +12,11 @@ import ThemeContext from "../context/ThemeContext";
 import * as classes from "./index.module.css";
 
 export default function IndexPage() {
+  const { t, languages, language } = useI18next("index");
+
+  console.log(language);
+  console.log(languages);
+
   const { setCursorImage, setShowCursorImage } = useContext(ThemeContext);
 
   const setMemojiCursor = (e) => {
@@ -19,18 +25,17 @@ export default function IndexPage() {
   };
 
   const resetCursorImage = (e) => {
-    // move this to cursor component setCursorImage(undefined);
+    // TODO move this to cursor component setCursorImage(undefined);
     setShowCursorImage(false);
   };
 
   return (
     <>
-      <Seo title={`Kimdontdoit, or also Vladislav Kim`} />
-
+      <Seo title={t("title")} />
       <section className={`${classes.section} pt-16 md:pt-36 pb-8`}>
         <div className="container max-w-screen-lg">
           <h1 className={`bigTitle mb-12`}>
-            <FormattedMessage id="home.hero_1" />
+            {t(`hero_1`)}
             <div className={`${classes.kim}`} role="tooltip">
               <button
                 onMouseEnter={setMemojiCursor}
@@ -38,20 +43,17 @@ export default function IndexPage() {
                 Vlad
               </button>
             </div>
-            .
-            <span className={`opacity-30`}>
-              <FormattedMessage id="home.hero_2" />
-            </span>
+            .<span className={`opacity-30`}>{t("hero_2")}</span>
           </h1>
 
           <h1 className={[`opacity-30`, "mb-16", "font-medium"].join(" ")}>
-            <FormattedMessage id="home.based_in" />
+            {t(`based_in`)}
           </h1>
 
           <Button
             href="/vladislav-kim-a-propos"
             className="bg-black text-white">
-            <FormattedMessage id="home.learn_more" />
+            {t(`learn_more`)}
           </Button>
         </div>
       </section>
@@ -59,8 +61,8 @@ export default function IndexPage() {
       <section className={`${classes.section} pt-16 pb-16 md:pb-40`}>
         <div className="container max-w-screen-lg">
           <h1 className={`headingTitle`}>
-            <span className={`highlight`}>Kimdontdoit</span>,{" "}
-            <FormattedMessage id="home.mission_title" />
+            <span className={`highlight`}>Kimdontdoit</span>
+            {t(`mission_title`)}
           </h1>
         </div>
       </section>
@@ -69,9 +71,7 @@ export default function IndexPage() {
         className={`${classes.section} ${classes.workSection} bg-gray-100 py-16 md:py-40`}>
         <div className="container max-w-screen-lg">
           <div>
-            <h2 className={`headingTitle mb-8`}>
-              <FormattedMessage id="home.recent_title" />
-            </h2>
+            <h2 className={`headingTitle mb-8`}>{t(`recent_title`)}</h2>
             <div className={`grid md:grid-cols-3 grid-cols-1 gap-8 `}>
               <div
                 className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}>
@@ -96,7 +96,7 @@ export default function IndexPage() {
               <div
                 className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}>
                 <h3 className={`font-medium text-2xl mb-8`}>
-                  <FormattedMessage id="home.conference_websites" />
+                  {t(`conference_websites`)}
                 </h3>
 
                 <StaticImage
@@ -112,7 +112,7 @@ export default function IndexPage() {
       <section className={`${classes.section} bg-primary py-16 md:py-40`}>
         <div className="container max-w-screen-lg">
           <h1 className={`headingTitle`}>
-            <FormattedMessage id="home.objective" />
+            {t(`objective`)}
             <span className={`opacity-30`}>
               #react #web #magento #wordpress #gatsby
             </span>
@@ -123,8 +123,7 @@ export default function IndexPage() {
       <section className={`${classes.section} py-16 md:py-40`}>
         <div className={`container max-w-screen-lg`}>
           <h2 className={`headingTitle mb-8`}>
-            <FormattedMessage id="home.organization" />{" "}
-            <span className={`opacity-30`}>O2web</span>
+            {t(`organization`)} <span className={`opacity-30`}>O2web</span>
           </h2>
 
           <div className={`${classes.block} bg-gray-100`}>
@@ -135,9 +134,9 @@ export default function IndexPage() {
                 alt="O2 Web Transparent Logo"
               />
               <p className={`font-medium text-2xl`}>
-                <FormattedMessage id="home.organization_description_1" />
+                {t(`organization_description_1`)}
                 <span className={`opacity-30`}>
-                  <FormattedMessage id="home.organization_description_2" />
+                  {t(`organization_description_2`)}
                 </span>
               </p>
             </div>
@@ -148,16 +147,28 @@ export default function IndexPage() {
       <section className={`${classes.section} bg-dark pt-16 md:pt-40 pb-16 `}>
         <div className={`container max-w-screen-lg text-center`}>
           <p className={`headingTitle mb-16 text-white`}>
-            <FormattedMessage id="home.got_a_question_1" />
+            {t(`got_a_question_1`)}
             <br />
-            <FormattedMessage id="home.got_a_question_2" />
+            {t(`got_a_question_2`)}
           </p>
 
-          <Button className="bg-primary">
-            <FormattedMessage id="home.ask_question" />
-          </Button>
+          <Button className="bg-primary">{t(`submit`)}</Button>
         </div>
       </section>
     </>
   );
 }
+
+export const query = graphql`
+  query ($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;
