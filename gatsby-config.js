@@ -1,7 +1,10 @@
-const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com/`;
-const {languages, defaultLanguage} = require("./languages");
+const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com/`
+const { languages, defaultLanguage } = require('./languages')
 
 module.exports = {
+  flags: {
+    FAST_DEV: true,
+  },
   siteMetadata: {
     siteName: `Kimdontdoit`,
     defaultTitle: `Vladislav Kim`,
@@ -41,7 +44,7 @@ module.exports = {
         i18nextOptions: {
           fallbackLng: defaultLanguage,
           supportedLngs: languages,
-          defaultNS: "common",
+          defaultNS: 'common',
           interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
           },
@@ -73,7 +76,7 @@ module.exports = {
             getLanguageFromPath: true,
             excludeLanguages: ['en']
           },*/
-        ]
+        ],
       },
     },
     /** Theme/Design images */
@@ -162,4 +165,4 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
     },
   ],
-};
+}

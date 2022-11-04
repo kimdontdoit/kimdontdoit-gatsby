@@ -5,10 +5,10 @@
   "description": "Kimdontdoit",
   "author": "kimdontdoit",
   "scripts": {
-    "start": "gatsby develop",
-    "develop": "gatsby develop -S -o",
+    "start": "yarn develop",
+    "develop": "gatsby develop -So",
     "build": "gatsby build",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve -o",
     "clean": "gatsby clean",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"

@@ -1,15 +1,15 @@
-import React from "react";
-import "./src/styles/prism-theme.css";
-import "./src/styles/global.css";
+import React from 'react'
+import './src/styles/prism-theme.css'
+import './src/styles/global.css'
 
-import {Layout} from "./src/components/Layout/Layout";
-import {ThemeProvider} from "./src/context/ThemeContext";
+import { Layout } from './src/components/Layout/Layout'
+import { ThemeProvider } from './src/context/ThemeContext'
 
-export const wrapRootElement = ({element}) => (
+export const wrapRootElement = ({ element }) => (
   <ThemeProvider>{element}</ThemeProvider>
-);
+)
 
-export const wrapPageElement = ({element}) => {
+export const wrapPageElement = ({ element }) => {
   return React.cloneElement(
     element,  // I18nextProvider
     element.props,
@@ -22,5 +22,5 @@ export const wrapPageElement = ({element}) => {
         element.props.children.props.children,
       ),
     ),
-  );
-};
+  )
+}
