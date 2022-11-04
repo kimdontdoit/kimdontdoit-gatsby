@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { graphql } from 'gatsby'
 import { useI18next } from 'gatsby-plugin-react-i18next'
 import dayjs from 'dayjs'
+import "dayjs/locale/fr";
 
 import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
 import Seo from 'the-great-gatsby-theme/src/components/Seo'
@@ -24,12 +25,12 @@ export default function PostTemplate ({ data }) {
   const date = language === 'fr' ?
     dayjs(publish_date).locale('fr').format('D MMMM YYYY')
     :
-    dayjs(publish_date).format('MMMM D, YYYY')
+    dayjs(publish_date).locale('en').format('MMMM D, YYYY')
 
   const shortDate = language === 'fr' ?
     dayjs(publish_date).locale('fr').format('D MMM YYYY')
     :
-    dayjs(publish_date).format('MMM D, YYYY')
+    dayjs(publish_date).locale('en').format('MMM D, YYYY')
 
   const crumbs = []
 
