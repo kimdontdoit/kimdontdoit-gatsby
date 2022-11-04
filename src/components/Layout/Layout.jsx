@@ -2,7 +2,6 @@ import React from "react";
 
 import Topbar from "./Topbar";
 import Footer from "./Footer";
-
 import Cursor from "../Cursor";
 
 export function Layout({ children, ...props }) {

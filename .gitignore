@@ -6,6 +6,5 @@ public/
 
 static/admin/*.bundle.*
 .env*
-.obsidian
 
 yarn-error.log
