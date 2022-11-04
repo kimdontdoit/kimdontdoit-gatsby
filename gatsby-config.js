@@ -5,6 +5,7 @@ module.exports = {
   siteMetadata: {
     siteName: `Kimdontdoit`,
     defaultTitle: `Vladislav Kim`,
+    defaultDescription: ``,
     author: `@kimdontdoit`,
     siteUrl,
     defaultImage: `/media/cover.png`,
