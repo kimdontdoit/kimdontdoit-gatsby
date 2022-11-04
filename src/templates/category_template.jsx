@@ -1,10 +1,11 @@
-import React, { useEffect, useContext } from "react";
-import { Link, graphql } from "gatsby";
+import React, { useEffect, useContext } from 'react'
+import { Link, graphql } from 'gatsby'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
-import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
-import Seo from "the-great-gatsby-theme/src/components/Seo";
+import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
+import Seo from 'the-great-gatsby-theme/src/components/Seo'
 
-import ThemeContext from "../context/ThemeContext";
+import ThemeContext from '../context/ThemeContext'
 
 const Post = ({ post }) => {
   return (
@@ -13,28 +14,30 @@ const Post = ({ post }) => {
         {post.frontmatter.title}
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default function CategoryTemplate({ pageContext, data, location }) {
-  const { setTopbarTransparent } = useContext(ThemeContext);
+export default function CategoryTemplate ({ data }) {
+  const { t } = useI18next('index')
 
-  const { category } = data;
-  const posts = data.posts.nodes;
-  const crumbs = [];
+  const { setTopbarTransparent } = useContext(ThemeContext)
+
+  const { category } = data
+  const posts = data.posts.nodes
+  const crumbs = []
 
   crumbs.push({
-    label: "Catégories",
-    url: "/categories",
-  });
+    label: t('categories'),
+    url: '/categories',
+  })
 
   useEffect(() => {
-    category.frontmatter.color && setTopbarTransparent(true);
+    category.frontmatter.color && setTopbarTransparent(true)
 
     return () => {
-      setTopbarTransparent(false);
-    };
-  });
+      setTopbarTransparent(false)
+    }
+  })
 
   return (
     <>
@@ -42,12 +45,13 @@ export default function CategoryTemplate({ pageContext, data, location }) {
         title={category.frontmatter.title}
         description={category.frontmatter.description || category.excerpt}
       />
+
       <div>
         <section
-          className={`pt-16 container ${category.frontmatter.color && "pb-16"}`}
+          className={`pt-16 container ${category.frontmatter.color && 'pb-16'}`}
           style={{
             //backgroundColor: category.frontmatter.color,
-            paddingTop: category.frontmatter.color && "8.5rem",
+            paddingTop: category.frontmatter.color && '8.5rem',
           }}>
           <Pageheader
             title={category.frontmatter.title}
@@ -70,47 +74,56 @@ export default function CategoryTemplate({ pageContext, data, location }) {
           <div className="max-w-screen-lg mx-auto">
             {posts &&
               posts.map((post) => {
-                return <Post key={post.id} post={post.childMarkdownRemark} />;
+                return <Post key={post.id} post={post.childMarkdownRemark} />
               })}
           </div>
         </section>
       </div>
     </>
-  );
+  )
 }
 
-export const templateQuery = graphql`
-  query singleCategory($id: String!, $title: String) {
-    category: markdownRemark(id: { eq: $id }) {
-      id
-      excerpt
-      html
-      frontmatter {
-        title
-        subtitle
-        color
-      }
-    }
-    posts: allFile(
-      filter: {
-        sourceInstanceName: { eq: "post" }
-        internal: { mediaType: { eq: "text/markdown" } }
-        childMarkdownRemark: { frontmatter: { category: { eq: $title } } }
-      }
-    ) {
-      nodes {
-        id
-        sourceInstanceName
-        childMarkdownRemark {
-          id
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-          }
+export const query = graphql`
+    query ($id: String!, $title: String, $language: String!) {
+        category: markdownRemark(id: { eq: $id }) {
+            id
+            excerpt
+            html
+            frontmatter {
+                title
+                subtitle
+                color
+            }
         }
-      }
+        posts: allFile(
+            filter: {
+                sourceInstanceName: { eq: "post" }
+                internal: { mediaType: { eq: "text/markdown" } }
+                childMarkdownRemark: { frontmatter: { category: { eq: $title } } }
+            }
+        ) {
+            nodes {
+                id
+                sourceInstanceName
+                childMarkdownRemark {
+                    id
+                    frontmatter {
+                        title
+                    }
+                    fields {
+                        slug
+                    }
+                }
+            }
+        }
+        locales: allLocale(filter: { language: { eq: $language } }) {
+            edges {
+                node {
+                    ns
+                    data
+                    language
+                }
+            }
+        }
     }
-  }
-`;
+`

@@ -1,8 +1,9 @@
-import React from "react";
-import { Link, graphql } from "gatsby";
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
-import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
-import Seo from "the-great-gatsby-theme/src/components/Seo";
+import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
+import Seo from 'the-great-gatsby-theme/src/components/Seo'
 
 const Post = ({ post }) => {
   return (
@@ -11,19 +12,21 @@ const Post = ({ post }) => {
         {post.frontmatter.title}
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default function TypeTemplate({ data, location }) {
-  const { type } = data;
-  const posts = data.posts.nodes;
+export default function TypeTemplate ({ data, location }) {
+  const { t } = useI18next('index')
 
-  const crumbs = [];
+  const { type } = data
+  const posts = data.posts.nodes
+
+  const crumbs = []
 
   crumbs.push({
-    label: "Retour à l'accueil",
-    url: "/",
-  });
+    label: t('back-to-home'),
+    url: '/',
+  })
 
   return (
     <>
@@ -45,45 +48,54 @@ export default function TypeTemplate({ data, location }) {
           <div className="max-w-screen-lg mx-auto">
             {posts &&
               posts.map((post) => {
-                return <Post key={post.id} post={post.childMarkdownRemark} />;
+                return <Post key={post.id} post={post.childMarkdownRemark} />
               })}
           </div>
         </section>
       </div>
     </>
-  );
+  )
 }
 
-export const templateQuery = graphql`
-  query singleType($id: String!, $title: String) {
-    type: markdownRemark(id: { eq: $id }) {
-      id
-      frontmatter {
-        title
-      }
-    }
-    posts: allFile(
-      filter: {
-        sourceInstanceName: { eq: "post" }
-        childMarkdownRemark: {
-          fields: { language: { eq: "fr" } }
-          frontmatter: { type: { eq: $title } }
+export const query = graphql`
+    query singleType($id: String!, $title: String, $language: String!) {
+        type: markdownRemark(id: { eq: $id }) {
+            id
+            frontmatter {
+                title
+            }
         }
-      }
-    ) {
-      nodes {
-        id
-        sourceInstanceName
-        childMarkdownRemark {
-          id
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-          }
+        posts: allFile(
+            filter: {
+                sourceInstanceName: { eq: "post" }
+                childMarkdownRemark: {
+                    fields: { language: { eq: "fr" } }
+                    frontmatter: { type: { eq: $title } }
+                }
+            }
+        ) {
+            nodes {
+                id
+                sourceInstanceName
+                childMarkdownRemark {
+                    id
+                    frontmatter {
+                        title
+                    }
+                    fields {
+                        slug
+                    }
+                }
+            }
         }
-      }
+        locales: allLocale(filter: { language: { eq: $language } }) {
+            edges {
+                node {
+                    ns
+                    data
+                    language
+                }
+            }
+        }
     }
-  }
-`;
+`

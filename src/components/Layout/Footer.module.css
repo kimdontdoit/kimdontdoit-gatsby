@@ -8,10 +8,6 @@
   }
 }
 
-.footerContainer {
-  max-width: 25rem;
-}
-
 .scrollTopLink {
   &:after {
     content: "⤴";
@@ -21,5 +17,13 @@
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+.languageSwitcher {
+  @apply opacity-30;
+
+  a {
+    @apply text-white;
   }
 }
