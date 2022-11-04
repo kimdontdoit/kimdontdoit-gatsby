@@ -1,31 +1,29 @@
-import React, { useState, useEffect, useContext } from "react";
-import { StaticImage } from "gatsby-plugin-image";
-//import { Link } from "gatsby";
+import React, { useContext, useEffect, useState } from 'react'
+import { StaticImage } from 'gatsby-plugin-image'
+import { Link, useI18next } from 'gatsby-plugin-react-i18next'
 
-import classNames from "the-great-gatsby-theme/src/utils/classNames";
+import classNames from 'the-great-gatsby-theme/src/utils/classNames'
 
-import ScrollProgress from "../ScrollProgress";
-import SocialLinks from "../SocialLinks";
-import { Link, useI18next } from "gatsby-plugin-react-i18next";
-import ThemeContext from "../../context/ThemeContext";
+import ScrollProgress from '../ScrollProgress'
+import SocialLinks from '../SocialLinks'
+import ThemeContext from '../../context/ThemeContext'
 
-import * as classes from "./Topbar.module.css";
+import * as classes from './Topbar.module.css'
 
 const Topbar = () => {
-  const [sticky, setSticky] = useState(false);
-  const { topbarTransparent } = useContext(ThemeContext);
-  const { t, languages, originalPath } = useI18next();
+  const [sticky, setSticky] = useState(false)
+  const { topbarTransparent } = useContext(ThemeContext)
+  const { t } = useI18next()
 
-  console.log(languages);
   const handleScroll = () => {
-    window.scrollY > 150 ? setSticky(true) : setSticky(false);
-  };
+    window.scrollY > 150 ? setSticky(true) : setSticky(false)
+  }
 
   useEffect(() => {
-    window.addEventListener("scroll", () => handleScroll);
+    window.addEventListener('scroll', () => handleScroll)
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
+    return () => window.removeEventListener('scroll', handleScroll)
+  })
 
   return (
     <>
@@ -34,7 +32,7 @@ const Topbar = () => {
         className={classNames(
           classes.topbar,
           topbarTransparent && classes.topbarTransparent,
-          sticky && classes.sticky
+          sticky && classes.sticky,
         )}>
         <div className={`container`}>
           <div className="max-w-screen-lg mx-auto flex flex-row py-4">
@@ -58,7 +56,7 @@ const Topbar = () => {
                     to="/articles"
                     className={`font-medium hover:opacity-30`}
                     activeClassName={`opacity-30`}>
-                    {t("posts")}
+                    {t('posts')}
                   </Link>
                 </li>
                 <li>
@@ -74,7 +72,7 @@ const Topbar = () => {
                     to="/categories"
                     className={`hidden md:inline font-medium hover:opacity-30`}
                     activeClassName={`opacity-30`}>
-                    Catégories
+                    {t('categories')}
                   </Link>
                 </li>
               </ul>
@@ -87,26 +85,11 @@ const Topbar = () => {
               </div>
             )}
 
-            <div>
-              <ul className="languages">
-                {languages.map((lng) => {
-                  console.log(lng);
-
-                  return (
-                    <li key={lng}>
-                      <Link to={originalPath} language={lng}>
-                        {lng}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Topbar;
+export default Topbar

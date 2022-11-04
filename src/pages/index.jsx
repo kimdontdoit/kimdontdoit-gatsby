@@ -1,37 +1,34 @@
-import React, { useContext } from "react";
-import { graphql } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
-import { useI18next } from "gatsby-plugin-react-i18next";
+import React, { useContext } from 'react'
+import { graphql } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
-import Seo from "the-great-gatsby-theme/src/components/Seo";
+import Seo from 'the-great-gatsby-theme/src/components/Seo'
 
-import Button from "../components/Button";
-import memoji from "../images/memoji_bump.png";
-import ThemeContext from "../context/ThemeContext";
+import Button from '../components/Button'
+import memoji from '../images/memoji_bump.png'
+import ThemeContext from '../context/ThemeContext'
 
-import * as classes from "./index.module.css";
+import * as classes from './index.module.css'
 
-export default function IndexPage() {
-  const { t, languages, language } = useI18next("index");
+export default function IndexPage () {
+  const { t } = useI18next('index')
 
-  console.log(language);
-  console.log(languages);
-
-  const { setCursorImage, setShowCursorImage } = useContext(ThemeContext);
+  const { setCursorImage, setShowCursorImage } = useContext(ThemeContext)
 
   const setMemojiCursor = (e) => {
-    setCursorImage(memoji);
-    setShowCursorImage(true);
-  };
+    setCursorImage(memoji)
+    setShowCursorImage(true)
+  }
 
   const resetCursorImage = (e) => {
     // TODO move this to cursor component setCursorImage(undefined);
-    setShowCursorImage(false);
-  };
+    setShowCursorImage(false)
+  }
 
   return (
     <>
-      <Seo title={t("title")} />
+      <Seo title={t('title')} skipSiteName={true} />
       <section className={`${classes.section} pt-16 md:pt-36 pb-8`}>
         <div className="container max-w-screen-lg">
           <h1 className={`bigTitle mb-12`}>
@@ -43,10 +40,10 @@ export default function IndexPage() {
                 Vlad
               </button>
             </div>
-            .<span className={`opacity-30`}>{t("hero_2")}</span>
+            .<span className={`opacity-30`}>{t('hero_2')}</span>
           </h1>
 
-          <h1 className={[`opacity-30`, "mb-16", "font-medium"].join(" ")}>
+          <h1 className={[`opacity-30`, 'mb-16', 'font-medium'].join(' ')}>
             {t(`based_in`)}
           </h1>
 
@@ -152,23 +149,24 @@ export default function IndexPage() {
             {t(`got_a_question_2`)}
           </p>
 
-          <Button className="bg-primary">{t(`submit`)}</Button>
+          <Button href="mailto:vlad@kimdontdoit.com" className="bg-primary">{t(
+            `submit`)}</Button>
         </div>
       </section>
     </>
-  );
+  )
 }
 
 export const query = graphql`
-  query ($language: String!) {
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      edges {
-        node {
-          ns
-          data
-          language
+    query ($language: String!) {
+        locales: allLocale(filter: { language: { eq: $language } }) {
+            edges {
+                node {
+                    ns
+                    data
+                    language
+                }
+            }
         }
-      }
     }
-  }
-`;
+`

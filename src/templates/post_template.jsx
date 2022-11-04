@@ -1,44 +1,43 @@
-import React, { useContext, useEffect } from "react";
-import { graphql } from "gatsby";
-import dayjs from "dayjs";
-import "dayjs/locale/fr";
+import React, { useContext } from 'react'
+import { graphql } from 'gatsby'
+import { useI18next } from 'gatsby-plugin-react-i18next'
+import dayjs from 'dayjs'
 
-import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
-import Seo from "the-great-gatsby-theme/src/components/Seo";
+import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
+import Seo from 'the-great-gatsby-theme/src/components/Seo'
 
-import ThemeContext from "../context/ThemeContext";
-import Alert from "../components/Alert";
-import * as classes from "./posts_template.module.css";
+import ThemeContext from '../context/ThemeContext'
+import Notice from '../components/Notice'
+import * as classes from './posts_template.module.css'
 
-export default function PostTemplate({ data, location }) {
-  const { post, /* category,*/ type } = data;
-  const { scrollProgressTarget } = useContext(ThemeContext);
+export default function PostTemplate ({ data }) {
+  const { t, language } = useI18next('index')
 
-  useEffect(() => {
-    return () => {
-      // Anything in here is fired on component unmount.
-    };
-  }, []);
+  const { post, type } = data
+  const { scrollProgressTarget } = useContext(ThemeContext)
 
-  const { title, description, publish_date, needs_update } = post.frontmatter;
+  const { title, description, publish_date, needs_update } = post.frontmatter
 
-  const date = dayjs(publish_date).locale("fr").format("D MMMM YYYY");
-  const shortDate = dayjs(publish_date).locale("fr").format("D MMM YYYY");
+  // TODO verify and dynamically change language in locale()
+  // TODO add category
 
-  const crumbs = [];
+  const date = language === 'fr' ?
+    dayjs(publish_date).locale('fr').format('D MMMM YYYY')
+    :
+    dayjs(publish_date).format('MMMM D, YYYY')
 
-  /*if (category) {
-    crumbs.push({
-      label: category.frontmatter.title,
-      url: category.fields.slug,
-    });
-  }*/
+  const shortDate = language === 'fr' ?
+    dayjs(publish_date).locale('fr').format('D MMM YYYY')
+    :
+    dayjs(publish_date).format('MMM D, YYYY')
+
+  const crumbs = []
 
   if (type) {
     crumbs.push({
-      label: `Tous les ${type.frontmatter.title}`,
+      label: `${t(`all-the`)} ${type.frontmatter.title}`,
       url: type.fields.slug,
-    });
+    })
   }
 
   return (
@@ -60,7 +59,7 @@ export default function PostTemplate({ data, location }) {
           </Pageheader>
         </section>
 
-        {needs_update && <Alert />}
+        {needs_update && <Notice />}
 
         <section className="pb-16 container flex">
           <div className={`${classes.content} flex-1`}>
@@ -71,12 +70,12 @@ export default function PostTemplate({ data, location }) {
             <div className="md:max-w-screen-lg mx-auto">
               {date && (
                 <p className={`font-medium mt-4 mb-0 opacity-69`}>
-                  Publié le {date}
+                  {`${t('published-on')} ${date}`}
                 </p>
               )}
 
               <p className={`font-medium opacity-69`}>
-                Composé par Vladislav Kim
+                {`${t(`published-by`)} Vladislav Kim`}
               </p>
             </div>
           </div>
@@ -92,69 +91,79 @@ export default function PostTemplate({ data, location }) {
         </section>
       </article>
     </>
-  );
+  )
 }
 
-export const templateQuery = graphql`
-  query postById(
-    $id: String!
-    $category: String!
-    $type: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
-    post: markdownRemark(id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        publish_date
-        type
-        needs_update
-      }
-      tableOfContents
-      timeToRead
-      wordCount {
-        paragraphs
-        sentences
-        words
-      }
+export const query = graphql`
+    query postById(
+        $id: String!
+        $category: String!
+        $type: String!
+        $previousPostId: String
+        $nextPostId: String
+        $language: String!
+    ) {
+        post: markdownRemark(id: { eq: $id }) {
+            id
+            excerpt(pruneLength: 160)
+            html
+            frontmatter {
+                title
+                publish_date
+                type
+                needs_update
+            }
+            tableOfContents
+            timeToRead
+            wordCount {
+                paragraphs
+                sentences
+                words
+            }
+        }
+        category: markdownRemark(frontmatter: { title: { eq: $category } }) {
+            excerpt
+            fields {
+                slug
+            }
+            frontmatter {
+                title
+                subtitle
+                color
+            }
+        }
+        type: markdownRemark(frontmatter: { title: { eq: $type } }) {
+            fields {
+                slug
+            }
+            frontmatter {
+                title
+            }
+        }
+        previous: markdownRemark(id: { eq: $previousPostId }) {
+            fields {
+                slug
+            }
+            frontmatter {
+                title
+            }
+        }
+        next: markdownRemark(id: { eq: $nextPostId }) {
+            fields {
+                slug
+            }
+            frontmatter {
+                title
+            }
+        }
+        locales: allLocale(filter: { language: { eq: $language } }) {
+            edges {
+                node {
+                    ns
+                    data
+                    language
+                }
+            }
+        }
     }
-    category: markdownRemark(frontmatter: { title: { eq: $category } }) {
-      excerpt
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-        subtitle
-        color
-      }
-    }
-    type: markdownRemark(frontmatter: { title: { eq: $type } }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-  }
-`;
+`

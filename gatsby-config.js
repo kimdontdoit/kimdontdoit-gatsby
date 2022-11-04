@@ -1,11 +1,10 @@
 const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com/`;
-const { languages, defaultLanguage } = require("./languages");
+const {languages, defaultLanguage} = require("./languages");
 
 module.exports = {
   siteMetadata: {
     siteName: `Kimdontdoit`,
     defaultTitle: `Vladislav Kim`,
-    defaultDescription: `Salut! Mon nom est Vladislav Kim et je suis un Développeur Front End qui expérimente avec du back end à l'occasion. Présentement chez O2, je me concentre sur du code Javascript et PHP. J'écris également sur ce site + blogue à propos des sujets que je croise pour aider des gens de tous les niveaux, programmeur ou non.`,
     author: `@kimdontdoit`,
     siteUrl,
     defaultImage: `/media/cover.png`,
@@ -46,6 +45,34 @@ module.exports = {
             escapeValue: false, // not needed for react as it escapes by default
           },
         },
+        pages: [
+          /*
+          {
+            matchPath: '/:lang?/snippets',
+            getLanguageFromPath: true,
+            excludeLanguages: ['en']
+          },
+          {
+            matchPath: '/:lang?/categories',
+            getLanguageFromPath: true,
+            excludeLanguages: ['en']
+          },
+          {
+            matchPath: '/:lang?/categories/:uid',
+            getLanguageFromPath: true,
+            excludeLanguages: ['en']
+          },
+          {
+            matchPath: '/:lang?/posts/:uid',
+            getLanguageFromPath: true,
+            excludeLanguages: ['en']
+          },
+          {
+            matchPath: '/:lang?/snippets/:uid',
+            getLanguageFromPath: true,
+            excludeLanguages: ['en']
+          },*/
+        ]
       },
     },
     /** Theme/Design images */
