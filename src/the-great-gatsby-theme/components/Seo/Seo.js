@@ -5,16 +5,16 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { useI18next } from 'gatsby-plugin-react-i18next'
 
 const Seo = ({
-  title = ``,
-  skipSiteName = false,
-  titleSeparator = `-`,
-  description = ``,
-  image,
-  article,
-}) => {
-  const { language } = useI18next()
+               title = ``,
+               skipSiteName = false,
+               titleSeparator = `-`,
+               description = ``,
+               image,
+               article,
+             }) => {
+  const {languages, language, originalPath} = useI18next()
 
-  const { site } = useStaticQuery(
+  const {site} = useStaticQuery(
     graphql`
         query {
             site {
@@ -32,7 +32,7 @@ const Seo = ({
     `,
   )
 
-  const { pathname } = useLocation()
+  const {pathname} = useLocation()
 
   const {
     siteName,
@@ -61,25 +61,31 @@ const Seo = ({
   }
 
   return (
-    <Helmet htmlAttributes={{ lang: language }} title={seoData.title}>
-      <meta name="description" content={seoData.description} />
-      <meta name="image" content={seoData.image} />
+    <Helmet htmlAttributes={{lang: language}} title={seoData.title}>
+      <meta name="description" content={seoData.description}/>
+      <meta name="image" content={seoData.image}/>
 
-      <link rel="canonical" href={seoData.url} />
-      <link rel="alternate" hreflang={language} href={seoData.url} />
+      <link rel="canonical" href={seoData.url}/>
 
-      {
-        /*
+      {languages.map((lang) => {
+        const localizedLink = `${siteUrl}/${lang}${originalPath}`
+
+        return <link key={lang} rel="alternate" href={localizedLink} hreflang={lang} />
+      })}
+
+      <link rel="alternate" href={`${siteUrl}/en${originalPath}`} hreflang="x-default"/>
+
+      { /*
          * Open Graph data
          */}
-      {seoData.url && <meta property="og:url" content={seoData.url} />}
-      <meta property="og:locale" content={language} />
-      <meta property="og:site_name" content={seoData.siteName} />
-      {seoData.title && <meta property="og:title" content={seoData.title} />}
+      {seoData.url && <meta property="og:url" content={seoData.url}/>}
+      <meta property="og:locale" content={language}/>
+      <meta property="og:site_name" content={seoData.siteName}/>
+      {seoData.title && <meta property="og:title" content={seoData.title}/>}
       {seoData.description && (
-        <meta property="og:description" content={seoData.description} />
+        <meta property="og:description" content={seoData.description}/>
       )}
-      {seoData.image && <meta property="og:image" content={seoData.image} />}
+      {seoData.image && <meta property="og:image" content={seoData.image}/>}
 
       {
         /*
@@ -91,17 +97,17 @@ const Seo = ({
          *<meta name="twitter:image" content={seoData.image}/>
          */
       }
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary_large_image"/>
 
       twitterUsername && (
-      <meta name="twitter:creator" content={twitterUsername} />
-      <meta name="twitter:site" content={twitterUsername} />
+      <meta name="twitter:creator" content={twitterUsername}/>
+      <meta name="twitter:site" content={twitterUsername}/>
       )
 
-      seoData.title && <meta name="twitter:title" content={seoData.title} />
+      seoData.title && <meta name="twitter:title" content={seoData.title}/>
       seoData.description && <meta name="twitter:description"
-                                   content={seoData.description} />
-      seoData.image && <meta name="twitter:image" content={seoData.image} />}
+                                   content={seoData.description}/>
+      seoData.image && <meta name="twitter:image" content={seoData.image}/>}
 
       <script type="application/ld+json">
         {`
