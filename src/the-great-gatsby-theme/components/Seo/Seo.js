@@ -9,10 +9,10 @@ const Seo = ({
                skipSiteName = false,
                titleSeparator = `-`,
                description = ``,
-               image,
-               article,
              }) => {
+
   const {languages, language, originalPath} = useI18next()
+  const {pathname} = useLocation()
 
   const {site} = useStaticQuery(
     graphql`
@@ -31,8 +31,6 @@ const Seo = ({
         }
     `,
   )
-
-  const {pathname} = useLocation()
 
   const {
     siteName,
@@ -62,7 +60,8 @@ const Seo = ({
 
   return (
     <Helmet htmlAttributes={{lang: language}} title={seoData.title}>
-      <meta name="description" content={seoData.description}/>
+      {description && <meta name="description" content={seoData.description}/>}
+
       <meta name="image" content={seoData.image}/>
 
       <link rel="canonical" href={seoData.url}/>
@@ -70,7 +69,7 @@ const Seo = ({
       {languages.map((lang) => {
         const localizedLink = `${siteUrl}/${lang}${originalPath}`
 
-        return <link key={lang} rel="alternate" href={localizedLink} hreflang={lang} />
+        return <link key={lang} rel="alternate" href={localizedLink} hreflang={lang}/>
       })}
 
       <link rel="alternate" href={`${siteUrl}/en${originalPath}`} hreflang="x-default"/>
@@ -81,32 +80,22 @@ const Seo = ({
       {seoData.url && <meta property="og:url" content={seoData.url}/>}
       <meta property="og:locale" content={language}/>
       <meta property="og:site_name" content={seoData.siteName}/>
+
       {seoData.title && <meta property="og:title" content={seoData.title}/>}
-      {seoData.description && (
-        <meta property="og:description" content={seoData.description}/>
-      )}
+
+      {seoData.description && <meta property="og:description" content={seoData.description}/>}
       {seoData.image && <meta property="og:image" content={seoData.image}/>}
 
-      {
-        /*
+      { /*
          * TWITTER CARD
-         * <meta name="twitter:site" content={seoData.siteName} />
-         * <meta name="twitter:domain" content={seoData.url}/>
-         *<meta name="twitter:title" content={seoData.title}/>
-         *<meta name="twitter:description" content={seoData.description}/>
-         *<meta name="twitter:image" content={seoData.image}/>
-         */
-      }
+         */}
       <meta name="twitter:card" content="summary_large_image"/>
-
       twitterUsername && (
       <meta name="twitter:creator" content={twitterUsername}/>
       <meta name="twitter:site" content={twitterUsername}/>
       )
-
       seoData.title && <meta name="twitter:title" content={seoData.title}/>
-      seoData.description && <meta name="twitter:description"
-                                   content={seoData.description}/>
+      seoData.description && <meta name="twitter:description" content={seoData.description}/>
       seoData.image && <meta name="twitter:image" content={seoData.image}/>}
 
       <script type="application/ld+json">
