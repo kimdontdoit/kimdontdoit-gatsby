@@ -11,7 +11,7 @@ const Seo = ({
                description = ``,
              }) => {
 
-  const {languages, language, originalPath} = useI18next()
+  const {languages, language, defaultLanguage, originalPath, path} = useI18next()
   const {pathname} = useLocation()
 
   const {site} = useStaticQuery(
@@ -67,12 +67,13 @@ const Seo = ({
       <link rel="canonical" href={seoData.url}/>
 
       {languages.map((lang) => {
-        const localizedLink = `${siteUrl}/${lang}${originalPath}`
+        const localizedLink = lang === defaultLanguage ? `${siteUrl}${originalPath}` : `${siteUrl}/${lang}${originalPath}`;
+        //const localizedLink = `${siteUrl}/${lang}${originalPath}`
 
         return <link key={lang} rel="alternate" href={localizedLink} hreflang={lang}/>
       })}
 
-      <link rel="alternate" href={`${siteUrl}/en${originalPath}`} hreflang="x-default"/>
+      <link rel="alternate" href={`${siteUrl}${originalPath}`} hreflang="x-default"/>
 
       { /*
          * Open Graph data
