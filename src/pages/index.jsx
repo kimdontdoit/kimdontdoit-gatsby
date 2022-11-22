@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { graphql } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 import { useI18next } from 'gatsby-plugin-react-i18next'
@@ -28,7 +28,8 @@ export default function IndexPage () {
 
   return (
     <>
-      <Seo title={t('title')} skipSiteName={true} />
+      <Seo title={t('title')} description={t('seo_description')} skipSiteName={true} />
+
       <section className={`${classes.section} pt-16 md:pt-36 pb-8`}>
         <div className="container max-w-screen-lg">
           <h1 className={`bigTitle mb-12`}>
@@ -82,7 +83,7 @@ export default function IndexPage () {
               <div
                 className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}>
                 <h3 className={`font-medium text-2xl mb-8`}>
-                  Gatsby + Headless Magento
+                  React + Headless Magento
                 </h3>
 
                 <StaticImage

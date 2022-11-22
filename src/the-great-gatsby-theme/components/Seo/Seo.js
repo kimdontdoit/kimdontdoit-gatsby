@@ -11,7 +11,7 @@ const Seo = ({
                description = ``,
              }) => {
 
-  const {languages, language, defaultLanguage, originalPath, path} = useI18next()
+  const {languages, language, defaultLanguage, originalPath} = useI18next()
   const {pathname} = useLocation()
 
   const {site} = useStaticQuery(
@@ -68,7 +68,6 @@ const Seo = ({
 
       {languages.map((lang) => {
         const localizedLink = lang === defaultLanguage ? `${siteUrl}${originalPath}` : `${siteUrl}/${lang}${originalPath}`;
-        //const localizedLink = `${siteUrl}/${lang}${originalPath}`
 
         return <link key={lang} rel="alternate" href={localizedLink} hreflang={lang}/>
       })}
@@ -110,7 +109,7 @@ const Seo = ({
           "givenName": "Vladislav",
           "knowsLanguage": ["en-US", "fr-CA", "ru-RU"],
           "image": "https://kimdontdoit.com/media/wow-vladislav-kim.jpeg",
-          "jobTitle": "Front end Developer",
+          "jobTitle": "Front End Developer",
           "worksFor": {
             "@type": "Organization",
             "name": "O2 Web"
