@@ -1,10 +1,14 @@
 @layer utilities {
   .bigTitle {
-    @apply font-bold text-4xl md:text-6xl md:leading-tight;
+    @apply font-bold text-4xl;
+
+    @apply md:text-6xl md:leading-tight;
   }
 
   .headingTitle {
-    @apply text-5xl font-bold leading-snug;
+    @apply font-bold text-4xl leading-snug;
+
+    @apply md:text-5xl md:leading-tight;
   }
 
   .opacity-69 {
