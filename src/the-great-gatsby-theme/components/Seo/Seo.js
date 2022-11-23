@@ -21,7 +21,6 @@ const Seo = ({
                 siteMetadata {
                     siteName
                     defaultTitle
-                    defaultDescription
                     author
                     siteUrl
                     defaultImage

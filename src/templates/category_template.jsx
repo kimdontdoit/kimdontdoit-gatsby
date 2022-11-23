@@ -1,42 +1,22 @@
-import React, { useEffect, useContext } from 'react'
-import { Link, graphql } from 'gatsby'
+import React from 'react'
+import { graphql } from 'gatsby'
 import { useI18next } from 'gatsby-plugin-react-i18next'
 
 import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
 import Seo from 'the-great-gatsby-theme/src/components/Seo'
 
-import ThemeContext from '../context/ThemeContext'
-
-const Post = ({ post }) => {
-  return (
-    <div className="mb-8">
-      <Link className="font-medium" to={post.fields.slug}>
-        {post.frontmatter.title}
-      </Link>
-    </div>
-  )
-}
+import Post from '../components/Post'
 
 export default function CategoryTemplate ({ data }) {
   const { t } = useI18next('index')
 
-  const { setTopbarTransparent } = useContext(ThemeContext)
-
   const { category } = data
   const posts = data.posts.nodes
-  const crumbs = []
+  let crumbs = []
 
   crumbs.push({
     label: t('categories'),
     url: '/categories',
-  })
-
-  useEffect(() => {
-    category.frontmatter.color && setTopbarTransparent(true)
-
-    return () => {
-      setTopbarTransparent(false)
-    }
   })
 
   return (
@@ -48,11 +28,11 @@ export default function CategoryTemplate ({ data }) {
 
       <div>
         <section
-          className={`pt-16 container ${category.frontmatter.color && 'pb-16'}`}
+          className={`pt-16 container pb-16`}
           style={{
-            //backgroundColor: category.frontmatter.color,
             paddingTop: category.frontmatter.color && '8.5rem',
           }}>
+
           <Pageheader
             title={category.frontmatter.title}
             subtitle={category.frontmatter.subtitle}
@@ -74,7 +54,7 @@ export default function CategoryTemplate ({ data }) {
           <div className="max-w-screen-lg mx-auto">
             {posts &&
               posts.map((post) => {
-                return <Post key={post.id} post={post.childMarkdownRemark} />
+                return <Post key={post.id} node={post.childMarkdownRemark} />
               })}
           </div>
         </section>
@@ -99,7 +79,10 @@ export const query = graphql`
             filter: {
                 sourceInstanceName: { eq: "post" }
                 internal: { mediaType: { eq: "text/markdown" } }
-                childMarkdownRemark: { frontmatter: { category: { eq: $title } } }
+                childMarkdownRemark: {
+                    frontmatter: { category: { eq: $title } }
+                    fields: { language: {eq: $language } }
+                }
             }
         ) {
             nodes {
@@ -109,9 +92,12 @@ export const query = graphql`
                     id
                     frontmatter {
                         title
+                        slug
+                        type
                     }
                     fields {
                         slug
+                        language
                     }
                 }
             }

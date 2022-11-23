@@ -1,19 +1,11 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import { useI18next } from 'gatsby-plugin-react-i18next'
 
 import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
 import Seo from 'the-great-gatsby-theme/src/components/Seo'
 
-const Post = ({ post }) => {
-  return (
-    <div className="mb-8">
-      <Link className="font-medium" to={post.fields.slug}>
-        {post.frontmatter.title}
-      </Link>
-    </div>
-  )
-}
+import Post from '../components/Post'
 
 export default function TypeTemplate ({ data, location }) {
   const { t } = useI18next('index')
@@ -48,7 +40,7 @@ export default function TypeTemplate ({ data, location }) {
           <div className="max-w-screen-lg mx-auto">
             {posts &&
               posts.map((post) => {
-                return <Post key={post.id} post={post.childMarkdownRemark} />
+                return <Post key={post.id} node={post.childMarkdownRemark} />
               })}
           </div>
         </section>
@@ -69,8 +61,8 @@ export const query = graphql`
             filter: {
                 sourceInstanceName: { eq: "post" }
                 childMarkdownRemark: {
-                    fields: { language: { eq: "fr" } }
                     frontmatter: { type: { eq: $title } }
+                    fields: { language: {eq: $language } }
                 }
             }
         ) {
@@ -81,9 +73,12 @@ export const query = graphql`
                     id
                     frontmatter {
                         title
+                        slug
+                        type
                     }
                     fields {
                         slug
+                        language
                     }
                 }
             }

@@ -8,7 +8,6 @@ module.exports = {
   siteMetadata: {
     siteName: `Kimdontdoit`,
     defaultTitle: `Vladislav Kim`,
-    defaultDescription: ``,
     author: `@kimdontdoit`,
     siteUrl,
     defaultImage: `/media/cover.png`,
@@ -50,53 +49,39 @@ module.exports = {
           },
         },
         pages: [
-          /*
           {
-            matchPath: '/:lang?/snippets',
+            // posts and types generated from gatsby-node.js
+            matchPath: '/:lang?/:type(articles|snippets)/:uid?',
             getLanguageFromPath: true,
             excludeLanguages: ['en']
           },
           {
-            matchPath: '/:lang?/categories',
+            // categories generated from gatsby-node.js
+            matchPath: '/:lang?/:category(serveur|php|wordpress|javascript)',
             getLanguageFromPath: true,
             excludeLanguages: ['en']
-          },
-          {
-            matchPath: '/:lang?/categories/:uid',
-            getLanguageFromPath: true,
-            excludeLanguages: ['en']
-          },
-          {
-            matchPath: '/:lang?/posts/:uid',
-            getLanguageFromPath: true,
-            excludeLanguages: ['en']
-          },
-          {
-            matchPath: '/:lang?/snippets/:uid',
-            getLanguageFromPath: true,
-            excludeLanguages: ['en']
-          },*/
+          }
         ],
       },
     },
-    /** Theme/Design images */
     {
+      //Theme / Design images
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
     },
-    /** CMS/Content images */
     {
+      // CMS / Content images
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `uploads`,
         path: `${__dirname}/static/media`,
       },
     },
-    // Markdown content
     {
+      // Markdown content: posts
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `post`,
@@ -104,6 +89,7 @@ module.exports = {
       },
     },
     {
+      // Markdown content: categories
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `category`,
@@ -111,6 +97,7 @@ module.exports = {
       },
     },
     {
+      // Markdown content: post types
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `type`,
@@ -125,7 +112,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`, // resolve: `gatsby-remark-relative-images`,
             options: {
-              maxWidth: 630,
+              // maxWidth: 630,
             },
           },
           `gatsby-remark-autolink-headers`, // before gatsby-remark-prismjs

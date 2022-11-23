@@ -9,7 +9,7 @@ import Seo from 'the-great-gatsby-theme/src/components/Seo'
 
 import ThemeContext from '../context/ThemeContext'
 import Notice from '../components/Notice'
-import * as classes from './posts_template.module.css'
+import * as classes from './post_template.module.css'
 
 export default function PostTemplate ({ data }) {
   const { t, language } = useI18next('index')
@@ -21,6 +21,8 @@ export default function PostTemplate ({ data }) {
 
   // TODO verify and dynamically change language in locale()
   // TODO add category
+
+  console.log(language);
 
   const date = language === 'fr' ?
     dayjs(publish_date).locale('fr').format('D MMMM YYYY')
@@ -37,7 +39,7 @@ export default function PostTemplate ({ data }) {
   if (type) {
     crumbs.push({
       label: `${t(`all-the`)} ${type.frontmatter.title}`,
-      url: type.fields.slug,
+      url: `/${type.fields.slug}`,
     })
   }
 

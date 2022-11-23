@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "gatsby";
+import {Link} from 'gatsby-plugin-react-i18next';
 
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
-//import colorBasedOnBg from "the-great-gatsby-theme/src/utils/colorBasedOnBg";
 
 import * as classes from "./Pageheader.module.css";
 

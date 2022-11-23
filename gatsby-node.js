@@ -1,11 +1,10 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-// const PATH_TO_MD_PAGES = path.resolve("content");
-
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
+  // Fetch Markdown
   const result = await graphql(
     `
       query {
@@ -19,6 +18,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 title
                 category
                 type
+                slug
               }
               fields {
                 slug
@@ -33,14 +33,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (result.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      `There was an error on build loading markdown`,
       result.errors
     );
     return;
   }
 
   const nodes = result.data.allFile.nodes;
-
   const validSources = ["post", "category", "type"];
 
   if (nodes.length > 0) {
@@ -51,35 +50,39 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
         const language = node.childMarkdownRemark.fields.language;
 
-        // let prepareSlug = [""];
+        let prepareSlug = [];
 
+        // if not default language
         if (language !== "fr") {
-          return;
-
-          //prepareSlug.push(node.childMarkdownRemark.fields.language);
+          prepareSlug.push(language);
         }
 
-        /*
-        //prepareSlug.push(node.sourceInstanceName);
-        prepareSlug.push(node.childMarkdownRemark.fields.slug);
+        // @todo maybe make this into util
+        if (node.sourceInstanceName === "post") {
+          // /articles/... /snippets/...
+          prepareSlug.push(node.childMarkdownRemark.frontmatter.type.toLowerCase());
+        }
 
-        const slug = prepareSlug.join("/");
+        // slug from frontmatter, else use filename
+        if (node.childMarkdownRemark.frontmatter.slug) {
+          prepareSlug.push(`${node.childMarkdownRemark.frontmatter.slug}/`);
+        } else {
+          prepareSlug.push(`${node.childMarkdownRemark.fields.slug}/`);
+        }
 
-        console.log(prepareSlug);
-        console.log(slug);
-        */
         const template = path.resolve(
           `./src/templates/${node.sourceInstanceName}_template.jsx`
         );
 
         createPage({
-          path: node.childMarkdownRemark.fields.slug,
+          path: prepareSlug.join("/"),
           component: template,
           context: {
             id: node.childMarkdownRemark.id,
             title: node.childMarkdownRemark.frontmatter.title,
             category: node.childMarkdownRemark.frontmatter.category,
             type: node.childMarkdownRemark.frontmatter.type,
+            file_slug: node.childMarkdownRemark.fields.slug,
             language,
             previous,
             next,
@@ -96,33 +99,23 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === `MarkdownRemark`) {
     const filePath = createFilePath({ node, getNode });
 
-    // ex.: ['', 'fr', 'a-propos', '']
+    // filePathArray ex.: ['', 'fr', 'a-propos', '']
     const filePathArray = filePath.split("/");
+    const lang_from_path = filePathArray[1];
+    const slug = filePathArray[2];
 
-    const lang = filePathArray[1];
-
-    let slug = [...filePathArray];
-    slug.splice(1, 1);
-    slug = slug.join("/");
-
-    const slug_key = filePathArray[2];
-
+    // Add language from path to node.fields.language
     createNodeField({
       name: `language`,
       node,
-      value: lang,
+      value: lang_from_path,
     });
 
+    // Add filename as alternative slug (if none in frontmatter)
     createNodeField({
       name: `slug`,
       node,
       value: slug,
-    });
-
-    createNodeField({
-      name: `slug_key`,
-      node,
-      value: slug_key,
     });
   }
 };

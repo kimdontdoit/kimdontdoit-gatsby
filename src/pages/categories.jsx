@@ -5,12 +5,15 @@ import { useI18next } from 'gatsby-plugin-react-i18next'
 import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
 import Seo from 'the-great-gatsby-theme/src/components/Seo'
 
-const Category = ({ category }) => {
+const Category = ({ node }) => {
+  const { language, defaultLanguage } = useI18next()
+  let slug = language !== defaultLanguage ? `/${language}` : ``;
+  slug += `/${node.frontmatter.slug ?? node.fields.slug}/`
 
   return (
     <div className="mb-8">
-      <Link className="font-medium" to={`${category.fields.slug}`}>
-        {category.frontmatter.title}
+      <Link className="font-medium" to={slug}>
+        {node.frontmatter.title}
       </Link>
     </div>
   )
@@ -41,7 +44,7 @@ export default function CategoriesPage ({ data }) {
             categories.map((category) => {
               return (
                 <Category
-                  category={category.childMarkdownRemark}
+                  node={category.childMarkdownRemark}
                   key={category.id}
                 />
               )
@@ -58,7 +61,7 @@ export const query = graphql`
             filter: {
                 sourceInstanceName: { eq: "category" }
                 internal: { mediaType: { eq: "text/markdown" } }
-                childMarkdownRemark: { fields: { language: { eq: "fr" } } }
+                childMarkdownRemark: { fields: { language: { eq: $language } } }
             }
         ) {
             nodes {
@@ -68,6 +71,7 @@ export const query = graphql`
                     id
                     frontmatter {
                         title
+                        slug
                     }
                     fields {
                         language
