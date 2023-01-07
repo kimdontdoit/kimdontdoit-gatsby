@@ -1,52 +1,61 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { useI18next } from 'gatsby-plugin-react-i18next'
+import React from "react";
+import { graphql } from "gatsby";
+import { useI18next } from "gatsby-plugin-react-i18next";
 
-import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
-import Seo from 'the-great-gatsby-theme/src/components/Seo'
+import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import Post from '../components/Post'
+import Post from "../components/Post";
 
-export default function TypeTemplate ({ data, location }) {
-  const { t } = useI18next('index')
+export default function TypeTemplate({ data, location }) {
+    const { t } = useI18next("index");
 
-  const { type } = data
-  const posts = data.posts.nodes
+    const { type } = data;
+    const posts = data.posts.nodes;
 
-  const crumbs = []
+    const crumbs = [];
 
-  crumbs.push({
-    label: t('back-to-home'),
-    url: '/',
-  })
+    crumbs.push({
+        label: t("back-to-home"),
+        url: "/",
+    });
 
-  return (
-    <>
-      <Seo title={type.frontmatter.title} />
-      <div>
-        <section className={`my-16 container`}>
-          <Pageheader title={type.frontmatter.title} crumbs={crumbs} />
-        </section>
+    return (
+        <>
+            <Seo title={type.frontmatter.title} />
+            <div>
+                <section className={`my-16 container`}>
+                    <Pageheader
+                        title={type.frontmatter.title}
+                        crumbs={crumbs}
+                    />
+                </section>
 
-        {type.html && (
-          <section className="container">
-            <div
-              dangerouslySetInnerHTML={{ __html: type.html }}
-              itemProp="articleBody"
-              className={`max-w-screen-lg text-lg`}></div>
-          </section>
-        )}
-        <section className={`container pb-16`}>
-          <div className="max-w-screen-lg mx-auto">
-            {posts &&
-              posts.map((post) => {
-                return <Post key={post.id} node={post.childMarkdownRemark} />
-              })}
-          </div>
-        </section>
-      </div>
-    </>
-  )
+                {type.html && (
+                    <section className="container">
+                        <div
+                            dangerouslySetInnerHTML={{ __html: type.html }}
+                            itemProp="articleBody"
+                            className={`max-w-screen-lg text-lg`}
+                        ></div>
+                    </section>
+                )}
+                <section className={`container pb-16`}>
+                    <div className="max-w-screen-lg mx-auto">
+                        {posts &&
+                            posts.map((post) => {
+                                return (
+                                    <Post
+                                        key={post.id}
+                                        node={post.childMarkdownRemark}
+                                    />
+                                );
+                            })}
+                    </div>
+                </section>
+            </div>
+        </>
+    );
 }
 
 export const query = graphql`
@@ -62,7 +71,7 @@ export const query = graphql`
                 sourceInstanceName: { eq: "post" }
                 childMarkdownRemark: {
                     frontmatter: { type: { eq: $title } }
-                    fields: { language: {eq: $language } }
+                    fields: { language: { eq: $language } }
                 }
             }
         ) {
@@ -93,4 +102,4 @@ export const query = graphql`
             }
         }
     }
-`
+`;

@@ -1,45 +1,47 @@
-import React from 'react'
-import { Link, useI18next } from 'gatsby-plugin-react-i18next'
-import * as classes from './Footer.module.css'
+import React from "react";
+import { Link, useI18next } from "gatsby-plugin-react-i18next";
+import * as classes from "./Footer.module.css";
 
 const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  })
-}
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+};
 
 const Footer = () => {
-  const { t, languages, language, originalPath } = useI18next()
+    const { t, languages, language, originalPath } = useI18next();
 
-  return (
-    <footer className={`${classes.footer} bg-dark text-white`}>
-      <div className={`container text-center py-12`}>
-        <div
-          role="link"
-          className={`${classes.scrollTopLink} mb-8`}
-          onClick={scrollToTop}
-          onKeyDown={scrollToTop}
-          tabIndex={0}>
-          {t(`back-to-top`)}
-        </div>
+    return (
+        <footer className={`${classes.footer} bg-dark text-white`}>
+            <div className={`container text-center py-12`}>
+                <div
+                    role="link"
+                    className={`${classes.scrollTopLink} mb-8`}
+                    onClick={scrollToTop}
+                    onKeyDown={scrollToTop}
+                    tabIndex={0}
+                >
+                    {t(`back-to-top`)}
+                </div>
 
-        <div>
-          <p className={`opacity-30`}>
-            {`Kimdontdoit copyright 2022`}
-            <br />
-            {`${t('copyright-line')} `}
-            <a
-              href="https://www.gatsbyjs.com/"
-              target="_blank"
-              rel="noreferrer noopener">
-              Gatsby
-            </a>
-            {` — ${t('open-source')}`}
-          </p>
-        </div>
+                <div>
+                    <p className={`opacity-30`}>
+                        {`Kimdontdoit copyright 2022`}
+                        <br />
+                        {`${t("copyright-line")} `}
+                        <a
+                            href="https://www.gatsbyjs.com/"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
+                            Gatsby
+                        </a>
+                        {` — ${t("open-source")}`}
+                    </p>
+                </div>
 
-        <div>
+                {/*<div>
           <ul className={classes.languageSwitcher}>
             {languages && languages.map((lng) => {
               if (lng !== language) {
@@ -57,10 +59,10 @@ const Footer = () => {
               }
             })}
           </ul>
-        </div>
-      </div>
-    </footer>
-  )
-}
+        </div>*/}
+            </div>
+        </footer>
+    );
+};
 
-export default Footer
+export default Footer;
