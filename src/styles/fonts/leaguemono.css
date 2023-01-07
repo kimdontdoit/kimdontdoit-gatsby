@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "League Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/LeagueMonoRegular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "League Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/LeagueMonoBold.woff") format("woff");
+}

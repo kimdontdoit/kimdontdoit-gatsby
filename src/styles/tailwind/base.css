@@ -1,8 +1,4 @@
 @layer base {
-  body {
-    @apply text-bold;
-  }
-
   a {
     transition: 0.15s color ease-in-out;
   }
