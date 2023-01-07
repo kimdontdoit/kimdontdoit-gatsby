@@ -1,8 +1,6 @@
 @layer base {
   body {
-    @apply text-black;
-
-    font-feature-settings: "ss03" 1;
+    @apply text-bold;
   }
 
   a {

@@ -8,6 +8,8 @@ module.exports = {
   siteMetadata: {
     siteName: `Kimdontdoit`,
     defaultTitle: `Vladislav Kim`,
+    lastName: `Kim`,
+    firstName: `Vladislav`,
     author: `@kimdontdoit`,
     siteUrl,
     defaultImage: `/media/cover.png`,

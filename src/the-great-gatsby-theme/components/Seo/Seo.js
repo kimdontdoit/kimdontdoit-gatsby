@@ -21,6 +21,8 @@ const Seo = ({
                 siteMetadata {
                     siteName
                     defaultTitle
+                    firstName
+                    lastName
                     author
                     siteUrl
                     defaultImage
@@ -102,10 +104,10 @@ const Seo = ({
         {
           "@context": "https://schema.org",
           "@type": "Person",
-          "url": "https://kimdontdoit.com",
-          "name": "Vladislav Kim",
-          "familyName": "Kim",
-          "givenName": "Vladislav",
+          "url": "${seoData.siteUrl}",
+          "name": "${seoData.defaultTitle}",
+          "familyName": "${seoData.lastName}",
+          "givenName": "${seoData.firstName}",
           "knowsLanguage": ["en-US", "fr-CA", "ru-RU"],
           "image": "https://kimdontdoit.com/media/wow-vladislav-kim.jpeg",
           "jobTitle": "Front End Developer",
