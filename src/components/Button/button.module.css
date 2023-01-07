@@ -1,6 +1,6 @@
 .btn {
-  @apply rounded-xl;
-  @apply text-lg font-medium font-display;
+  @apply rounded-md;
+  @apply text-lg font-bold font-display;
 
   line-height: 1;
   display: inline-grid;
