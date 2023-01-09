@@ -2,7 +2,7 @@
   "tabWidth": 4,
   "overrides": [
     {
-      "files": "*.css",
+      "files": ["*.css", "*.json", ".prettierrc", "*.yml"],
       "options": {
         "tabWidth": 2
       }
