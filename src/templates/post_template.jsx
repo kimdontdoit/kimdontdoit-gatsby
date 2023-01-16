@@ -17,7 +17,7 @@ export default function PostTemplate({ data }) {
     const { post, type } = data;
     const { scrollProgressTarget } = useContext(ThemeContext);
 
-    const { title, description, publish_date, needs_update } = post.frontmatter;
+    const { title, description, publish_date } = post.frontmatter;
 
     // TODO verify and dynamically change language in locale()
     // TODO add category
@@ -64,7 +64,7 @@ export default function PostTemplate({ data }) {
                     </Pageheader>
                 </section>
 
-                {needs_update && <Notice />}
+                {false && <Notice />}
 
                 <section className="pb-16 container flex">
                     <div className={`${classes.content} flex-1`}>
@@ -119,7 +119,6 @@ export const query = graphql`
                 title
                 publish_date
                 type
-                needs_update
             }
             tableOfContents
             timeToRead

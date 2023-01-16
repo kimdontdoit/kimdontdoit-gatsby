@@ -97,13 +97,6 @@ collections:
           required: false,
           i18n: true,
         }
-      - {
-          label: "Needs update",
-          name: needs_update,
-          widget: boolean,
-          required: false,
-          i18n: duplicate,
-        }
 
   ### CATEGORIES COLLECTION
   - name: categories
