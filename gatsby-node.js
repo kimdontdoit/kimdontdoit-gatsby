@@ -60,7 +60,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         // @todo maybe make this into util
         if (node.sourceInstanceName === "post") {
           // /articles/... /snippets/...
-          prepareSlug.push(node.childMarkdownRemark.frontmatter.type.toLowerCase());
+          prepareSlug.push(
+            node.childMarkdownRemark.frontmatter.type.toLowerCase()
+          );
         }
 
         // slug from frontmatter, else use filename
@@ -85,8 +87,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             file_slug: node.childMarkdownRemark.fields.slug,
             language,
             previous,
-            next,
-          },
+            next
+          }
         });
       }
     });
@@ -108,14 +110,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `language`,
       node,
-      value: lang_from_path,
+      value: lang_from_path
     });
 
     // Add filename as alternative slug (if none in frontmatter)
     createNodeField({
       name: `slug`,
       node,
-      value: slug,
+      value: slug
     });
   }
 };

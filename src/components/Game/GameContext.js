@@ -3,7 +3,7 @@ import React, { useEffect, createContext, useState } from "react";
 const GameContext = createContext({
   gold: 0,
   goldPerSecond: 0,
-  goldPerClick: 1,
+  goldPerClick: 1
 });
 
 function GameProvider({ children }) {
@@ -23,7 +23,7 @@ function GameProvider({ children }) {
 
   function saveGame() {
     const profile = {
-      gold,
+      gold
     };
 
     localStorage.setItem("gameProfile", JSON.stringify(profile));
@@ -39,7 +39,7 @@ function GameProvider({ children }) {
         goldPerClick,
         setGoldPerClick,
         incrementGold,
-        saveGame,
+        saveGame
       }}
     >
       {children}

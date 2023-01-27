@@ -7,20 +7,20 @@ const links = [
     className: "linkedin",
     label: "Linkedin",
     url: "https://www.linkedin.com/in/vladislav-kim-3ba4a1172",
-    icon: "fa-icon",
+    icon: "fa-icon"
   },
   {
     className: "github",
     label: "Github",
     url: "https://github.com/kimdontdoit",
-    icon: "fa-icon",
+    icon: "fa-icon"
   },
   {
     className: "instagram",
     label: "Instagram",
     url: "https://www.instagram.com/kimdontdoit/",
-    icon: "fa-icon",
-  },
+    icon: "fa-icon"
+  }
 ];
 
 const SocialLinks = () => {

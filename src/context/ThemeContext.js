@@ -4,7 +4,7 @@ const ThemeContext = createContext({
   darkMode: false,
   cursorImage: undefined,
   readingProgress: 0,
-  scrollProgressTarget: undefined,
+  scrollProgressTarget: undefined
 });
 
 function ThemeProvider({ children }) {
@@ -29,7 +29,7 @@ function ThemeProvider({ children }) {
         darkMode,
         toggleDarkMode,
         topbarTransparent,
-        setTopbarTransparent,
+        setTopbarTransparent
       }}
     >
       {children}

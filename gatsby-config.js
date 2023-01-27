@@ -1,5 +1,5 @@
-const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com`
-const { languages, defaultLanguage } = require('./languages')
+const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com`;
+const { languages, defaultLanguage } = require("./languages");
 
 module.exports = {
   flags: {
@@ -13,7 +13,7 @@ module.exports = {
     author: `@kimdontdoit`,
     siteUrl,
     defaultImage: `/media/cover.png`,
-    twitterUsername: `@kimdontdoit`,
+    twitterUsername: `@kimdontdoit`
   },
   plugins: [
     `the-great-gatsby-theme`,
@@ -29,8 +29,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/locales`,
-        name: `locale`,
-      },
+        name: `locale`
+      }
     },
     {
       resolve: `gatsby-plugin-react-i18next`,
@@ -45,66 +45,66 @@ module.exports = {
         i18nextOptions: {
           fallbackLng: defaultLanguage,
           supportedLngs: languages,
-          defaultNS: 'common',
+          defaultNS: "common",
           interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
-          },
+            escapeValue: false // not needed for react as it escapes by default
+          }
         },
         pages: [
           {
             // posts and types generated from gatsby-node.js
-            matchPath: '/:lang?/:type(articles|snippets)/:uid?',
+            matchPath: "/:lang?/:type(articles|snippets)/:uid?",
             getLanguageFromPath: true,
-            excludeLanguages: ['en']
+            excludeLanguages: ["en"]
           },
           {
             // categories generated from gatsby-node.js
-            matchPath: '/:lang?/:category(serveur|php|wordpress|javascript)',
+            matchPath: "/:lang?/:category(serveur|php|wordpress|javascript)",
             getLanguageFromPath: true,
-            excludeLanguages: ['en']
+            excludeLanguages: ["en"]
           }
-        ],
-      },
+        ]
+      }
     },
     {
       //Theme / Design images
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        path: `${__dirname}/src/images`
+      }
     },
     {
       // CMS / Content images
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `uploads`,
-        path: `${__dirname}/static/media`,
-      },
+        path: `${__dirname}/static/media`
+      }
     },
     {
       // Markdown content: posts
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `post`,
-        path: `${__dirname}/content/posts`,
-      },
+        path: `${__dirname}/content/posts`
+      }
     },
     {
       // Markdown content: categories
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `category`,
-        path: `${__dirname}/content/categories`,
-      },
+        path: `${__dirname}/content/categories`
+      }
     },
     {
       // Markdown content: post types
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `type`,
-        path: `${__dirname}/content/types`,
-      },
+        path: `${__dirname}/content/types`
+      }
     },
     {
       resolve: `gatsby-transformer-remark`,
@@ -115,16 +115,16 @@ module.exports = {
             resolve: `gatsby-remark-images`, // resolve: `gatsby-remark-relative-images`,
             options: {
               // maxWidth: 630,
-            },
+            }
           },
           `gatsby-remark-autolink-headers`, // before gatsby-remark-prismjs
           `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-        ],
-      },
+          `gatsby-remark-copy-linked-files`
+        ]
+      }
     },
     {
-      resolve: `gatsby-plugin-postcss`,
+      resolve: `gatsby-plugin-postcss`
     },
     `gatsby-transformer-sharp`,
     {
@@ -133,9 +133,9 @@ module.exports = {
         defaults: {
           formats: [`auto`, `webp`],
           placeholder: `dominantColor`,
-          quality: 85,
-        },
-      },
+          quality: 85
+        }
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -146,15 +146,15 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#ffffff`,
         display: `standalone`,
-        icon: `src/images/icon.gif`,
-      },
+        icon: `src/images/icon.gif`
+      }
     },
     `gatsby-plugin-react-helmet`,
     {
-      resolve: 'gatsby-plugin-sitemap',
+      resolve: "gatsby-plugin-sitemap",
       options: {
-        excludes: ['/**/404', '/**/404.html']
+        excludes: ["/**/404", "/**/404.html"]
       }
     }
-  ],
-}
+  ]
+};

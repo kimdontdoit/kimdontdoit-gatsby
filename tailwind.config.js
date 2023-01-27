@@ -8,21 +8,21 @@ module.exports = {
       sans: '-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"',
       display:
         'Mona Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
-      body: '-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"',
+      body: '-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'
     },
     extend: {
       colors: {
         primary: {
-          DEFAULT: "var(--color-primary)",
-        },
-      },
-    },
+          DEFAULT: "var(--color-primary)"
+        }
+      }
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
   corePlugins: {
-    container: false,
+    container: false
   },
   plugins: [
     plugin(function ({ addComponents }) {
@@ -32,11 +32,11 @@ module.exports = {
           marginLeft: "auto",
           marginRight: "auto",
           paddingLeft: "1rem",
-          paddingRight: "1rem",
-        },
+          paddingRight: "1rem"
+        }
       };
 
       addComponents(buttons);
-    }),
-  ],
+    })
+  ]
 };

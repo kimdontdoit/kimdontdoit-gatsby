@@ -2,10 +2,10 @@
   "name": "kimdontdoit",
   "version": "1.0.0",
   "private": true,
-  "description": "Kimdontdoit",
-  "author": "kimdontdoit",
+  "description": "Kimdontdoit personal/experimental blog built with the-great-Gatsby-theme",
+  "author": "Vladislav Kim",
   "scripts": {
-    "start": "yarn develop",
+    "start": "gatsby develop",
     "develop": "gatsby develop -So",
     "build": "gatsby build",
     "serve": "gatsby serve -o",

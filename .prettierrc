@@ -1,11 +1,6 @@
 {
-  "tabWidth": 4,
-  "overrides": [
-    {
-      "files": ["*.css", "*.json", ".prettierrc", "*.yml", "*.md"],
-      "options": {
-        "tabWidth": 2
-      }
-    }
-  ]
+  "semi": true,
+  "trailingComma": "none",
+  "printWidth": 80,
+  "tabWidth": 2
 }

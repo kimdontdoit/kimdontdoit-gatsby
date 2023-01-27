@@ -1,11 +1,11 @@
 import React from "react";
-import { graphql } from 'gatsby'
-import { useI18next } from 'gatsby-plugin-react-i18next'
+import { graphql } from "gatsby";
+import { useI18next } from "gatsby-plugin-react-i18next";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 export default function NotFoundPage() {
-  const { t } = useI18next('common')
+  const { t } = useI18next("common");
 
   return (
     <>
@@ -27,15 +27,15 @@ export default function NotFoundPage() {
 }
 
 export const query = graphql`
-    query ($language: String!) {
-        locales: allLocale(filter: { language: { eq: $language } }) {
-            edges {
-                node {
-                    ns
-                    data
-                    language
-                }
-            }
+  query ($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
         }
+      }
     }
+  }
 `;

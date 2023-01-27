@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'gatsby-plugin-react-i18next';
+import { Link } from "gatsby-plugin-react-i18next";
 
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
@@ -38,7 +38,7 @@ export default function Pageheader({
   subtitle,
   crumbs,
   children,
-  color,
+  color
 }) {
   /*let textColor = "000000";
   if (color) {

@@ -11,6 +11,10 @@
   transition: 0.4s;
 }
 
+.btn.btn-sm {
+  padding: 0;
+}
+
 .btn:hover {
   transform: scale(1.025) translateZ(1px);
 }

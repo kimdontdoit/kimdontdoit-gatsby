@@ -1,23 +1,23 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { useI18next } from 'gatsby-plugin-react-i18next'
+import React from "react";
+import { graphql } from "gatsby";
+import { useI18next } from "gatsby-plugin-react-i18next";
 
-import Pageheader from 'the-great-gatsby-theme/src/components/Pageheader'
-import Seo from 'the-great-gatsby-theme/src/components/Seo'
+import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
+import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import Post from '../components/Post'
+import Post from "../components/Post";
 
-export default function CategoryTemplate ({ data }) {
-  const { t } = useI18next('index')
+export default function CategoryTemplate({ data }) {
+  const { t } = useI18next("index");
 
-  const { category } = data
-  const posts = data.posts.nodes
-  let crumbs = []
+  const { category } = data;
+  const posts = data.posts.nodes;
+  let crumbs = [];
 
   crumbs.push({
-    label: t('categories'),
-    url: '/categories',
-  })
+    label: t("categories"),
+    url: "/categories"
+  });
 
   return (
     <>
@@ -30,9 +30,9 @@ export default function CategoryTemplate ({ data }) {
         <section
           className={`pt-16 container pb-16`}
           style={{
-            paddingTop: category.frontmatter.color && '8.5rem',
-          }}>
-
+            paddingTop: category.frontmatter.color && "8.5rem"
+          }}
+        >
           <Pageheader
             title={category.frontmatter.title}
             subtitle={category.frontmatter.subtitle}
@@ -46,7 +46,8 @@ export default function CategoryTemplate ({ data }) {
             <div
               dangerouslySetInnerHTML={{ __html: category.html }}
               itemProp="articleBody"
-              className={`max-w-screen-lg mx-auto text-lg`}></div>
+              className={`max-w-screen-lg mx-auto text-lg`}
+            ></div>
           </section>
         )}
 
@@ -54,62 +55,62 @@ export default function CategoryTemplate ({ data }) {
           <div className="max-w-screen-lg mx-auto">
             {posts &&
               posts.map((post) => {
-                return <Post key={post.id} node={post.childMarkdownRemark} />
+                return <Post key={post.id} node={post.childMarkdownRemark} />;
               })}
           </div>
         </section>
       </div>
     </>
-  )
+  );
 }
 
 export const query = graphql`
-    query ($id: String!, $title: String, $language: String!) {
-        category: markdownRemark(id: { eq: $id }) {
-            id
-            excerpt
-            html
-            frontmatter {
-                title
-                subtitle
-                color
-            }
-        }
-        posts: allFile(
-            filter: {
-                sourceInstanceName: { eq: "post" }
-                internal: { mediaType: { eq: "text/markdown" } }
-                childMarkdownRemark: {
-                    frontmatter: { category: { eq: $title } }
-                    fields: { language: {eq: $language } }
-                }
-            }
-        ) {
-            nodes {
-                id
-                sourceInstanceName
-                childMarkdownRemark {
-                    id
-                    frontmatter {
-                        title
-                        slug
-                        type
-                    }
-                    fields {
-                        slug
-                        language
-                    }
-                }
-            }
-        }
-        locales: allLocale(filter: { language: { eq: $language } }) {
-            edges {
-                node {
-                    ns
-                    data
-                    language
-                }
-            }
-        }
+  query ($id: String!, $title: String, $language: String!) {
+    category: markdownRemark(id: { eq: $id }) {
+      id
+      excerpt
+      html
+      frontmatter {
+        title
+        subtitle
+        color
+      }
     }
-`
+    posts: allFile(
+      filter: {
+        sourceInstanceName: { eq: "post" }
+        internal: { mediaType: { eq: "text/markdown" } }
+        childMarkdownRemark: {
+          frontmatter: { category: { eq: $title } }
+          fields: { language: { eq: $language } }
+        }
+      }
+    ) {
+      nodes {
+        id
+        sourceInstanceName
+        childMarkdownRemark {
+          id
+          frontmatter {
+            title
+            slug
+            type
+          }
+          fields {
+            slug
+            language
+          }
+        }
+      }
+    }
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

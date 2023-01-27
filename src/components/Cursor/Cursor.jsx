@@ -38,7 +38,7 @@ const Cursor = () => {
         className="cursor fixed"
         style={{
           left: `${position.x}px`,
-          top: `${position.y}px`,
+          top: `${position.y}px`
         }}
       >
         <div className="cursorImage" key="cursor-image">

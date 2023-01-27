@@ -5,112 +5,104 @@ import { useStaticQuery, graphql } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 const Seo = ({
-    title = ``,
-    skipSiteName = false,
-    titleSeparator = `-`,
-    description = ``,
+  title = ``,
+  skipSiteName = false,
+  titleSeparator = `-`,
+  description = ``
 }) => {
-    const { languages, language, defaultLanguage, originalPath } = useI18next();
-    const { pathname } = useLocation();
+  const { languages, language, defaultLanguage, originalPath } = useI18next();
+  const { pathname } = useLocation();
 
-    const { site } = useStaticQuery(
-        graphql`
-            query {
-                site {
-                    siteMetadata {
-                        siteName
-                        defaultTitle
-                        firstName
-                        lastName
-                        author
-                        siteUrl
-                        defaultImage
-                        twitterUsername
-                    }
-                }
-            }
-        `
-    );
-
-    const {
-        siteName,
-        defaultTitle,
-        siteUrl,
-        author,
-        defaultImage,
-        twitterUsername,
-    } = site.siteMetadata;
-
-    const getPageTitle = () => {
-        if (skipSiteName) {
-            return title;
-        } else {
-            return `${title} ${titleSeparator} ${defaultTitle}`;
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            siteName
+            defaultTitle
+            firstName
+            lastName
+            author
+            siteUrl
+            defaultImage
+            twitterUsername
+          }
         }
-    };
+      }
+    `
+  );
 
-    const seoData = {
-        siteName: siteName, // ex `{title} - KimDontDoIt`
-        title: getPageTitle(), // <Seo title="Accueil">
-        description: description, // page description
-        image: `${siteUrl}${defaultImage}`,
-        url: `${siteUrl}${pathname}`,
-        author: author,
-    };
+  const {
+    siteName,
+    defaultTitle,
+    siteUrl,
+    author,
+    defaultImage,
+    twitterUsername
+  } = site.siteMetadata;
 
-    return (
-        <Helmet htmlAttributes={{ lang: language }} title={seoData.title}>
-            {description && (
-                <meta name="description" content={seoData.description} />
-            )}
-            <meta name="image" content={seoData.image} />
-            <link rel="canonical" href={seoData.url} />
-            {languages.map((lang) => {
-                const localizedLink =
-                    lang === defaultLanguage
-                        ? `${siteUrl}${originalPath}`
-                        : `${siteUrl}/${lang}${originalPath}`;
+  const getPageTitle = () => {
+    if (skipSiteName) {
+      return title;
+    } else {
+      return `${title} ${titleSeparator} ${defaultTitle}`;
+    }
+  };
 
-                return (
-                    <link
-                        key={lang}
-                        rel="alternate"
-                        href={localizedLink}
-                        hreflang={lang}
-                    />
-                );
-            })}
-            {/* <link rel="alternate" href={`${siteUrl}${originalPath}`} hreflang="x-default"/> */}
-            {/*
-             * Open Graph data
-             */}
-            {seoData.url && <meta property="og:url" content={seoData.url} />}
-            <meta property="og:locale" content={language} />
-            <meta property="og:site_name" content={seoData.siteName} />
-            {seoData.title && (
-                <meta property="og:title" content={seoData.title} />
-            )}
-            {seoData.description && (
-                <meta property="og:description" content={seoData.description} />
-            )}
-            {seoData.image && (
-                <meta property="og:image" content={seoData.image} />
-            )}
-            {/*
-             * TWITTER CARD
-             */}
-            <meta name="twitter:card" content="summary_large_image" />
-            twitterUsername && (
-            <meta name="twitter:creator" content={twitterUsername} />
-            <meta name="twitter:site" content={twitterUsername} />)
-            seoData.title &&{" "}
-            <meta name="twitter:title" content={seoData.title} />
-            seoData.description &&{" "}
-            <meta name="twitter:description" content={seoData.description} />
-            seoData.image &&{" "}
-            <meta name="twitter:image" content={seoData.image} />}
-            <script type="application/ld+json">
-                {`
+  const seoData = {
+    siteName: siteName, // ex `{title} - KimDontDoIt`
+    title: getPageTitle(), // <Seo title="Accueil">
+    description: description, // page description
+    image: `${siteUrl}${defaultImage}`,
+    url: `${siteUrl}${pathname}`,
+    author: author
+  };
+
+  return (
+    <Helmet htmlAttributes={{ lang: language }} title={seoData.title}>
+      {description && <meta name="description" content={seoData.description} />}
+      <meta name="image" content={seoData.image} />
+      <link rel="canonical" href={seoData.url} />
+      {languages.map((lang) => {
+        const localizedLink =
+          lang === defaultLanguage
+            ? `${siteUrl}${originalPath}`
+            : `${siteUrl}/${lang}${originalPath}`;
+
+        return (
+          <link
+            key={lang}
+            rel="alternate"
+            href={localizedLink}
+            hreflang={lang}
+          />
+        );
+      })}
+      {/* <link rel="alternate" href={`${siteUrl}${originalPath}`} hreflang="x-default"/> */}
+      {/*
+       * Open Graph data
+       */}
+      {seoData.url && <meta property="og:url" content={seoData.url} />}
+      <meta property="og:locale" content={language} />
+      <meta property="og:site_name" content={seoData.siteName} />
+      {seoData.title && <meta property="og:title" content={seoData.title} />}
+      {seoData.description && (
+        <meta property="og:description" content={seoData.description} />
+      )}
+      {seoData.image && <meta property="og:image" content={seoData.image} />}
+      {/*
+       * TWITTER CARD
+       */}
+      <meta name="twitter:card" content="summary_large_image" />
+      twitterUsername && (
+      <meta name="twitter:creator" content={twitterUsername} />
+      <meta name="twitter:site" content={twitterUsername} />) seoData.title &&{" "}
+      <meta name="twitter:title" content={seoData.title} />
+      seoData.description &&{" "}
+      <meta name="twitter:description" content={seoData.description} />
+      seoData.image && <meta name="twitter:image" content={seoData.image} />}
+      <script type="application/ld+json">
+        {`
         {
           "@context": "https://schema.org",
           "@type": "Person",
@@ -142,9 +134,9 @@ const Seo = ({
           }
         }
       `}
-            </script>
-        </Helmet>
-    );
+      </script>
+    </Helmet>
+  );
 };
 
 export default Seo;

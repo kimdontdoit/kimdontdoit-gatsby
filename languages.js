@@ -3,8 +3,6 @@ const { readdirSync, lstatSync } = require("fs");
 
 const defaultLanguage = "fr";
 
-console.log(join(__dirname, "src", "locales"));
-
 // based on the directories get the language codes
 const languages = readdirSync(join(__dirname, "src", "locales")).filter(
   (fileName) => {
@@ -19,5 +17,5 @@ languages.unshift(defaultLanguage);
 
 module.exports = {
   languages,
-  defaultLanguage,
+  defaultLanguage
 };
