@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StaticImage } from "gatsby-plugin-image";
 import { Link, useI18next } from "gatsby-plugin-react-i18next";
 import Button from "../Button";
 import { Logo } from "./Header";
