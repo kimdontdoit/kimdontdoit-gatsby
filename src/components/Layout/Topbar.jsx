@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link, useI18next } from "gatsby-plugin-react-i18next";
 import Button from "../Button";
+import { Logo } from "./Header";
 
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
@@ -45,19 +46,7 @@ const Topbar = () => {
         <div className={`container`}>
           <div className="max-w-screen-lg mx-auto flex flex-row py-4">
             <div className={`flex-1 flex text-base`}>
-              <Link to="/">
-                <StaticImage
-                  src="../../images/kimdontdoit_logo_2023.svg"
-                  alt="Kimdontdoit Wavy Logo"
-                  objectFit="contain"
-                  loading="eager"
-                  placeholder="none"
-                  layout="fixed"
-                  className={`${classes.logo}`}
-                  height={32}
-                  /** Add  */
-                />
-              </Link>
+              <Logo />
 
               {/** Conver to array of menu items */}
 
