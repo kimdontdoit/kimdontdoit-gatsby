@@ -19,8 +19,9 @@ const Topbar = () => {
   const handleScroll = () => {
     /** Bring the sticky back. Maybe on scroll up + disappear when inactive */
     /** Sticky, make a component that's not full width (differentiation) */
-
-    window.scrollY > 150 ? setSticky(true) : setSticky(false);
+    if (typeof window !== "undefined") {
+      window.scrollY > 150 ? setSticky(true) : setSticky(false);
+    }
   };
 
   /** Make into a hook */

@@ -9,29 +9,32 @@ const ScrollProgress = () => {
     useContext(ThemeContext);
 
   const scrollListener = () => {
-    const element = scrollProgressTarget.current;
+    if (typeof window !== "undefined") {
+      const element = scrollProgressTarget.current;
 
-    if (element) {
-      const windowScrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
+      if (element) {
+        const windowScrollTop =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop ||
+          0;
 
-      if (windowScrollTop <= element.offsetTop) {
-        setReadingProgress(0);
-      } else {
-        setReadingProgress(
-          ((windowScrollTop - element.offsetTop) /
-            (element.clientHeight - element.offsetTop - window.innerHeight)) *
-            100
-        );
+        if (windowScrollTop <= element.offsetTop) {
+          setReadingProgress(0);
+        } else {
+          setReadingProgress(
+            ((windowScrollTop - element.offsetTop) /
+              (element.clientHeight - element.offsetTop - window.innerHeight)) *
+              100
+          );
+        }
       }
     }
   };
 
   useEffect(() => {
     window.addEventListener("scroll", scrollListener);
+
     return () => window.removeEventListener("scroll", scrollListener);
   });
 
