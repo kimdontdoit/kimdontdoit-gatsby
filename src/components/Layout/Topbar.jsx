@@ -19,21 +19,20 @@ const Topbar = () => {
   const handleScroll = () => {
     /** Bring the sticky back. Maybe on scroll up + disappear when inactive */
     /** Sticky, make a component that's not full width (differentiation) */
-    if (typeof window !== "undefined") {
+    /*if (typeof window !== "undefined") {
       window.scrollY > 150 ? setSticky(true) : setSticky(false);
-    }
+    }*/
   };
 
   /** Make into a hook */
   useEffect(() => {
-    window.addEventListener("scroll", () => handleScroll);
+    /*window.addEventListener("scroll", () => handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);*/
   });
 
   return (
     <>
-      <ScrollProgress />
       {/** Change color, maybe gradient? Appear only on scroll */}
       <div
         className={classNames(
