@@ -4,6 +4,7 @@ import { StaticImage } from "gatsby-plugin-image";
 
 // import * as classes from "./Logo.module.css";
 
+console.log("Logo.jsx");
 export const Logo = () => {
   return (
     <Link to="/">

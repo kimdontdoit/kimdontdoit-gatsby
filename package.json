@@ -4,7 +4,7 @@
   "description": "Kimdontdoit personal/experimental blog built with the-great-Gatsby-theme",
   "author": "Vladislav Kim",
   "scripts": {
-    "start": "gatsby develop",
+    "start": "gatsby develop -o",
     "develop": "gatsby develop -So",
     "build": "npm run preinstall && gatsby build",
     "serve": "gatsby serve -o",

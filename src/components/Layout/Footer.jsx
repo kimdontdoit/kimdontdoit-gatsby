@@ -3,10 +3,11 @@ import { Link, useI18next } from "gatsby-plugin-react-i18next";
 import * as classes from "./Footer.module.css";
 
 const scrollToTop = () => {
-  window.scrollTo({
+  console.log("scrollTop");
+  /*window.scrollTo({
     top: 0,
     behavior: "smooth"
-  });
+  });*/
 };
 
 const Footer = () => {

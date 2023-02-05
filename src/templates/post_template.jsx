@@ -22,8 +22,6 @@ export default function PostTemplate({ data }) {
   // TODO verify and dynamically change language in locale()
   // TODO add category
 
-  console.log(language);
-
   const date =
     language === "fr"
       ? dayjs(publish_date).locale("fr").format("D MMMM YYYY")
