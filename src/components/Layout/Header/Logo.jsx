@@ -7,7 +7,7 @@ import * as classes from "./Logo.module.css";
 export const Logo = () => {
   return (
     <Link to="/">
-      <StaticImage
+      {/*<StaticImage
         src="../../images/kimdontdoit_logo_2023.svg"
         alt="Kimdontdoit Wavy Logo"
         objectFit="contain"
@@ -16,8 +16,7 @@ export const Logo = () => {
         layout="fixed"
         className={`${classes.logo}`}
         height={32}
-        /** Add  */
-      />
+      />*/}
     </Link>
   );
 };
