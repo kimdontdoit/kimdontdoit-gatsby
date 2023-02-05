@@ -10,7 +10,8 @@
     "serve": "gatsby serve -o",
     "clean": "gatsby clean",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "preinstall": "git submodule update -i -r"
   },
   "dependencies": {
     "dayjs": "^1.11.7",
