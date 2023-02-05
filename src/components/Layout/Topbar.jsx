@@ -33,7 +33,7 @@ const Topbar = () => {
 
   return (
     <>
-      {/*  <ScrollProgress /> */}
+      <ScrollProgress />
       {/** Change color, maybe gradient? Appear only on scroll */}
       <div
         className={classNames(
