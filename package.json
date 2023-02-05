@@ -1,7 +1,6 @@
 {
   "name": "kimdontdoit",
   "version": "1.0.0",
-  "private": true,
   "description": "Kimdontdoit personal/experimental blog built with the-great-Gatsby-theme",
   "author": "Vladislav Kim",
   "scripts": {
@@ -14,7 +13,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "dayjs": "^1.11.6",
+    "dayjs": "^1.11.7",
     "gatsby": "^5.5.0",
     "gatsby-plugin-image": "^3.5.0",
     "gatsby-plugin-manifest": "^5.5.0",
@@ -38,7 +37,7 @@
     "react-i18next": "^12.1.5",
     "react-icons": "^4.7.1",
     "react-transition-group": "^4.4.5",
-    "the-great-gatsby-theme": "^1.2.1"
+    "the-great-gatsby-theme": "^1.9.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

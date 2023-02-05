@@ -17,23 +17,22 @@ export default function PostTemplate({ data }) {
   const { post, type } = data;
   const { scrollProgressTarget } = useContext(ThemeContext);
 
-  const { title, description } = post.frontmatter;
+  const { title, publish_date, description } = post.frontmatter;
 
   // TODO verify and dynamically change language in locale()
   // TODO add category
 
   console.log(language);
 
-  /*const date =
+  const date =
     language === "fr"
       ? dayjs(publish_date).locale("fr").format("D MMMM YYYY")
-      : dayjs(publish_date).locale("en").format("MMMM D, YYYY");*/
+      : dayjs(publish_date).locale("en").format("MMMM D, YYYY");
 
-  /*const shortDate =
+  const shortDate =
     language === "fr"
       ? dayjs(publish_date).locale("fr").format("D MMM YYYY")
       : dayjs(publish_date).locale("en").format("MMM D, YYYY");
-  */
 
   const crumbs = [];
 
@@ -55,12 +54,12 @@ export default function PostTemplate({ data }) {
       >
         <section className={`my-16 container`}>
           <Pageheader title={title} center={true} crumbs={crumbs}>
-            {/*shortDate && (
+            {shortDate && (
               <p className={`font-medium mt-4 opacity-69`}>
                 {shortDate}
                 {post.timeToRead > 1 && ` • ${post.timeToRead} min. de lecture`}
               </p>
-            )*/}
+            )}
           </Pageheader>
         </section>
 
@@ -74,11 +73,11 @@ export default function PostTemplate({ data }) {
             ></div>
 
             <div className="md:max-w-screen-lg mx-auto">
-              {/*date && (
+              {date && (
                 <p className={`font-medium mt-4 mb-0 opacity-69`}>{`${t(
                   "published-on"
                 )} ${date}`}</p>
-                )*/}
+              )}
 
               <p className={`font-medium opacity-69`}>{`${t(
                 `published-by`
@@ -115,6 +114,7 @@ export const query = graphql`
       html
       frontmatter {
         title
+        publish_date
         type
       }
       tableOfContents
