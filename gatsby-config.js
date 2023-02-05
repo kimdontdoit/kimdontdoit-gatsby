@@ -1,4 +1,4 @@
-const siteUrl = /*process.env.siteUrl || */ `https://kimdontdoit.com`;
+const siteUrl = `https://kimdontdoit.com`;
 const { languages, defaultLanguage } = require("./languages");
 
 module.exports = {
