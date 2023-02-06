@@ -1,24 +1,19 @@
 .root {
-  @apply flex;
+  @apply flex bg-white rounded-lg;
+
+  transition: 200ms all ease-in-out;
+
+  &:hover {
+    transform: scale(1.025) translateZ(1px);
+  }
 }
 
 .socialLink {
-  @apply font-medium text-lg md:text-xl;
-
-  &:not(:last-of-type) {
-    @apply mr-1;
-  }
+  @apply font-medium text-lg;
 
   a {
-    display: block;
-    border-radius: 8px;
-    padding: 12px;
+    @apply block p-3;
     transition: 200ms all ease-in-out;
-
-    &:hover {
-      background: rgba(255, 255, 255, 1);
-      transform: scale(0.93);
-    }
   }
 }
 

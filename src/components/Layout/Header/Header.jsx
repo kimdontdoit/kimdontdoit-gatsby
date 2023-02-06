@@ -77,16 +77,12 @@ export const Header = () => {
 
           {/** Make responsive version (On menu button click) */}
 
-          {/*<Button
-                            href="/vladislav-kim-a-propos"
-                            className="bg-black text-white"
-                        >
-                            don't do it
-                </Button>*/}
-
-          {/** Review social buttons */}
           {
             <div className={`hidden md:flex flex-1 justify-end items-center`}>
+              {/*<Button href="/vladislav-kim-a-propos" className={classes.cta}>
+                Get in touch
+                </Button>*/}
+
               <SocialLinks />
             </div>
           }

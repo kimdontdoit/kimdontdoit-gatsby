@@ -1,28 +1,30 @@
 import React from "react";
 import { Link } from "gatsby-plugin-react-i18next";
+import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
 import * as classes from "./button.module.css";
 
 const Button = (props) => {
   const { children, onClick, className = "", href } = props;
 
-  const passiveButton = (
-    <button className={`${classes.btn} ${className}`}>{children}</button>
-  );
+  const buttonClasses = classNames(classes.btn, className);
+
+  const passiveButton = <button className={buttonClasses}>{children}</button>;
+
   const clickableButton = (
-    <button onClick={onClick} className={`${classes.btn} ${className}`}>
+    <button onClick={onClick} className={buttonClasses}>
       {children}
     </button>
   );
 
   const htmlLink = (
-    <a href={href} className={`${classes.btn} ${className}`}>
+    <a href={href} className={buttonClasses}>
       {children}
     </a>
   );
 
   const gatsbyLink = (
-    <Link to={href} className={`${classes.btn} ${className}`}>
+    <Link to={href} className={buttonClasses}>
       {children}
     </Link>
   );

@@ -1,5 +1,5 @@
 .section {
-  display: block;
+  @apply block;
 }
 
 .hero {
@@ -7,7 +7,7 @@
 }
 
 .kim {
-  display: inline-block;
+  @apply inline-block;
 
   & button {
     cursor: default;
@@ -15,16 +15,12 @@
 }
 
 .card {
-  border-radius: 12px;
-}
-
-.block {
-  border-radius: 12px;
+  @apply shadow-sm rounded-xl border border-zinc-100;
 }
 
 .blockContent {
+  @apply p-8 pb-16;
   max-width: 25rem;
-  padding: 2.5rem 0 5rem 0;
 }
 
 .workSection {
@@ -33,4 +29,8 @@
   & img {
     border-radius: 8px;
   }
+}
+
+.currentSection {
+  background: #f6f8fb;
 }

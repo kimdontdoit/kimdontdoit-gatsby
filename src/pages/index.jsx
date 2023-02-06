@@ -41,7 +41,7 @@ export default function IndexPage() {
         skipSiteName={true}
       />
       <section
-        className={`${classes.section} ${classes.hero} pt-16 md:pt-52 pb-24`}
+        className={`${classes.section} ${classes.hero} pt-40 md:pt-52 pb-16 md:pb-24`}
       >
         <div className="container max-w-screen-lg">
           <h1 className={`bigTitle mb-12`}>
@@ -67,7 +67,7 @@ export default function IndexPage() {
 
           <Button
             href="/vladislav-kim-a-propos"
-            className="bg-black text-white"
+            className="bg-zinc-900 text-white"
           >
             {t(`learn_more`)}
           </Button>
@@ -138,18 +138,21 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section className={`${classes.section} py-16 md:py-40`}>
+      <section
+        className={`${classes.section} ${classes.currentSection} py-16 md:py-40 `}
+      >
         <div className={`container max-w-screen-lg`}>
           <h2 className={`headingTitle mb-8`}>
             {t(`organization`)} <span className={`opacity-30`}>O2web</span>
           </h2>
 
-          <div className={`${classes.block}`}>
+          <div className={`${classes.card} bg-white`}>
             <div className={`${classes.blockContent} text-center mx-auto`}>
               <StaticImage
                 className={`w-16 mb-8`}
                 src="../images/o2web_transparent.png"
                 alt="O2 Web Transparent Logo"
+                placeholder="blurred"
               />
               <p className={`font-medium text-2xl`}>
                 {t(`organization_description_1`)}

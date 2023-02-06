@@ -1,11 +1,30 @@
 .root {
-  transition: 0.4s ease-in-out;
+  @apply py-4  border-b border-zinc-200;
+
+  /* transition: 0.4s ease-in-out; */
+
+  &.headerTransparent {
+    @apply border-transparent;
+
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    .cta {
+      @apply border-zinc-900 text-white bg-zinc-900 shadow-sm;
+    }
+  }
 }
 
 .innerHeader {
-  @apply mx-auto flex flex-row py-4 px-16;
+  @apply mx-4 lg:mx-16;
+  @apply flex flex-row;
+}
 
-  @apply md:px-4;
+.cta {
+  @apply self-center text-sm  px-4 py-2.5 mr-3 border text-zinc-900 border-zinc-200;
 }
 
 .nav {
@@ -28,11 +47,6 @@
 }
 
 .headerTransparent {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 100;
 }
 
 .headerLight {

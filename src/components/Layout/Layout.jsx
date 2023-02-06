@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React /* useContext */ from "react";
 
-import ThemeContext from "../../context/ThemeContext";
+// import ThemeContext from "../../context/ThemeContext";
 import { Header } from "./Header";
 import Footer from "./Footer";
 import Cursor from "../Cursor";
+// import Modal from "../Modal";
 
 export function Layout({ children, ...props }) {
   const { className = "" } = props;
