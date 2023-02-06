@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "gatsby-plugin-netlify": "^5.1.0",
     "gatsby-plugin-postcss": "^6.5.0",
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",

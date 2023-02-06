@@ -8,7 +8,7 @@ import * as classes from "./Logo.module.css";
 export const Logo = ({ light }) => {
   return (
     <Link to="/">
-      <img src={light ? logoLight : logoDark} className={classes.root} />
+      <img alt="Kimdontdoit WAVY logo" src={light ? logoLight : logoDark} height="69" width="151" className={classes.root} />
     </Link>
   );
 };

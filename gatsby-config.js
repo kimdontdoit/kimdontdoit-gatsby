@@ -18,7 +18,8 @@ module.exports = {
   plugins: [
     `the-great-gatsby-theme`,
     `gatsby-plugin-image`,
-    /*`gatsby-plugin-netlify`,
+    `gatsby-plugin-netlify`,
+    /*
     {
       resolve: `gatsby-plugin-netlify-cms`,
       options: {
