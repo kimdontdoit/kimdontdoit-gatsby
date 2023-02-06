@@ -28,6 +28,8 @@
 }
 
 .workSection {
+  background: #f6f8fb;
+
   & img {
     border-radius: 8px;
   }

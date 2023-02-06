@@ -74,7 +74,7 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section className={`${classes.section} pt-16 pb-16 md:pb-40`}>
+      <section className={`${classes.section} bg-white py-24`}>
         <div className="container max-w-screen-lg">
           <h1 className={`headingTitle`}>
             <span className={`highlight`}>Kimdontdoit</span>
@@ -83,9 +83,7 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section
-        className={`${classes.section} ${classes.workSection} bg-gray-100 py-16 md:py-40`}
-      >
+      <section className={`${classes.section} ${classes.workSection} py-24`}>
         <div className="container max-w-screen-lg">
           <div>
             <h2 className={`headingTitle mb-8`}>{t(`recent_title`)}</h2>
@@ -146,7 +144,7 @@ export default function IndexPage() {
             {t(`organization`)} <span className={`opacity-30`}>O2web</span>
           </h2>
 
-          <div className={`${classes.block} bg-gray-100`}>
+          <div className={`${classes.block}`}>
             <div className={`${classes.blockContent} text-center mx-auto`}>
               <StaticImage
                 className={`w-16 mb-8`}

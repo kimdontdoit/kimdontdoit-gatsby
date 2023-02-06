@@ -4,6 +4,8 @@
 
 .innerHeader {
   @apply mx-auto flex flex-row py-4 px-16;
+
+  @apply md:px-4;
 }
 
 .nav {
