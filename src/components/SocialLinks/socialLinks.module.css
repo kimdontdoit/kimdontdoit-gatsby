@@ -1,8 +1,24 @@
-.socialLinks {
-  @apply flex font-medium;
+.root {
+  @apply flex;
+}
+
+.socialLink {
+  @apply font-medium text-lg md:text-xl;
+
+  &:not(:last-of-type) {
+    @apply mr-1;
+  }
 
   a {
+    display: block;
+    border-radius: 8px;
+    padding: 12px;
+
     transition: 200ms all ease-in-out;
+
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+    }
   }
 }
 
@@ -13,9 +29,8 @@
 }
 
 .github {
-  &:hover {
-    color: transparent;
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.69);
+  &:hover > * {
+    filter: blur(1px);
   }
 }
 

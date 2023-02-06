@@ -2,6 +2,10 @@
   display: block;
 }
 
+.hero {
+  background: var(--color-primary);
+}
+
 .kim {
   display: inline-block;
 

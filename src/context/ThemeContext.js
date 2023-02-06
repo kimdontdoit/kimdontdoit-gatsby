@@ -12,7 +12,8 @@ function ThemeProvider({ children }) {
   const [showCursorImage, setShowCursorImage] = useState(false);
   const [cursorImage, setCursorImage] = useState(undefined);
   const [readingProgress, setReadingProgress] = useState(0);
-  const [topbarTransparent, setTopbarTransparent] = useState(false);
+  const [headerTransparent, setHeaderTransparent] = useState(false);
+  const [headerLight, setHeaderLight] = useState(false);
 
   const scrollProgressTarget = useRef();
 
@@ -28,8 +29,10 @@ function ThemeProvider({ children }) {
         setReadingProgress,
         darkMode,
         toggleDarkMode,
-        topbarTransparent,
-        setTopbarTransparent
+        headerTransparent,
+        setHeaderTransparent,
+        headerLight,
+        setHeaderLight
       }}
     >
       {children}

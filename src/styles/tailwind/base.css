@@ -1,4 +1,9 @@
 @layer base {
+  body {
+    @apply text-zinc-900;
+    background: #f6f8fb;
+  }
+
   h1,
   h2,
   h3,

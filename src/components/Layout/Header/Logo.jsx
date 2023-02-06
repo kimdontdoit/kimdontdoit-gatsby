@@ -1,23 +1,14 @@
 import React from "react";
 import { Link } from "gatsby-plugin-react-i18next";
-import { StaticImage } from "gatsby-plugin-image";
+import logoDark from "../../../images/kimdontdoit-logo-2011.png";
+import logoLight from "../../../images/kimdontdoit-logo-2011-l.png";
 
-// import * as classes from "./Logo.module.css";
+import * as classes from "./Logo.module.css";
 
-console.log("Logo.jsx");
-export const Logo = () => {
+export const Logo = ({ light }) => {
   return (
     <Link to="/">
-      <StaticImage
-        src="../../../images/kimdontdoit_logo_2023.svg"
-        alt="Kimdontdoit Wavy Logo"
-        objectFit="contain"
-        loading="eager"
-        placeholder="none"
-        layout="fixed"
-        //className={`${classes.logo}`}
-        height={32}
-      />
+      <img src={light ? logoLight : logoDark} className={classes.root} />
     </Link>
   );
 };

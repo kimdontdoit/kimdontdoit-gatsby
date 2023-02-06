@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { useI18next } from "gatsby-plugin-react-i18next";
@@ -14,7 +14,8 @@ import * as classes from "./index.module.css";
 export default function IndexPage() {
   const { t } = useI18next("index");
 
-  const { setCursorImage, setShowCursorImage } = useContext(ThemeContext);
+  const { setCursorImage, setShowCursorImage, setHeaderTransparent } =
+    useContext(ThemeContext);
 
   const setMemojiCursor = (e) => {
     setCursorImage(memoji);
@@ -26,6 +27,12 @@ export default function IndexPage() {
     setShowCursorImage(false);
   };
 
+  useEffect(() => {
+    setHeaderTransparent(true);
+
+    return () => setHeaderTransparent(false);
+  }, []);
+
   return (
     <>
       <Seo
@@ -33,8 +40,9 @@ export default function IndexPage() {
         description={t("seo_description")}
         skipSiteName={true}
       />
-
-      <section className={`${classes.section} pt-16 md:pt-36 pb-8`}>
+      <section
+        className={`${classes.section} ${classes.hero} pt-16 md:pt-52 pb-24`}
+      >
         <div className="container max-w-screen-lg">
           <h1 className={`bigTitle mb-12`}>
             {t(`hero_1`)}
@@ -49,7 +57,11 @@ export default function IndexPage() {
             .<span className={`opacity-30`}>{t("hero_2")}</span>
           </h1>
 
-          <h1 className={[`opacity-30`, "mb-16", "font-medium"].join(" ")}>
+          <h1
+            className={[`opacity-30`, "mb-16", "text-lg", "font-medium"].join(
+              " "
+            )}
+          >
             {t(`based_in`)}
           </h1>
 

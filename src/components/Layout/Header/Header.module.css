@@ -1,21 +1,31 @@
-.topbar {
+.header {
   transition: 0.4s ease-in-out;
+}
 
-  ul {
-    flex-direction: row;
+.innerHeader {
+  @apply mx-auto flex flex-row py-4 px-16;
+}
 
-    li:not(:last-of-type) {
-      @apply mr-4 md:mr-8;
-    }
+.nav {
+  @apply flex ml-8 md:ml-16 items-center;
+
+  flex-direction: row;
+
+  li:not(:last-of-type) {
+    @apply mr-4 md:mr-8;
   }
 }
 
-.topbarTransparent {
+.headerTransparent {
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 100;
+}
+
+.headerLight {
+  color: #fff;
 }
 
 .fixedHeader {
