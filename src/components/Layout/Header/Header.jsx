@@ -49,7 +49,7 @@ export const Header = () => {
       {/** Change color, maybe gradient? Appear only on scroll */}
       <div
         className={classNames(
-          classes.header,
+          classes.root,
           headerTransparent && classes.headerTransparent,
           headerLight && classes.headerLight,
           sticky && classes.sticky
@@ -62,10 +62,10 @@ export const Header = () => {
             {/** Accessibility! */}
             <ul className={classes.nav}>
               {navItems.map((navItem) => (
-                <li key={navItem.href}>
+                <li className={classes.navItem} key={navItem.href}>
                   <Link
                     to={navItem.href}
-                    className={`text-base font-medium hover:opacity-30`}
+                    className={`text-base font-medium`}
                     activeClassName={`opacity-30`}
                   >
                     {navItem.label}

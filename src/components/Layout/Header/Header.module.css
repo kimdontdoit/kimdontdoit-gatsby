@@ -1,4 +1,4 @@
-.header {
+.root {
   transition: 0.4s ease-in-out;
 }
 
@@ -7,11 +7,20 @@
 }
 
 .nav {
-  @apply flex ml-8 md:ml-16 items-center;
+  @apply flex flex-row ml-8 items-center;
+  @apply md:ml-16;
+}
 
-  flex-direction: row;
+.navItem {
+  a {
+    transition: 0.2s ease-in;
 
-  li:not(:last-of-type) {
+    &:hover {
+      @apply opacity-30;
+    }
+  }
+
+  &:not(:last-of-type) {
     @apply mr-4 md:mr-8;
   }
 }

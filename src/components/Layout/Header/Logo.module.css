@@ -6,6 +6,6 @@
 
   &:hover {
     opacity: 0.3;
-    transform: rotate(-3deg);
+    transform: rotate(-3deg) scale(0.98);
   }
 }

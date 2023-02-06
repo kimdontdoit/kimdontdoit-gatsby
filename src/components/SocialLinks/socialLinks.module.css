@@ -13,11 +13,11 @@
     display: block;
     border-radius: 8px;
     padding: 12px;
-
     transition: 200ms all ease-in-out;
 
     &:hover {
       background: rgba(255, 255, 255, 1);
+      transform: scale(0.93);
     }
   }
 }
