@@ -1,5 +1,6 @@
 import React from "react";
 import { FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa";
+import Tooltip from "@mui/material/Tooltip";
 
 import * as classes from "./socialLinks.module.css";
 
@@ -24,19 +25,40 @@ const links = [
   }
 ];
 
+const tooltipSx = {
+  // @todo export
+  // @todo try fat italic green on black
+  tooltip: {
+    sx: {
+      fontFamily: "Mona Sans",
+      fontWeight: "500",
+      color: "#fff",
+      bgcolor: "rgba(0,0,0,0.5)",
+      marginLeft: "69px"
+    }
+  }
+};
+
 const SocialLinks = () => {
   return (
     <ul className={classes.root}>
       {links.map((link) => (
         <li className={classes.socialLink} key={link.className}>
-          <a
-            className={classes[link.className]}
-            href={link.url}
-            target="_blank"
-            rel="noreferrer noopener"
+          <Tooltip
+            title={`${link.label}`}
+            componentsProps={tooltipSx}
+            enterDelay={1000}
+            followCursor
           >
-            {link.icon}
-          </a>
+            <a
+              className={classes[link.className]}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {link.icon}
+            </a>
+          </Tooltip>
         </li>
       ))}
     </ul>

@@ -24,8 +24,8 @@
 }
 
 .github {
-  &:hover > * {
-    filter: blur(1px);
+  &:hover {
+    transform: translateY(-1px);
   }
 }
 

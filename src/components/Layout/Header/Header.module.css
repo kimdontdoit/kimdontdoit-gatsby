@@ -28,12 +28,32 @@
     transition: 0.2s ease-in;
 
     &:hover {
-      @apply opacity-30;
+      @apply opacity-50;
     }
   }
 
   &:not(:last-of-type) {
     @apply mr-4 md:mr-8;
+  }
+}
+
+.activeLink {
+  @apply opacity-50;
+  pointer-events: none;
+  position: relative;
+
+  &:after {
+    @apply bg-zinc-900;
+    display: block;
+    content: "";
+    top: 100%;
+    width: 4px;
+    height: 4px;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 

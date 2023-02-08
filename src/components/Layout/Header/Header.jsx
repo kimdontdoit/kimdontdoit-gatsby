@@ -72,7 +72,7 @@ export const Header = () => {
                     <Link
                       to={navItem.href}
                       className={`text-base font-medium`}
-                      activeClassName={`opacity-30`}
+                      activeClassName={classes.activeLink}
                     >
                       {navItem.label}
                     </Link>
