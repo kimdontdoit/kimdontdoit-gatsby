@@ -15,7 +15,10 @@ const Footer = () => {
   const { t, languages, language, originalPath } = useI18next();
 
   return (
-    <footer className={`${classes.footer} bg-dark text-white`}>
+    <footer
+      className={`${classes.footer} bg-dark text-white`}
+      role="contentinfo"
+    >
       <div className={`container text-center py-12`}>
         <div
           role="link"

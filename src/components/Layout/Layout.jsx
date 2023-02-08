@@ -13,7 +13,9 @@ export function Layout({ children, ...props }) {
     <div className={`flex flex-col min-h-screen`}>
       <Header />
 
-      <main className={`flex-1 ${className}`}>{children}</main>
+      <main className={`flex-1 ${className}`} role="main">
+        {children}
+      </main>
 
       <Cursor />
 

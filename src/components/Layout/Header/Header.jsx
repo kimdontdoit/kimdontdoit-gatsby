@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useI18next } from "gatsby-plugin-react-i18next";
 import Button from "../../Button";
 import { Logo } from "./Logo";
@@ -16,11 +16,11 @@ export const Header = () => {
   const { headerTransparent, headerLight } = useContext(ThemeContext);
   const { t } = useI18next();
 
+  const headerRef = useRef();
+
   const handleScroll = () => {
-    /** Bring the sticky back. Maybe on scroll up + disappear when inactive */
-    /** Sticky, make a component that's not full width (differentiation) */
     if (typeof window !== "undefined") {
-      window.scrollY > 150 ? setSticky(true) : setSticky(false);
+      window.scrollY > 300 ? setSticky(true) : setSticky(false);
     }
   };
 
@@ -36,17 +36,17 @@ export const Header = () => {
     }
   ];
 
-  /** Make into a hook */
   useEffect(() => {
-    window.addEventListener("scroll", () => handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  });
+  }, []);
 
   return (
     <>
       <ScrollProgress />
       {/** Change color, maybe gradient? Appear only on scroll */}
+
       <div
         className={classNames(
           classes.root,
@@ -54,25 +54,32 @@ export const Header = () => {
           headerLight && classes.headerLight,
           sticky && classes.sticky
         )}
+        ref={headerRef}
       >
         {/** Add border under nav */}
         <div className={classes.innerHeader}>
           <div className={`flex-1 flex text-base`}>
-            <Logo light={headerLight} />
+            <Logo sticky={sticky} light={headerLight} />
             {/** Accessibility! */}
-            <ul className={classes.nav}>
-              {navItems.map((navItem) => (
-                <li className={classes.navItem} key={navItem.href}>
-                  <Link
-                    to={navItem.href}
-                    className={`text-base font-medium`}
-                    activeClassName={`opacity-30`}
-                  >
-                    {navItem.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <nav
+              className={classes.nav}
+              aria-label="Main Navigation"
+              role="navigation"
+            >
+              <ul>
+                {navItems.map((navItem) => (
+                  <li className={classes.navItem} key={navItem.href}>
+                    <Link
+                      to={navItem.href}
+                      className={`text-base font-medium`}
+                      activeClassName={`opacity-30`}
+                    >
+                      {navItem.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
 
           {/** Make responsive version (On menu button click) */}
@@ -83,7 +90,7 @@ export const Header = () => {
                 Get in touch
                 </Button>*/}
 
-              <SocialLinks />
+              {!sticky && <SocialLinks />}
             </div>
           }
         </div>

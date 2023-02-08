@@ -1,35 +1,26 @@
+/*Header Layout*/
+
 .root {
-  @apply py-4  border-b border-zinc-200;
-
-  /* transition: 0.4s ease-in-out; */
-
-  &.headerTransparent {
-    @apply border-transparent;
-
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 100;
-
-    .cta {
-      @apply border-zinc-900 text-white bg-zinc-900 shadow-sm;
-    }
-  }
 }
 
 .innerHeader {
-  @apply mx-4 lg:mx-16;
+  @apply mx-4 p-4 lg:mx-16;
   @apply flex flex-row;
 }
 
+/* Header Elements */
 .cta {
   @apply self-center text-sm  px-4 py-2.5 mr-3 border text-zinc-900 border-zinc-200;
 }
 
 .nav {
-  @apply flex flex-row ml-8 items-center;
+  align-self: center;
+  @apply ml-8;
   @apply md:ml-16;
+
+  ul {
+    @apply flex flex-row;
+  }
 }
 
 .navItem {
@@ -46,23 +37,35 @@
   }
 }
 
-.headerTransparent {
-}
-
 .headerLight {
-  color: #fff;
+  color: hsl(0, 0%, 100%);
 }
 
-.fixedHeader {
-  position: sticky;
+/* Header States */
+.headerTransparent {
+  @apply border-transparent;
+
+  position: absolute;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 100;
+
+  .cta {
+    @apply border-zinc-900 text-white bg-zinc-900 shadow-sm;
+  }
 }
 
 .sticky {
-  composes: fixedHeader;
-  background: rgba(255, 255, 255, 0.7);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
   backdrop-filter: saturate(180%) blur(5px);
+  background: rgba(255, 255, 255, 0.8);
+
+  .innerHeader {
+    @apply border-b border-zinc-100;
+  }
 }
