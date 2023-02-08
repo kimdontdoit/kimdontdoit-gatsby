@@ -47,7 +47,7 @@ const SocialLinks = () => {
           <Tooltip
             title={`${link.label}`}
             componentsProps={tooltipSx}
-            enterDelay={1000}
+            enterDelay={800}
             followCursor
           >
             <a
