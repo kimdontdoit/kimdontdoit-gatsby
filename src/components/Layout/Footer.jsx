@@ -32,7 +32,7 @@ const Footer = () => {
 
         <div>
           <p className={`opacity-30`}>
-            {`Kimdontdoit copyright 2022`}
+            {`Kimdontdoit copyright 2023`}
             <br />
             {`${t("copyright-line")} `}
             <a
