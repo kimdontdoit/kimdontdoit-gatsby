@@ -1,11 +1,5 @@
 .root {
   @apply flex bg-white rounded-lg;
-
-  transition: 200ms all ease-in-out;
-
-  &:hover {
-    transform: scale(1.025) translateZ(1px);
-  }
 }
 
 .socialLink {
