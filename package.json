@@ -6,12 +6,11 @@
   "scripts": {
     "start": "gatsby develop",
     "develop": "gatsby develop -So",
-    "build": "npm run preinstall && gatsby build",
+    "build": "gatsby build",
     "serve": "gatsby serve -o",
     "clean": "gatsby clean",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "preinstall": "git submodule update -i -r"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.11",
