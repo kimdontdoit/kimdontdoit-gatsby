@@ -5,14 +5,14 @@ import classNames from "the-great-gatsby-theme/src/utils/classNames";
 import * as classes from "./button.module.css";
 
 const Button = (props) => {
-  const { children, onClick, className = "", href } = props;
+  const { children, onClick, type, className = "", href } = props;
 
   const buttonClasses = classNames(classes.btn, className);
 
   const passiveButton = <button className={buttonClasses}>{children}</button>;
 
   const clickableButton = (
-    <button onClick={onClick} className={buttonClasses}>
+    <button onClick={onClick} type={type} className={buttonClasses}>
       {children}
     </button>
   );

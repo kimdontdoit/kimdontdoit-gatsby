@@ -14,9 +14,7 @@
     "preinstall": "git submodule update -i -r"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.11.8",
+    "@headlessui/react": "^1.7.11",
     "dayjs": "^1.11.7",
     "gatsby": "^5.5.0",
     "gatsby-plugin-image": "^3.5.0",
@@ -38,10 +36,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.43.1",
     "react-i18next": "^12.1.5",
     "react-icons": "^4.7.1",
     "react-transition-group": "^4.4.5",
-    "the-great-gatsby-theme": "^1.9.0"
+    "the-great-gatsby-theme": "^1.9.0",
+    "tailwindcss": "^3.2.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
@@ -50,7 +50,6 @@
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
     "postcss-reporter": "^7.0.5",
-    "prettier": "^2.8.3",
-    "tailwindcss": "^3.2.4"
+    "prettier": "^2.8.3"
   }
 }
