@@ -14,5 +14,15 @@
   "organization": "Organization",
   "recent_title": "Recently working on :",
   "title": "Kimdontdoit, aka Vladislav Kim IRL",
-  "seo_description": "My name's Vladislav Kim and I share articles and code snippets that I find useful in my daily life as a web developer. Oh, also my portfolio, kind of."
+  "seo_description": "My name's Vladislav Kim and I share articles and code snippets that I find useful in my daily life as a web developer. Oh, also my portfolio, kind of.",
+  "contact-title": "Get in touch  ",
+  "contact-intro": "Intro",
+  "lets-talk": "Let's Talk",
+  "optional": "Optional",
+  "email-label": "Email Address",
+  "subject-label": "Subject",
+  "name-label": "Name",
+  "subject-description": "In a few words",
+  "subject-placeholder": "Collaborate on ...",
+  "message-placeholder": "Your message"
 }

@@ -3,7 +3,7 @@ import { Link } from "gatsby-plugin-react-i18next";
 import { useLocation } from "@reach/router";
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
-import { Tooltip } from "../../../components/Tooltip";
+import { Tooltip } from "../../Tooltip";
 
 import logoDark from "../../../images/kimdontdoit-logo-2011.png";
 import logoLight from "../../../images/kimdontdoit-logo-2011-l.png";

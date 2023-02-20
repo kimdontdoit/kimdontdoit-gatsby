@@ -173,7 +173,7 @@ export default function IndexPage() {
             {t(`got_a_question_2`)}
           </p>
 
-          <Button href="mailto:vlad@kimdontdoit.com" className="bg-primary">
+          <Button href="/contact" className="bg-primary">
             {t(`submit`)}
           </Button>
         </div>

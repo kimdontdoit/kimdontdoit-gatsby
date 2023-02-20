@@ -86,9 +86,9 @@ export const Header = () => {
 
           {
             <div className={`hidden md:flex flex-1 justify-end items-center`}>
-              {/*<Button href="/vladislav-kim-a-propos" className={classes.cta}>
+              <Button href="/contact" className={`${classes.cta}`}>
                 Get in touch
-                </Button>*/}
+              </Button>
 
               {!sticky && <SocialLinks />}
             </div>

@@ -14,5 +14,15 @@
   "organization": "Organisation",
   "recent_title": "Travaille récemment sur :",
   "title": "Kimdontdoit, ou aussi Vladislav Kim IRL",
-  "seo_description": "Salut, moi c'est Vladislav Kim. Je partage des articles et des extraits de code qui me sont utiles en temps que développeur web. Mon portfolio, parfois."
+  "seo_description": "Salut, moi c'est Vladislav Kim. Je partage des articles et des extraits de code qui me sont utiles en temps que développeur web. Mon portfolio, parfois.",
+  "contact-title": "Me Contacter",
+  "contact-intro": "Intro",
+  "lets-talk": "Envoyer",
+  "optional": "Facultatif",
+  "email-label": "Adresse Courriel",
+  "subject-label": "Sujet",
+  "name-label": "Nom",
+  "subject-description": "En quelques mots",
+  "subject-placeholder": "Question...",
+  "message-placeholder": "Votre message"
 }
