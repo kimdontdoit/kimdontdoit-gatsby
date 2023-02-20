@@ -1,5 +1,6 @@
 import React from "react";
 import { Message } from "./Message";
+import * as classes from "./Input.module.css";
 
 export const Input = React.forwardRef(
   (
@@ -29,7 +30,7 @@ export const Input = React.forwardRef(
           <input
             id={name}
             name={name}
-            className="block w-full rounded-md border border-gray-300 px-3 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className={classes.input}
             onChange={onChange}
             onBlur={onBlur}
             ref={ref}

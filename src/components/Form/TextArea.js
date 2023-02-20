@@ -1,5 +1,7 @@
 import React from "react";
+import classNames from "the-great-gatsby-theme/src/utils/classNames";
 import { Message } from "./Message";
+import * as classes from "./TextArea.module.css";
 
 export const TextArea = React.forwardRef(
   ({ name, label, error, required, onChange, onBlur, ...otherProps }, ref) => {
@@ -18,7 +20,7 @@ export const TextArea = React.forwardRef(
           <textarea
             id={name}
             name={name}
-            className="block w-full rounded-md border border-gray-300 px-3 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className={classes.textArea}
             onChange={onChange}
             onBlur={onBlur}
             ref={ref}
