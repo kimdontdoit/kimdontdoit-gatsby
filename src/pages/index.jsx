@@ -44,7 +44,7 @@ export default function IndexPage() {
         className={`${classes.section} ${classes.hero} pt-40 md:pt-52 pb-16 md:pb-24`}
       >
         <div className="container max-w-screen-lg">
-          <h1 className={`bigTitle mb-12`}>
+          <h1 className={`bigTitle mb-12 md:whitespace-pre-line`}>
             {t(`hero_1`)}
             <div className={`${classes.kim}`} role="tooltip">
               <button
