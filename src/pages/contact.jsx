@@ -32,11 +32,15 @@ export default function ContactPage() {
       <Seo title={t(`contact-title`)} />
 
       <section className={`my-16`}>
-        <div className={`container max-w-xl mx-auto text-center`}>
+        <div className={`container max-w-xl mx-auto text-center mb-4`}>
           <h1 className={`text-4xl font-bold`}>{t(`contact-title`)}</h1>
         </div>
-        <div className={`container max-w-xl mx-auto text-center`}>
-          <p className={`text-lg `}>{t(`contact-intro`)}</p>
+        <div className={`container max-w-screen-lg mx-auto text-center`}>
+          <h2
+            className={`text-lg md:text-2xl text-slate-500 md:whitespace-pre-line`}
+          >
+            {t(`contact-intro`)}
+          </h2>
         </div>
       </section>
 
