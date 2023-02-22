@@ -76,6 +76,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           `./src/templates/${node.sourceInstanceName}_template.jsx`
         );
 
+        // @todo maybe different createPage per source/type
         createPage({
           path: prepareSlug.join("/"),
           component: template,
