@@ -1,1 +1,2 @@
-export { default } from "./Post";
+export { Post } from "./Post";
+export { PortfolioPost } from "./PortfolioPost";

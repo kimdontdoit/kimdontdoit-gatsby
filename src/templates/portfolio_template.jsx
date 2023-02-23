@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { graphql } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "the-great-gatsby-theme/src/components/Seo";
+import ThemeContext from "../context/ThemeContext";
 
-import { Post } from "../components/Post";
+import { PortfolioPost } from "../components/Post";
 
-export default function TypeTemplate({ data, location }) {
+export default function PortfolioTemplate({ data }) {
   const { t } = useI18next("index");
+  const { setHeaderTransparent } = useContext(ThemeContext);
+
+  useEffect(() => {
+    setHeaderTransparent(true);
+
+    return () => setHeaderTransparent(false);
+  }, []);
 
   const { type } = data;
   const posts = data.posts.nodes;
@@ -24,33 +32,20 @@ export default function TypeTemplate({ data, location }) {
     <>
       <Seo title={type.frontmatter.title} />
       <div>
-        <section className={`my-16 container`}>
-          <Pageheader title={type.frontmatter.title} crumbs={crumbs} />
+        <section className={`my-24 container`}>
+          <h1>{type.frontmatter.title}</h1>
         </section>
 
-        {
-          /**
-           * TYPE DESCRIPTION SECTION IN HTML
-           */
-          type.html && (
-            <section className="container">
-              <div
-                dangerouslySetInnerHTML={{ __html: type.html }}
-                itemProp="articleBody"
-                className={`max-w-screen-lg text-lg`}
-              ></div>
-            </section>
-          )
-        }
-
-        {/**
-         * TYPE LISTING SECTION IN HTML
-         */}
         <section className={`container pb-16`}>
           <div className="max-w-screen-lg mx-auto">
             {posts &&
               posts.map((post) => {
-                return <Post key={post.id} node={post.childMarkdownRemark} />;
+                return (
+                  <PortfolioPost
+                    key={post.id}
+                    node={post.childMarkdownRemark}
+                  />
+                );
               })}
           </div>
         </section>

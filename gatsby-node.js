@@ -51,6 +51,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         const language = node.childMarkdownRemark.fields.language;
 
         let prepareSlug = [];
+        let template;
 
         // if not default language
         if (language !== "fr") {
@@ -72,9 +73,25 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           prepareSlug.push(`${node.childMarkdownRemark.fields.slug}/`);
         }
 
-        const template = path.resolve(
-          `./src/templates/${node.sourceInstanceName}_template.jsx`
-        );
+        if (
+          node.sourceInstanceName === "type" &&
+          node.childMarkdownRemark.frontmatter.title === "Portfolio"
+        ) {
+          // TYPE:PORTFOLIO TEMPLATE
+          template = path.resolve(`./src/templates/portfolio_template.jsx`);
+        } else if (
+          node.sourceInstanceName === "post" &&
+          node.childMarkdownRemark.frontmatter.type === "Portfolio"
+        ) {
+          // POST:PORTFOLIO TEMPLATE
+          // SKIP PORTFOLIO ITEM FOR NOW
+
+          return;
+        } else {
+          template = path.resolve(
+            `./src/templates/${node.sourceInstanceName}_template.jsx`
+          );
+        }
 
         // @todo maybe different createPage per source/type
         createPage({

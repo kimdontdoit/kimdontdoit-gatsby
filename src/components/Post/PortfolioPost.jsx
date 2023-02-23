@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby-plugin-react-i18next";
 
-export const Post = ({ node }) => {
+export const PortfolioPost = ({ node }) => {
   let slug = node.frontmatter.type
     ? `/${node.frontmatter.type.toLowerCase()}`
     : ``;
@@ -9,9 +9,7 @@ export const Post = ({ node }) => {
 
   return (
     <div className="mb-8">
-      <Link className="font-medium" to={slug}>
-        {node.frontmatter.title}
-      </Link>
+      <span className="font-medium">{node.frontmatter.title}</span>
     </div>
   );
 };

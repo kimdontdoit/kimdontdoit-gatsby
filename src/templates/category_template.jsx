@@ -5,7 +5,7 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import Post from "../components/Post";
+import { Post } from "../components/Post";
 
 export default function CategoryTemplate({ data }) {
   const { t } = useI18next("index");

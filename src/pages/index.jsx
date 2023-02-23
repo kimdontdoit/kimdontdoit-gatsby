@@ -27,6 +27,7 @@ export default function IndexPage() {
     setShowCursorImage(false);
   };
 
+  // make into reusable theme hook
   useEffect(() => {
     setHeaderTransparent(true);
 
