@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "the-great-gatsby-theme/src/utils/classNames";
 import { Message } from "./Message";
 import * as classes from "./TextArea.module.css";
 
