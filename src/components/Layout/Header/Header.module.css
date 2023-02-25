@@ -77,6 +77,6 @@
   background: rgba(255, 255, 255, 0.8);
 
   .innerHeader {
-    @apply border-b border-zinc-100;
+    @apply border-b border-zinc-200;
   }
 }

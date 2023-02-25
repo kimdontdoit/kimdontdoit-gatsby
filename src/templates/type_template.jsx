@@ -75,6 +75,7 @@ export const query = graphql`
           fields: { language: { eq: $language } }
         }
       }
+      sort: { childMarkdownRemark: { frontmatter: { publish_date: DESC } } }
     ) {
       nodes {
         id
@@ -85,6 +86,7 @@ export const query = graphql`
             title
             slug
             type
+            publish_date
           }
           fields {
             slug
