@@ -11,17 +11,19 @@ export default function NotFoundPage() {
     <>
       <Seo title="404 Page introuvable 🕵️" />
 
-      <section className={`my-16`}>
-        <div className={`container text-center`}>
-          <h1 className={`text-4xl font-bold`}>{t(`404-title`)}</h1>
-        </div>
-      </section>
+      <div className="pt-[100px]">
+        <section className={`my-16`}>
+          <div className={`container text-center`}>
+            <h1 className={`text-4xl font-bold`}>{t(`404-title`)}</h1>
+          </div>
+        </section>
 
-      <section className={`pb-16`}>
-        <div className={`container max-w-screen-lg mx-auto`}>
-          <p className={`text-lg`}></p>
-        </div>
-      </section>
+        <section className={`pb-16`}>
+          <div className={`container max-w-screen-lg mx-auto`}>
+            <p className={`text-lg`}></p>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useI18next } from "gatsby-plugin-react-i18next";
+import React from "react";
+import { Link } from "gatsby-plugin-react-i18next";
 import Button from "../../Button";
 import { Logo } from "./Logo";
 
@@ -7,22 +7,12 @@ import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
 import ScrollProgress from "../../ScrollProgress";
 import SocialLinks from "../../SocialLinks";
-import ThemeContext from "../../../context/ThemeContext";
 
+import { useHeader } from "./useHeader";
 import * as classes from "./Header.module.css";
 
 export const Header = () => {
-  const [sticky, setSticky] = useState(false);
-  const { headerTransparent, headerLight } = useContext(ThemeContext);
-  const { t } = useI18next();
-
-  const headerRef = useRef();
-
-  const handleScroll = () => {
-    if (typeof window !== "undefined") {
-      window.scrollY > 300 ? setSticky(true) : setSticky(false);
-    }
-  };
+  const { sticky, t, headerRef } = useHeader();
 
   const navItems = [
     {
@@ -36,30 +26,19 @@ export const Header = () => {
     }
   ];
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
       <ScrollProgress />
       {/** Change color, maybe gradient? Appear only on scroll */}
 
       <div
-        className={classNames(
-          classes.root,
-          headerTransparent && classes.headerTransparent,
-          headerLight && classes.headerLight,
-          sticky && classes.sticky
-        )}
+        className={classNames(classes.root, sticky && classes.sticky)}
         ref={headerRef}
       >
         {/** Add border under nav */}
         <div className={classes.innerHeader}>
           <div className={`flex-1 flex text-base`}>
-            <Logo sticky={sticky} light={headerLight} />
+            <Logo sticky={sticky} /*light={headerLight}*/ />
             {/** Accessibility! */}
             <nav
               className={classes.nav}
@@ -82,17 +61,13 @@ export const Header = () => {
             </nav>
           </div>
 
-          {/** Make responsive version (On menu button click) */}
+          <div className={`hidden md:flex flex-1 justify-end items-center`}>
+            <Button href="/contact" className={`${classes.cta}`}>
+              Get in touch
+            </Button>
 
-          {
-            <div className={`hidden md:flex flex-1 justify-end items-center`}>
-              <Button href="/contact" className={`${classes.cta}`}>
-                Get in touch
-              </Button>
-
-              {!sticky && <SocialLinks />}
-            </div>
-          }
+            {!sticky && <SocialLinks />}
+          </div>
         </div>
       </div>
     </>

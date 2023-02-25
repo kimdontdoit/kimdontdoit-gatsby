@@ -26,13 +26,8 @@ export default function CategoryTemplate({ data }) {
         description={category.frontmatter.description || category.excerpt}
       />
 
-      <div>
-        <section
-          className={`pt-16 container pb-16`}
-          style={{
-            paddingTop: category.frontmatter.color && "8.5rem"
-          }}
-        >
+      <div className="pt-[100px]">
+        <section className={`pt-16 container pb-16`}>
           <Pageheader
             title={category.frontmatter.title}
             subtitle={category.frontmatter.subtitle}

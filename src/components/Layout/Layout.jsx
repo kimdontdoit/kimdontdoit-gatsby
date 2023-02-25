@@ -1,6 +1,5 @@
-import React /* useContext */ from "react";
+import React from "react";
 
-// import ThemeContext from "../../context/ThemeContext";
 import { Header } from "./Header";
 import Footer from "./Footer";
 import Cursor from "../Cursor";
@@ -13,7 +12,7 @@ export function Layout({ children, ...props }) {
     <div className={`flex flex-col min-h-screen`}>
       <Header />
 
-      <main className={`flex-1 ${className}`} role="main">
+      <main className={`flex-1 ${className} `} role="main">
         {children}
       </main>
 

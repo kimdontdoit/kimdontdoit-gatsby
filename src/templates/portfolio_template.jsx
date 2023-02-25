@@ -12,14 +12,7 @@ import * as classes from "./portfolio.module.css";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PortfolioTemplate({ data }) {
-  const { setHeaderTransparent } = useContext(ThemeContext);
   const [isActive, setActive] = useState();
-
-  useEffect(() => {
-    setHeaderTransparent(true);
-
-    return () => setHeaderTransparent(false);
-  }, []);
 
   const { type } = data;
   const posts = data.posts.nodes;
@@ -44,6 +37,7 @@ export default function PortfolioTemplate({ data }) {
                   return (
                     <PortfolioPost
                       post={post}
+                      key={index}
                       index={index}
                       isActive={isActive === index}
                       setActive={setActive}

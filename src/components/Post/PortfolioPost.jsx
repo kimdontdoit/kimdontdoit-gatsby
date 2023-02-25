@@ -13,7 +13,6 @@ export const PortfolioPost = ({
 
   return (
     <div
-      key={index}
       className={`${classes.portfolioItem} ${isActive ? classes.current : ""}`}
       style={styles}
       onClick={() => setActive(index)}

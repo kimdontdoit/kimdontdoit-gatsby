@@ -34,23 +34,25 @@ export default function CategoriesPage({ data }) {
     <>
       <Seo title={t("categories")} />
 
-      <section className={`my-16 container`}>
-        <Pageheader title={t("categories")} crumbs={crumbs} />
-      </section>
+      <div className="pt-[100px]">
+        <section className={`my-16 container`}>
+          <Pageheader title={t("categories")} crumbs={crumbs} />
+        </section>
 
-      <section className="pb-16 container">
-        <div className="max-w-screen-lg mx-auto text-lg">
-          {categories &&
-            categories.map((category) => {
-              return (
-                <Category
-                  node={category.childMarkdownRemark}
-                  key={category.id}
-                />
-              );
-            })}
-        </div>
-      </section>
+        <section className="pb-16 container">
+          <div className="max-w-screen-lg mx-auto text-lg">
+            {categories &&
+              categories.map((category) => {
+                return (
+                  <Category
+                    node={category.childMarkdownRemark}
+                    key={category.id}
+                  />
+                );
+              })}
+          </div>
+        </section>
+      </div>
     </>
   );
 }

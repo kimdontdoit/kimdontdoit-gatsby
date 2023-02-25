@@ -7,7 +7,7 @@ import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import { Post } from "../components/Post";
 
-export default function TypeTemplate({ data, location }) {
+export default function TypeTemplate({ data }) {
   const { t } = useI18next("index");
 
   const { type } = data;
@@ -23,7 +23,7 @@ export default function TypeTemplate({ data, location }) {
   return (
     <>
       <Seo title={type.frontmatter.title} />
-      <div>
+      <div className="pt-[100px]">
         <section className={`my-16 container`}>
           <Pageheader title={type.frontmatter.title} crumbs={crumbs} />
         </section>

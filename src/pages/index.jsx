@@ -14,8 +14,7 @@ import * as classes from "./index.module.css";
 export default function IndexPage() {
   const { t } = useI18next("index");
 
-  const { setCursorImage, setShowCursorImage, setHeaderTransparent } =
-    useContext(ThemeContext);
+  const { setCursorImage, setShowCursorImage } = useContext(ThemeContext);
 
   const setMemojiCursor = (e) => {
     setCursorImage(memoji);
@@ -27,13 +26,6 @@ export default function IndexPage() {
     setShowCursorImage(false);
   };
 
-  // make into reusable theme hook
-  useEffect(() => {
-    setHeaderTransparent(true);
-
-    return () => setHeaderTransparent(false);
-  }, []);
-
   return (
     <>
       <Seo
@@ -41,6 +33,7 @@ export default function IndexPage() {
         description={t("seo_description")}
         skipSiteName={true}
       />
+
       <section
         className={`${classes.section} ${classes.hero} pt-40 md:pt-52 pb-16 md:pb-24`}
       >

@@ -49,6 +49,7 @@ export default function PostTemplate({ data }) {
         itemScope
         itemType="http://schema.org/Article"
         ref={scrollProgressTarget}
+        className="pt-[100px]"
       >
         <section className={`my-16 container`}>
           <Pageheader title={title} center={true} crumbs={crumbs}>

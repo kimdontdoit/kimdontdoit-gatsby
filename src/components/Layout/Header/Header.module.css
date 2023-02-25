@@ -1,16 +1,20 @@
 /*Header Layout*/
 
 .root {
+  @apply absolute w-full top-0 left-0;
+  z-index: 100;
 }
 
 .innerHeader {
-  @apply mx-4 p-4 lg:mx-16;
+  @apply border-b border-transparent mx-4 px-4 lg:mx-16;
   @apply flex flex-row;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 /* Header Elements */
 .cta {
-  @apply self-center text-sm  px-4 py-2.5 mr-3 border text-zinc-900 border-zinc-200;
+  @apply self-center text-sm  px-4 py-2.5 mr-3 border bg-zinc-900 border-zinc-900 text-white;
 }
 
 .nav {
@@ -62,19 +66,6 @@
 }
 
 /* Header States */
-.headerTransparent {
-  @apply border-transparent;
-
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 100;
-
-  .cta {
-    @apply border-zinc-900 text-white bg-zinc-900 shadow-sm;
-  }
-}
 
 .sticky {
   position: fixed;
