@@ -3,11 +3,9 @@ import { Link } from "gatsby-plugin-react-i18next";
 
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
-import * as classes from "./Pageheader.module.css";
-
 const Crumbs = ({ crumbs }) => {
   return (
-    <div className={`${classes.crumbs}`}>
+    <div className={`font-display font-medium mb-4`}>
       {crumbs.map((val, index) => {
         const isLast = index === crumbs.length - 1;
 
@@ -57,13 +55,20 @@ export default function Pageheader({
       {crumbs && <Crumbs crumbs={crumbs} />}
 
       {title && (
-        <h1 itemProp="headline" className={`${classes.headline}`}>
+        <h1
+          itemProp="headline"
+          className={`font-display text-4xl md:text-6xl leading-tight md:leading-tight font-bold`}
+        >
           {title}
         </h1>
       )}
 
       <div>
-        {subtitle && <p className={`${classes.subtitle}`}>{subtitle}</p>}
+        {subtitle && (
+          <p className={`text-lg mt-4 text-slate-800 md:whitespace-pre-line`}>
+            {subtitle}
+          </p>
+        )}
 
         {children}
       </div>

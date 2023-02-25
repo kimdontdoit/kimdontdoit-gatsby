@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
@@ -25,7 +25,11 @@ export default function TypeTemplate({ data }) {
       <Seo title={type.frontmatter.title} />
       <div className="pt-[100px]">
         <section className={`my-16 container`}>
-          <Pageheader title={type.frontmatter.title} crumbs={crumbs} />
+          <Pageheader
+            title={type.frontmatter.title}
+            subtitle={type.frontmatter.short_description}
+            crumbs={crumbs}
+          ></Pageheader>
         </section>
 
         {
@@ -65,6 +69,7 @@ export const query = graphql`
       id
       frontmatter {
         title
+        short_description
       }
     }
     posts: allFile(

@@ -16,7 +16,7 @@ export const Post = ({ node }) => {
       : dayjs(publish_date).locale("en").format("MMMM D, YYYY");
 
   return (
-    <div className="mb-4 border-b pb-4 border-zinc-200">
+    <div className="mb-6 border-b last-of-type:border-0 pb-6 border-zinc-200">
       <Link
         className="text-xl font-display font-bold hover:opacity-80"
         to={prepareSlug}
@@ -25,8 +25,8 @@ export const Post = ({ node }) => {
       </Link>
 
       <div className="mt-2 text-sm font-display">
-        {date}{" "}
-        <div class="inline text-xs ml-2 rounded-full bg-slate-200 py-1.5 px-3 font-medium text-slate-500">
+        {date}
+        <div className="inline text-xs ml-2 rounded-full bg-sky-100 py-1.5 px-3 font-medium text-sky-500">
           {category}
         </div>
       </div>

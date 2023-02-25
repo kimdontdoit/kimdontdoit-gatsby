@@ -12,7 +12,7 @@ import Notice from "../components/Notice";
 import * as classes from "./post_template.module.css";
 
 export default function PostTemplate({ data }) {
-  const { t, language } = useI18next("index");
+  const { t, language, defaultLanguage } = useI18next("index");
 
   const { post, type, category } = data;
   const { scrollProgressTarget } = useContext(ThemeContext);
@@ -32,6 +32,9 @@ export default function PostTemplate({ data }) {
       ? dayjs(publish_date).locale("fr").format("D MMM YYYY")
       : dayjs(publish_date).locale("en").format("MMM D, YYYY");
 
+  let slug = language !== defaultLanguage ? `/${language}` : ``;
+  slug += `/${category.frontmatter.slug ?? category.fields.slug}/`;
+
   const crumbs = [];
 
   if (type) {
@@ -44,7 +47,7 @@ export default function PostTemplate({ data }) {
   if (category) {
     crumbs.push({
       label: category.frontmatter.title,
-      url: `/${type.fields.slug}`
+      url: `/${category.fields.slug}`
     });
   }
 

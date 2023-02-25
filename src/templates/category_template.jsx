@@ -8,7 +8,7 @@ import Seo from "the-great-gatsby-theme/src/components/Seo";
 import { Post } from "../components/Post";
 
 export default function CategoryTemplate({ data }) {
-  const { t } = useI18next("index");
+  const { t, language } = useI18next("index");
 
   const { category } = data;
   const posts = data.posts.nodes;
@@ -92,6 +92,7 @@ export const query = graphql`
             slug
             type
             publish_date
+            category
           }
           fields {
             slug

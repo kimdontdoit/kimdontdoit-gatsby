@@ -2,11 +2,19 @@ import React from "react";
 import { graphql } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
+import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
 import { ContactForm } from "../components/Form";
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 export default function ContactPage() {
   const { t } = useI18next("index");
+
+  const crumbs = [];
+
+  crumbs.push({
+    label: t("back-to-home"),
+    url: "/"
+  });
 
   const handleContactSubmit = async (data) => {
     const formData = {
@@ -34,15 +42,17 @@ export default function ContactPage() {
       <div className="pt-[100px]">
         <section className={`my-16`}>
           <div className={`container max-w-xl mx-auto text-center mb-4`}>
-            <h1 className={`text-4xl font-bold`}>{t(`contact-title`)}</h1>
+            <h1 className={`text-4xl font-bold`}></h1>
           </div>
-          <div className={`container max-w-screen-lg mx-auto text-center`}>
-            <h2
-              className={`text-lg md:text-2xl text-slate-500 md:whitespace-pre-line`}
-            >
-              {t(`contact-intro`)}
-            </h2>
-          </div>
+
+          <section className={`my-16 container`}>
+            <Pageheader
+              title={t(`contact-title`)}
+              subtitle={t(`contact-intro`)}
+              center={true}
+              crumbs={crumbs}
+            />
+          </section>
         </section>
 
         <section className="pb-16">
