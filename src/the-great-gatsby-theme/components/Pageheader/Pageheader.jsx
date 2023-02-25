@@ -13,19 +13,19 @@ const Crumbs = ({ crumbs }) => {
 
         if (isLast) {
           return (
-            <Link key={index} to={val.url}>
-              {val.label}
-            </Link>
+            <div className="inline" key={index}>
+              <Link key={index} to={val.url}>
+                {val.label}
+              </Link>
+            </div>
           );
         }
 
         return (
-          <>
-            <Link key={index} to={val.url}>
-              {val.label}
-            </Link>
+          <div className="inline" key={index}>
+            <Link to={val.url}>{val.label}</Link>
             <span> / </span>
-          </>
+          </div>
         );
       })}
     </div>

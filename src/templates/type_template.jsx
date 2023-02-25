@@ -87,6 +87,7 @@ export const query = graphql`
             slug
             type
             publish_date
+            category
           }
           fields {
             slug

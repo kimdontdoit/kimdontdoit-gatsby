@@ -14,7 +14,7 @@ import * as classes from "./post_template.module.css";
 export default function PostTemplate({ data }) {
   const { t, language } = useI18next("index");
 
-  const { post, type } = data;
+  const { post, type, category } = data;
   const { scrollProgressTarget } = useContext(ThemeContext);
 
   const { title, publish_date, description } = post.frontmatter;
@@ -37,6 +37,13 @@ export default function PostTemplate({ data }) {
   if (type) {
     crumbs.push({
       label: `${t(`all-the`)} ${type.frontmatter.title}`,
+      url: `/${type.fields.slug}`
+    });
+  }
+
+  if (category) {
+    crumbs.push({
+      label: category.frontmatter.title,
       url: `/${type.fields.slug}`
     });
   }
@@ -77,7 +84,7 @@ export default function PostTemplate({ data }) {
             {/*
              * Bottom of post
              */}
-            <div className="md:max-w-2xl mx-auto">
+            <div className="md:max-w-2xl mx-auto font-display">
               {date && (
                 <p className={`font-medium mt-4 mb-0 opacity-69`}>{`${t(
                   "published-on"

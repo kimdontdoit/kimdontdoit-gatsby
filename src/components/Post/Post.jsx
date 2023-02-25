@@ -5,7 +5,7 @@ import "dayjs/locale/fr";
 
 export const Post = ({ node }) => {
   const { t, language } = useI18next("index");
-  const { type, slug, publish_date } = node.frontmatter;
+  const { type, slug, publish_date, category } = node.frontmatter;
 
   let prepareSlug = type ? `/${type.toLowerCase()}` : ``;
   prepareSlug += `/${slug ?? node.fields.slug}/`;
@@ -24,7 +24,12 @@ export const Post = ({ node }) => {
         {node.frontmatter.title}
       </Link>
 
-      <div className="mt-2 text-sm font-display">{date}</div>
+      <div className="mt-2 text-sm font-display">
+        {date}{" "}
+        <div class="inline text-xs ml-2 rounded-full bg-slate-200 py-1.5 px-3 font-medium text-slate-500">
+          {category}
+        </div>
+      </div>
     </div>
   );
 };
