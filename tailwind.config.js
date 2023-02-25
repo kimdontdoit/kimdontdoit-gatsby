@@ -5,10 +5,10 @@ module.exports = {
 
   theme: {
     fontFamily: {
-      sans: '-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"',
+      sans: 'Inter var, -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"',
       display:
         'Mona Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
-      body: '-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'
+      body: 'Inter var, -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"'
     },
     extend: {
       colors: {

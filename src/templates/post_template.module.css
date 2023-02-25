@@ -1,12 +1,12 @@
 .content {
   p {
-    @apply mb-8;
+    @apply mb-6;
   }
 
   h2,
   h3,
   h4 {
-    @apply font-medium;
+    @apply font-bold;
   }
 
   h2 {

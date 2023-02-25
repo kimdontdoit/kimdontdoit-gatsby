@@ -1,5 +1,5 @@
 .crumbs {
-  @apply font-medium mb-4;
+  @apply font-display font-medium mb-4;
 }
 
 .headline {

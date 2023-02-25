@@ -54,7 +54,7 @@ export default function PostTemplate({ data }) {
         <section className={`my-16 container`}>
           <Pageheader title={title} center={true} crumbs={crumbs}>
             {shortDate && (
-              <p className={`font-medium mt-4 opacity-69`}>
+              <p className={`font-medium font-display mt-4 opacity-69`}>
                 {shortDate}
                 {post.timeToRead > 1 && ` • ${post.timeToRead} min. de lecture`}
               </p>
@@ -66,12 +66,18 @@ export default function PostTemplate({ data }) {
 
         <section className="pb-16 container flex">
           <div className={`${classes.content} flex-1`}>
+            {/*
+             * PostContent from Markdown
+             */}
             <div
               dangerouslySetInnerHTML={{ __html: post.html }}
-              className={`md:max-w-screen-lg mx-auto text-lg`}
+              className={`md:max-w-2xl text-lg mx-auto`}
             ></div>
 
-            <div className="md:max-w-screen-lg mx-auto">
+            {/*
+             * Bottom of post
+             */}
+            <div className="md:max-w-2xl mx-auto">
               {date && (
                 <p className={`font-medium mt-4 mb-0 opacity-69`}>{`${t(
                   "published-on"
