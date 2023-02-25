@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 import dayjs from "dayjs";
@@ -7,7 +7,7 @@ import "dayjs/locale/fr";
 import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import ThemeContext from "../context/ThemeContext";
+import { useThemeContext } from "../context/ThemeContext";
 import Notice from "../components/Notice";
 import * as classes from "./post_template.module.css";
 
@@ -15,7 +15,7 @@ export default function PostTemplate({ data }) {
   const { t, language, defaultLanguage } = useI18next("index");
 
   const { post, type, category } = data;
-  const { scrollProgressTarget } = useContext(ThemeContext);
+  const { scrollProgressTarget } = useThemeContext();
 
   const { title, publish_date, description } = post.frontmatter;
 

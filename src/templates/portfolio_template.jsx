@@ -1,15 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { graphql } from "gatsby";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
-import ThemeContext from "../context/ThemeContext";
 import { PortfolioPost } from "../components/Post";
 
 import * as classes from "./portfolio.module.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function PortfolioTemplate({ data }) {
   const [isActive, setActive] = useState();

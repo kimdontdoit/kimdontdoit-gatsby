@@ -7,14 +7,14 @@ import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import Button from "../components/Button";
 import memoji from "../images/memoji_bump.png";
-import ThemeContext from "../context/ThemeContext";
+import { useThemeContext } from "../context/ThemeContext";
 
 import * as classes from "./index.module.css";
 
 export default function IndexPage() {
   const { t } = useI18next("index");
 
-  const { setCursorImage, setShowCursorImage } = useContext(ThemeContext);
+  const { setCursorImage, setShowCursorImage } = useThemeContext();
 
   const setMemojiCursor = (e) => {
     setCursorImage(memoji);
