@@ -12,95 +12,98 @@ import Notice from "../components/Notice";
 import * as classes from "./post_template.module.css";
 
 export default function PostTemplate({ data }) {
-  const { t, language, defaultLanguage } = useI18next("index");
+    const { t, language, defaultLanguage } = useI18next("index");
 
-  const { post, type, category } = data;
-  const { scrollProgressTarget } = useThemeContext();
+    const { post, type, category } = data;
+    const { scrollProgressTarget } = useThemeContext();
 
-  const { title, publish_date, description } = post.frontmatter;
+    const { title, publish_date, description } = post.frontmatter;
 
-  // TODO verify and dynamically change language in locale()
-  // TODO add category
+    // TODO verify and dynamically change language in locale()
+    // TODO add category
 
-  const date =
-    language === "fr"
-      ? dayjs(publish_date).locale("fr").format("D MMMM YYYY")
-      : dayjs(publish_date).locale("en").format("MMMM D, YYYY");
+    const date =
+        language === "fr"
+            ? dayjs(publish_date).locale("fr").format("D MMMM YYYY")
+            : dayjs(publish_date).locale("en").format("MMMM D, YYYY");
 
-  const shortDate =
-    language === "fr"
-      ? dayjs(publish_date).locale("fr").format("D MMM YYYY")
-      : dayjs(publish_date).locale("en").format("MMM D, YYYY");
+    const shortDate =
+        language === "fr"
+            ? dayjs(publish_date).locale("fr").format("D MMM YYYY")
+            : dayjs(publish_date).locale("en").format("MMM D, YYYY");
 
-  let slug = language !== defaultLanguage ? `/${language}` : ``;
-  slug += `/${category.frontmatter.slug ?? category.fields.slug}/`;
+    let slug = language !== defaultLanguage ? `/${language}` : ``;
+    slug += `/${category.frontmatter.slug ?? category.fields.slug}/`;
 
-  const crumbs = [];
+    const crumbs = [];
 
-  if (type) {
-    crumbs.push({
-      label: `${t(`all-the`)} ${type.frontmatter.title}`,
-      url: `/${type.fields.slug}`
-    });
-  }
+    if (type) {
+        crumbs.push({
+            label: `${t(`all-the`)} ${type.frontmatter.title}`,
+            url: `/${type.fields.slug}`
+        });
+    }
 
-  if (category) {
-    crumbs.push({
-      label: category.frontmatter.title,
-      url: `/${category.fields.slug}`
-    });
-  }
+    if (category) {
+        crumbs.push({
+            label: category.frontmatter.title,
+            url: `/${category.fields.slug}`
+        });
+    }
 
-  return (
-    <>
-      <Seo title={title} description={description || post.excerpt} />
+    return (
+        <>
+            <Seo title={title} description={description || post.excerpt} />
 
-      <article
-        itemScope
-        itemType="http://schema.org/Article"
-        ref={scrollProgressTarget}
-        className="pt-[100px]"
-      >
-        <section className={`my-16 container`}>
-          <Pageheader title={title} center={true} crumbs={crumbs}>
-            {shortDate && (
-              <p className={`font-medium font-display mt-4 opacity-69`}>
-                {shortDate}
-                {post.timeToRead > 1 && ` • ${post.timeToRead} min. de lecture`}
-              </p>
-            )}
-          </Pageheader>
-        </section>
+            <article
+                itemScope
+                itemType="http://schema.org/Article"
+                ref={scrollProgressTarget}
+                className="pt-[100px]"
+            >
+                <section className={`my-16 container`}>
+                    <Pageheader title={title} center={true} crumbs={crumbs}>
+                        {shortDate && (
+                            <p
+                                className={`font-medium font-display mt-4 opacity-69`}
+                            >
+                                {shortDate}
+                                {post.timeToRead > 1 &&
+                                    ` • ${post.timeToRead} min. de lecture`}
+                            </p>
+                        )}
+                    </Pageheader>
+                </section>
 
-        {false && <Notice />}
+                {false && <Notice />}
 
-        <section className="pb-16 container flex">
-          <div className={`${classes.content} flex-1`}>
-            {/*
-             * PostContent from Markdown
-             */}
-            <div
-              dangerouslySetInnerHTML={{ __html: post.html }}
-              className={`md:max-w-2xl text-lg mx-auto`}
-            ></div>
+                <section className="pb-16 container flex">
+                    <div className={`${classes.content} flex-1`}>
+                        {/*
+                         * PostContent from Markdown
+                         */}
+                        <div
+                            dangerouslySetInnerHTML={{ __html: post.html }}
+                            className={`md:max-w-2xl text-lg mx-auto`}
+                        ></div>
 
-            {/*
-             * Bottom of post
-             */}
-            <div className="md:max-w-2xl mx-auto font-display">
-              {date && (
-                <p className={`font-medium mt-4 mb-0 opacity-69`}>{`${t(
-                  "published-on"
-                )} ${date}`}</p>
-              )}
+                        {/*
+                         * Bottom of post
+                         */}
+                        <div className="md:max-w-2xl mx-auto font-display">
+                            {date && (
+                                <p
+                                    className={`font-medium mt-4 mb-0 opacity-69`}
+                                >{`${t("published-on")} ${date}`}</p>
+                            )}
 
-              <p className={`font-medium opacity-69`}>{`${t(
-                `published-by`
-              )} Vladislav Kim`}</p>
-            </div>
-          </div>
+                            <p className={`font-medium opacity-69`}>{`${t(
+                                `published-by`
+                            )} Vladislav Kim`}</p>
+                        </div>
+                    </div>
 
-          {/*post.tableOfContents && (
+                    {/*post.tableOfContents && (
             <div className={`${classes.toc}`}>
               <h3 className={`text-lg font-bold mb-4`}>Table des matières</h3>
               <div
@@ -108,81 +111,81 @@ export default function PostTemplate({ data }) {
               ></div>
             </div>
           )*/}
-        </section>
-      </article>
-    </>
-  );
+                </section>
+            </article>
+        </>
+    );
 }
 
 export const query = graphql`
-  query postById(
-    $id: String!
-    $category: String!
-    $type: String!
-    $previousPostId: String
-    $nextPostId: String
-    $language: String!
-  ) {
-    post: markdownRemark(id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        publish_date
-        type
-      }
-      tableOfContents
-      timeToRead
-      wordCount {
-        paragraphs
-        sentences
-        words
-      }
-    }
-    category: markdownRemark(frontmatter: { title: { eq: $category } }) {
-      excerpt
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-        subtitle
-        color
-      }
-    }
-    type: markdownRemark(frontmatter: { title: { eq: $type } }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      edges {
-        node {
-          ns
-          data
-          language
+    query postById(
+        $id: String!
+        $category: String!
+        $type: String!
+        $previousPostId: String
+        $nextPostId: String
+        $language: String!
+    ) {
+        post: markdownRemark(id: { eq: $id }) {
+            id
+            excerpt(pruneLength: 160)
+            html
+            frontmatter {
+                title
+                publish_date
+                type
+            }
+            tableOfContents
+            timeToRead
+            wordCount {
+                paragraphs
+                sentences
+                words
+            }
         }
-      }
+        category: markdownRemark(frontmatter: { title: { eq: $category } }) {
+            excerpt
+            fields {
+                slug
+            }
+            frontmatter {
+                title
+                subtitle
+                color
+            }
+        }
+        type: markdownRemark(frontmatter: { title: { eq: $type } }) {
+            fields {
+                slug
+            }
+            frontmatter {
+                title
+            }
+        }
+        previous: markdownRemark(id: { eq: $previousPostId }) {
+            fields {
+                slug
+            }
+            frontmatter {
+                title
+            }
+        }
+        next: markdownRemark(id: { eq: $nextPostId }) {
+            fields {
+                slug
+            }
+            frontmatter {
+                title
+            }
+        }
+        locales: allLocale(filter: { language: { eq: $language } }) {
+            edges {
+                node {
+                    ns
+                    data
+                    language
+                }
+            }
+        }
     }
-  }
 `;

@@ -8,107 +8,116 @@ import Seo from "the-great-gatsby-theme/src/components/Seo";
 import { Post } from "../components/Post";
 
 export default function CategoryTemplate({ data }) {
-  const { t, language } = useI18next("index");
+    const { t, language } = useI18next("index");
 
-  const { category } = data;
-  const posts = data.posts.nodes;
-  let crumbs = [];
+    const { category } = data;
+    const posts = data.posts.nodes;
+    let crumbs = [];
 
-  crumbs.push({
-    label: t("categories"),
-    url: "/categories"
-  });
+    crumbs.push({
+        label: t("categories"),
+        url: "/categories"
+    });
 
-  return (
-    <>
-      <Seo
-        title={category.frontmatter.title}
-        description={category.frontmatter.description || category.excerpt}
-      />
+    return (
+        <>
+            <Seo
+                title={category.frontmatter.title}
+                description={
+                    category.frontmatter.description || category.excerpt
+                }
+            />
 
-      <div className="pt-[100px]">
-        <section className={`pt-16 container pb-16`}>
-          <Pageheader
-            title={category.frontmatter.title}
-            subtitle={category.frontmatter.subtitle}
-            crumbs={crumbs}
-            color={category.frontmatter.color}
-          />
-        </section>
+            <div className="pt-[100px]">
+                <section className={`pt-16 container pb-16`}>
+                    <Pageheader
+                        title={category.frontmatter.title}
+                        subtitle={category.frontmatter.subtitle}
+                        crumbs={crumbs}
+                        color={category.frontmatter.color}
+                    />
+                </section>
 
-        {category.html && (
-          <section className="container">
-            <div
-              dangerouslySetInnerHTML={{ __html: category.html }}
-              itemProp="articleBody"
-              className={`max-w-screen-lg mx-auto text-lg`}
-            ></div>
-          </section>
-        )}
+                {category.html && (
+                    <section className="container">
+                        <div
+                            dangerouslySetInnerHTML={{ __html: category.html }}
+                            itemProp="articleBody"
+                            className={`max-w-screen-lg mx-auto text-lg`}
+                        ></div>
+                    </section>
+                )}
 
-        <section className={`container pb-16`}>
-          <div className="max-w-screen-lg mx-auto">
-            {posts &&
-              posts.map((post) => {
-                return <Post key={post.id} node={post.childMarkdownRemark} />;
-              })}
-          </div>
-        </section>
-      </div>
-    </>
-  );
+                <section className={`container pb-16`}>
+                    <div className="max-w-screen-lg mx-auto">
+                        {posts &&
+                            posts.map((post) => {
+                                return (
+                                    <Post
+                                        key={post.id}
+                                        node={post.childMarkdownRemark}
+                                    />
+                                );
+                            })}
+                    </div>
+                </section>
+            </div>
+        </>
+    );
 }
 
 export const query = graphql`
-  query ($id: String!, $title: String, $language: String!) {
-    category: markdownRemark(id: { eq: $id }) {
-      id
-      excerpt
-      html
-      frontmatter {
-        title
-        subtitle
-        color
-      }
-    }
-    posts: allFile(
-      filter: {
-        sourceInstanceName: { eq: "post" }
-        internal: { mediaType: { eq: "text/markdown" } }
-        childMarkdownRemark: {
-          frontmatter: { category: { eq: $title } }
-          fields: { language: { eq: $language } }
+    query ($id: String!, $title: String, $language: String!) {
+        category: markdownRemark(id: { eq: $id }) {
+            id
+            excerpt
+            html
+            frontmatter {
+                title
+                subtitle
+                color
+            }
         }
-      }
-      sort: { childMarkdownRemark: { frontmatter: { publish_date: DESC } } }
-    ) {
-      nodes {
-        id
-        sourceInstanceName
-        childMarkdownRemark {
-          id
-          frontmatter {
-            title
-            slug
-            type
-            publish_date
-            category
-          }
-          fields {
-            slug
-            language
-          }
+        posts: allFile(
+            filter: {
+                sourceInstanceName: { eq: "post" }
+                internal: { mediaType: { eq: "text/markdown" } }
+                childMarkdownRemark: {
+                    frontmatter: { category: { eq: $title } }
+                    fields: { language: { eq: $language } }
+                }
+            }
+            sort: {
+                childMarkdownRemark: { frontmatter: { publish_date: DESC } }
+            }
+        ) {
+            nodes {
+                id
+                sourceInstanceName
+                childMarkdownRemark {
+                    id
+                    frontmatter {
+                        title
+                        slug
+                        type
+                        publish_date
+                        category
+                    }
+                    fields {
+                        slug
+                        language
+                    }
+                }
+            }
         }
-      }
-    }
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      edges {
-        node {
-          ns
-          data
-          language
+        locales: allLocale(filter: { language: { eq: $language } }) {
+            edges {
+                node {
+                    ns
+                    data
+                    language
+                }
+            }
         }
-      }
     }
-  }
 `;
