@@ -10,7 +10,7 @@ const ScrollProgress = () => {
 
     const scrollListener = () => {
         if (typeof window !== "undefined") {
-            const element = scrollProgressTarget.current;
+            const element = scrollProgressTarget?.current;
 
             if (element) {
                 const windowScrollTop =

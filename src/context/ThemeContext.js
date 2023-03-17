@@ -19,6 +19,7 @@ const ThemeProvider = ({ children }) => {
     const [cursorImage, setCursorImage] = useState(undefined);
     const [readingProgress, setReadingProgress] = useState(0);
     const [headerLight, setHeaderLight] = useState(false);
+    const [scrollProgressTarget, setScrollProgressTarget] = useState(undefined);
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
@@ -47,8 +48,6 @@ const ThemeProvider = ({ children }) => {
         }
     }, []);
 
-    const scrollProgressTarget = useRef();
-
     return (
         <ThemeContext.Provider
             value={{
@@ -56,9 +55,12 @@ const ThemeProvider = ({ children }) => {
                 setShowCursorImage,
                 cursorImage,
                 setCursorImage,
+                // for components/ScrollProgress.jsx
                 scrollProgressTarget,
+                setScrollProgressTarget,
                 readingProgress,
                 setReadingProgress,
+                // theme
                 darkMode,
                 toggleDarkMode,
                 headerLight,

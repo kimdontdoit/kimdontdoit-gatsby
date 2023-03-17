@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useMemo, useEffect } from "react";
 import { graphql } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 import dayjs from "dayjs";
@@ -13,24 +13,32 @@ import * as classes from "./post_template.module.css";
 
 export default function PostTemplate({ data }) {
     const { t, language, defaultLanguage } = useI18next("index");
+    const { setScrollProgressTarget } = useThemeContext();
+    const ref = useRef();
 
     const { post, type, category } = data;
-    const { scrollProgressTarget } = useThemeContext();
-
     const { title, publish_date, description } = post.frontmatter;
+
+    useEffect(() => {
+        if (ref.current) {
+            setScrollProgressTarget(ref);
+        }
+    }, [ref]);
 
     // TODO verify and dynamically change language in locale()
     // TODO add category
 
-    const date =
-        language === "fr"
-            ? dayjs(publish_date).locale("fr").format("D MMMM YYYY")
+    const date = useMemo(() => {
+        return language === "fr"
+            ? dayjs(publish_date).locale("fr-ca").format("D MMMM YYYY")
             : dayjs(publish_date).locale("en").format("MMMM D, YYYY");
+    }, [language, publish_date]);
 
-    const shortDate =
-        language === "fr"
-            ? dayjs(publish_date).locale("fr").format("D MMM YYYY")
+    const shortDate = useMemo(() => {
+        return language === "fr"
+            ? dayjs(publish_date).locale("fr-ca").format("D MMM YYYY")
             : dayjs(publish_date).locale("en").format("MMM D, YYYY");
+    }, [language, publish_date]);
 
     let slug = language !== defaultLanguage ? `/${language}` : ``;
     slug += `/${category.frontmatter.slug ?? category.fields.slug}/`;
@@ -58,7 +66,7 @@ export default function PostTemplate({ data }) {
             <article
                 itemScope
                 itemType="http://schema.org/Article"
-                ref={scrollProgressTarget}
+                ref={ref}
                 className="pt-[100px]"
             >
                 <section className={`my-16 container`}>

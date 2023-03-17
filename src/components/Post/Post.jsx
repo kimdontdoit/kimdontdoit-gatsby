@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link, useI18next } from "gatsby-plugin-react-i18next";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
@@ -10,10 +10,11 @@ export const Post = ({ node }) => {
     let prepareSlug = type ? `/${type.toLowerCase()}` : ``;
     prepareSlug += `/${slug ?? node.fields.slug}/`;
 
-    const date =
-        language === "fr"
+    const date = useMemo(() => {
+        return language === "fr"
             ? dayjs(publish_date).locale("fr").format("D MMMM YYYY")
             : dayjs(publish_date).locale("en").format("MMMM D, YYYY");
+    }, [language, publish_date]);
 
     return (
         <div className="mb-6 border-b last-of-type:border-0 pb-6 border-zinc-200">
