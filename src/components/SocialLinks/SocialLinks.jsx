@@ -33,6 +33,7 @@ const SocialLinks = () => {
                 <li className={classes.socialLink} key={link.className}>
                     <Tooltip title={`${link.label}`}>
                         <a
+                            aria-label={`${link.label}`}
                             className={classes[link.className]}
                             href={link.url}
                             target="_blank"
