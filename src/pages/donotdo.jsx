@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
-import { useI18next } from "gatsby-plugin-react-i18next";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
+
 import { Tooltip } from "../components/Tooltip";
 import Button from "../components/Button";
+import { DoNotDo } from "../components/DoNotDo";
 
 export default function AppPage() {
     // const { t, language } = useI18next("index");
@@ -16,8 +17,11 @@ export default function AppPage() {
     // T_T donotdo ... wow the name is so bad (written by github copilot)
     // hey, you could probably link ads to this page
 
+    let [isOpen, setIsOpen] = useState(true);
+
     const handle1PClick = () => {
         console.log("prout");
+        setIsOpen(true);
     };
 
     const handleTClick = () => {
@@ -32,6 +36,8 @@ export default function AppPage() {
                 }
                 skipSiteName={true}
             />
+            <DoNotDo isOpen={isOpen} setIsOpen={setIsOpen} />
+
             <div class="block pt-40 md:pt-52 pb-16 md:pb-24">
                 <div className="container max-w-screen-lg">
                     <div>{currentDate}</div>
