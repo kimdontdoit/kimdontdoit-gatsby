@@ -35,7 +35,7 @@ export default function IndexPage() {
             />
 
             <section
-                className={`${classes.section} ${classes.hero} pt-40 md:pt-52 pb-16 md:pb-24`}
+                className={`block ${classes.hero} pt-40 md:pt-52 pb-16 md:pb-24`}
             >
                 <div className="container max-w-screen-lg">
                     <h1 className={`bigTitle mb-12 md:whitespace-pre-line`}>
@@ -71,7 +71,7 @@ export default function IndexPage() {
                 </div>
             </section>
 
-            <section className={`${classes.section} bg-white py-24`}>
+            <section className={`block bg-white py-24`}>
                 <div className="container max-w-screen-lg">
                     <h1 className={`headingTitle`}>
                         <span className={`highlight`}>Kimdontdoit</span>
@@ -80,9 +80,7 @@ export default function IndexPage() {
                 </div>
             </section>
 
-            <section
-                className={`${classes.section} ${classes.workSection} py-24`}
-            >
+            <section className={`block ${classes.workSection} py-24`}>
                 <div className="container max-w-screen-lg">
                     <div>
                         <h2 className={`headingTitle mb-8`}>
@@ -138,7 +136,7 @@ export default function IndexPage() {
                 </div>
             </section>
 
-            <section className={`${classes.section} bg-primary py-16 md:py-40`}>
+            <section className={`block bg-primary py-16 md:py-40`}>
                 <div className="container max-w-screen-lg">
                     <h1 className={`headingTitle`}>
                         {t(`objective`)}
@@ -150,7 +148,7 @@ export default function IndexPage() {
             </section>
 
             <section
-                className={`${classes.section} ${classes.currentSection} py-16 md:py-40 `}
+                className={`block ${classes.currentSection} py-16 md:py-40 `}
             >
                 <div className={`container max-w-screen-lg`}>
                     <h2 className={`headingTitle mb-8`}>
@@ -179,9 +177,7 @@ export default function IndexPage() {
                 </div>
             </section>
 
-            <section
-                className={`${classes.section} bg-dark pt-16 md:pt-40 pb-16 `}
-            >
+            <section className={`block bg-dark pt-16 md:pt-40 pb-16 `}>
                 <div className={`container max-w-screen-lg text-center`}>
                     <p className={`headingTitle mb-16 text-white`}>
                         {t(`got_a_question_1`)}

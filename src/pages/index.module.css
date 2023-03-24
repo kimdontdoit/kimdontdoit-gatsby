@@ -1,7 +1,3 @@
-.section {
-  @apply block;
-}
-
 .hero {
   background: var(--color-primary);
 }
