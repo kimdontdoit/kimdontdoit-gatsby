@@ -19,7 +19,6 @@ const Footer = () => {
             className={`${classes.footer} bg-dark text-white`}
             role="contentinfo"
         >
-            <div className={classes.donotdodo}>donotdo</div>
             <div className={`container text-center py-12`}>
                 <div
                     role="link"
