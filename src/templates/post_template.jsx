@@ -16,7 +16,7 @@ export default function PostTemplate({ data, pageContext }) {
     const { alternatives } = pageContext;
     const { title, publish_date, description } = post.frontmatter;
 
-    const { t, language, defaultLanguage } = useI18next("index");
+    const { t, language } = useI18next("index");
     const { setScrollProgressTarget } = useThemeContext();
     const ref = useRef();
 

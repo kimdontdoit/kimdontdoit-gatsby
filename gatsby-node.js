@@ -62,8 +62,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                                     altNode.childMarkdownRemark.fields
                                         .fileName &&
                                 altNode.sourceInstanceName === "post" &&
-                                altNode.childMarkdownRemark.frontmatter?.type &&
-                                altNode.childMarkdownRemark.frontmatter?.slug
+                                altNode.childMarkdownRemark.frontmatter?.type
                         )
                         .map((altNode) => {
                             const {
@@ -74,7 +73,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                             return {
                                 language: altFields.language,
                                 slug: `${altFrontmatter.type.toLowerCase()}/${
-                                    altFrontmatter.slug
+                                    altFrontmatter.slug ?? altFields.fileName
                                 }`
                             };
                         });

@@ -66,11 +66,11 @@ const Seo = (props) => {
     function getFullUrl(lang, path) {
         let localizedUrl;
 
-        if (lang === defaultLanguage) {
-            localizedUrl = `${siteUrl}${originalPath}`;
-        } else {
-            let editedPath = `${path.replace(/^\/|\/$/g, "")}`; // regex: remove first and last slash from string
+        let editedPath = `${path.replace(/^\/|\/$/g, "")}`; // regex: remove first and last slash from string
 
+        if (lang === defaultLanguage) {
+            localizedUrl = `${siteUrl}/${editedPath}/`;
+        } else {
             if (editedPath) editedPath += "/";
 
             localizedUrl = `${siteUrl}/${lang}/${editedPath}`;
@@ -97,19 +97,23 @@ const Seo = (props) => {
             />
 
             {alternatives
-                ? alternatives.map((alternative) => {
-                      const { language: alternativeLanguage, slug } =
-                          alternative;
+                ? alternatives
+                      .filter(
+                          (alternative) => alternative.language !== language
+                      )
+                      .map((alternative) => {
+                          const { language: alternativeLanguage, slug } =
+                              alternative;
 
-                      return (
-                          <link
-                              key={alternativeLanguage}
-                              rel="alternate"
-                              href={getFullUrl(alternativeLanguage, slug)}
-                              hreflang={alternativeLanguage}
-                          />
-                      );
-                  })
+                          return (
+                              <link
+                                  key={alternativeLanguage}
+                                  rel="alternate"
+                                  href={getFullUrl(alternativeLanguage, slug)}
+                                  hreflang={alternativeLanguage}
+                              />
+                          );
+                      })
                 : alternativeLanguages.map((alternativeLanguage) => {
                       return (
                           <link
