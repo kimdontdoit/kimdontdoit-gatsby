@@ -12,13 +12,14 @@ const scrollToTop = () => {
 };
 
 const Footer = () => {
-    const { t, languages, language, originalPath } = useI18next();
+    const { t } = useI18next();
 
     return (
         <footer
             className={`${classes.footer} bg-dark text-white`}
             role="contentinfo"
         >
+            <div className={classes.donotdodo}>donotdo</div>
             <div className={`container text-center py-12`}>
                 <div
                     role="link"
@@ -33,6 +34,9 @@ const Footer = () => {
                 <div>
                     <p className={`opacity-30`}>
                         {`Kimdontdoit copyright 2023`}
+                        <Link to="/donotdo">
+                            <span className="opacity-10">{`- infinity`}</span>
+                        </Link>
                         <br />
                         {`${t("copyright-line")} `}
                         <a
