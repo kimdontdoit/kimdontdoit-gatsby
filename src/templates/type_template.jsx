@@ -1,5 +1,5 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";

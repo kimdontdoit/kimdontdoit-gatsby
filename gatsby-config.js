@@ -136,6 +136,14 @@ module.exports = {
                     formats: [`auto`, `webp`],
                     placeholder: `dominantColor`,
                     quality: 85
+                    // breakpoints: [750, 1080, 1366, 1920],
+                    // backgroundColor: `transparent`,
+                    // tracedSVGOptions: {},
+                    // blurredOptions: {},
+                    // jpgOptions: {},
+                    // pngOptions: {},
+                    // webpOptions: {},
+                    // avifOptions: {},
                 }
             }
         },
@@ -151,6 +159,7 @@ module.exports = {
                 icon: `src/images/icon.gif`
             }
         },
+        `gatsby-plugin-robots-txt`,
         `gatsby-plugin-react-helmet`,
         {
             resolve: "gatsby-plugin-sitemap",

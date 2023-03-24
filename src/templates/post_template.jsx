@@ -12,13 +12,13 @@ import Notice from "../components/Notice";
 import * as classes from "./post_template.module.css";
 
 export default function PostTemplate({ data, pageContext }) {
+    const { post, type, category } = data;
+    const { alternatives } = pageContext;
+    const { title, publish_date, description } = post.frontmatter;
+
     const { t, language, defaultLanguage } = useI18next("index");
     const { setScrollProgressTarget } = useThemeContext();
     const ref = useRef();
-
-    const { post, type, category } = data;
-    const { title, publish_date, description } = post.frontmatter;
-    const { alternatives } = pageContext;
 
     useEffect(() => {
         if (ref.current) {
@@ -40,9 +40,6 @@ export default function PostTemplate({ data, pageContext }) {
             ? dayjs(publish_date).locale("fr-ca").format("D MMM YYYY")
             : dayjs(publish_date).locale("en").format("MMM D, YYYY");
     }, [language, publish_date]);
-
-    let slug = language !== defaultLanguage ? `/${language}` : ``;
-    slug += `/${category.frontmatter.slug ?? category.fields.fileName}/`;
 
     const crumbs = [];
 

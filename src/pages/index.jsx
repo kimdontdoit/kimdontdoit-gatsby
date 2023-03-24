@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { useI18next } from "gatsby-plugin-react-i18next";
@@ -89,7 +89,7 @@ export default function IndexPage() {
                             {t(`recent_title`)}
                         </h2>
                         <div
-                            className={`grid md:grid-cols-3 grid-cols-1 gap-8 `}
+                            className={`grid md:grid-cols-3 grid-cols-1 gap-7`}
                         >
                             <div
                                 className={`${classes.card} flex flex-col flex-1 p-8 bg-white`}
@@ -101,6 +101,8 @@ export default function IndexPage() {
                                 <StaticImage
                                     src="../images/commercial_social_share_magento.png"
                                     alt="Magento 2"
+                                    width={246}
+                                    height={246}
                                 />
                             </div>
                             <div
@@ -113,6 +115,8 @@ export default function IndexPage() {
                                 <StaticImage
                                     src="../images/home-page_fast-to-build-1024x1024.png"
                                     alt="Gatsby 4"
+                                    width={246}
+                                    height={246}
                                 />
                             </div>
                             <div
@@ -125,6 +129,8 @@ export default function IndexPage() {
                                 <StaticImage
                                     src="../images/salonparentsenfants.png"
                                     alt="Magento 2"
+                                    width={246}
+                                    height={246}
                                 />
                             </div>
                         </div>

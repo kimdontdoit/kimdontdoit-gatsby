@@ -17,7 +17,6 @@ const ThemeProvider = ({ children }) => {
     const [darkMode, setDarkMode] = useState();
     const [showCursorImage, setShowCursorImage] = useState(false);
     const [cursorImage, setCursorImage] = useState(undefined);
-    const [readingProgress, setReadingProgress] = useState(0);
     const [headerLight, setHeaderLight] = useState(false);
     const [scrollProgressTarget, setScrollProgressTarget] = useState(undefined);
 
@@ -58,8 +57,6 @@ const ThemeProvider = ({ children }) => {
                 // for components/ScrollProgress.jsx
                 scrollProgressTarget,
                 setScrollProgressTarget,
-                readingProgress,
-                setReadingProgress,
                 // theme
                 darkMode,
                 toggleDarkMode,

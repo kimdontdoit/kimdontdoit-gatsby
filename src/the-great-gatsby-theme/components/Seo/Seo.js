@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
 import { useStaticQuery, graphql } from "gatsby";
@@ -16,7 +16,6 @@ const Seo = (props) => {
     const { languages, language, defaultLanguage, originalPath } = useI18next();
     const { pathname } = useLocation();
 
-    // FIX THIS ?
     const { site } = useStaticQuery(
         graphql`
             query {
@@ -45,22 +44,35 @@ const Seo = (props) => {
         twitterUsername
     } = site.siteMetadata;
 
-    const getPageTitle = () => {
-        if (skipSiteName) {
-            return title;
-        } else {
-            return `${title} ${titleSeparator} ${defaultTitle}`;
-        }
-    };
+    const pageTitle = useMemo(
+        () =>
+            skipSiteName ? title : `${title} ${titleSeparator} ${defaultTitle}`,
+        [skipSiteName, title]
+    );
 
     const seoData = {
         siteName: siteName, // ex `{title} - KimDontDoIt`
-        title: getPageTitle(), // <Seo title="Accueil">
+        title: pageTitle, // <Seo title="Accueil">
         description: description, // page description
         image: `${siteUrl}${defaultImage}`,
         url: `${siteUrl}${pathname}`,
         author: author
     };
+
+    const alternativeLanguages = languages.filter(
+        (alternativeLanguage) => language !== alternativeLanguage
+    );
+
+    function getFullUrl(lang, path) {
+        let localizedUrl =
+            lang === defaultLanguage
+                ? `${siteUrl}${originalPath}`
+                : `${siteUrl}/${lang}/${path.replace(/^\/|\/$/g, "")}/`; // regex: remove first and last slash from string
+
+        return localizedUrl;
+    }
+
+    const currentLocalizedLink = getFullUrl(language, originalPath);
 
     return (
         <Helmet htmlAttributes={{ lang: language }} title={seoData.title}>
@@ -70,35 +82,36 @@ const Seo = (props) => {
             <meta name="image" content={seoData.image} />
             <link rel="canonical" href={seoData.url} />
 
+            <link
+                key={language}
+                rel="alternate"
+                href={currentLocalizedLink}
+                hreflang={language}
+            />
+
             {alternatives
                 ? alternatives.map((alternative) => {
                       const { language: alternativeLanguage, slug } =
                           alternative;
-                      const localizedLink =
-                          alternativeLanguage === defaultLanguage
-                              ? `${siteUrl}${originalPath}`
-                              : `${siteUrl}/${alternativeLanguage}/${slug}`; // FIX THIS!
 
                       return (
                           <link
                               key={alternativeLanguage}
                               rel="alternate"
-                              href={localizedLink}
+                              href={getFullUrl(alternativeLanguage, slug)}
                               hreflang={alternativeLanguage}
                           />
                       );
                   })
-                : languages.map((alternativeLanguage) => {
-                      const localizedLink =
-                          alternativeLanguage === defaultLanguage
-                              ? `${siteUrl}${originalPath}`
-                              : `${siteUrl}/${alternativeLanguage}${originalPath}`;
-
+                : alternativeLanguages.map((alternativeLanguage) => {
                       return (
                           <link
                               key={alternativeLanguage}
                               rel="alternate"
-                              href={localizedLink}
+                              href={getFullUrl(
+                                  alternativeLanguage,
+                                  originalPath
+                              )}
                               hreflang={alternativeLanguage}
                           />
                       );

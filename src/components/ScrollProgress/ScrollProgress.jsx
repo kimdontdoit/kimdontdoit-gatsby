@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useThemeContext } from "../../context/ThemeContext";
 
 import * as classes from "./ScrollProgress.module.css";
 
 const ScrollProgress = () => {
-    const { readingProgress, setReadingProgress, scrollProgressTarget } =
-        useThemeContext();
+    const { scrollProgressTarget } = useThemeContext();
+
+    const [readingProgress, setReadingProgress] = useState(0);
 
     const scrollListener = () => {
         if (typeof window !== "undefined") {
