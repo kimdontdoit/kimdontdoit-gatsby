@@ -8,7 +8,7 @@ import Seo from "the-great-gatsby-theme/src/components/Seo";
 const Category = ({ node }) => {
     const { language, defaultLanguage } = useI18next();
     let slug = language !== defaultLanguage ? `/${language}` : ``;
-    slug += `/${node.frontmatter.slug ?? node.fields.slug}/`;
+    slug += `/${node.frontmatter.slug ?? node.fields.fileName}/`;
 
     return (
         <div className="mb-8">
@@ -76,8 +76,8 @@ export const query = graphql`
                         slug
                     }
                     fields {
+                        fileName
                         language
-                        slug
                     }
                 }
             }

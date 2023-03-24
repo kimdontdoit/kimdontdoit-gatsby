@@ -80,7 +80,7 @@ export const query = graphql`
                         color
                     }
                     fields {
-                        slug
+                        fileName
                         language
                     }
                 }

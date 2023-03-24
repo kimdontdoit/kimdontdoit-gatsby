@@ -104,7 +104,7 @@ export const query = graphql`
                         category
                     }
                     fields {
-                        slug
+                        fileName
                         language
                     }
                 }

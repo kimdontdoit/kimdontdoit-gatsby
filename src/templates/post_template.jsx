@@ -11,13 +11,14 @@ import { useThemeContext } from "../context/ThemeContext";
 import Notice from "../components/Notice";
 import * as classes from "./post_template.module.css";
 
-export default function PostTemplate({ data }) {
+export default function PostTemplate({ data, pageContext }) {
     const { t, language, defaultLanguage } = useI18next("index");
     const { setScrollProgressTarget } = useThemeContext();
     const ref = useRef();
 
     const { post, type, category } = data;
     const { title, publish_date, description } = post.frontmatter;
+    const { alternatives } = pageContext;
 
     useEffect(() => {
         if (ref.current) {
@@ -41,27 +42,32 @@ export default function PostTemplate({ data }) {
     }, [language, publish_date]);
 
     let slug = language !== defaultLanguage ? `/${language}` : ``;
-    slug += `/${category.frontmatter.slug ?? category.fields.slug}/`;
+    slug += `/${category.frontmatter.slug ?? category.fields.fileName}/`;
 
     const crumbs = [];
 
+    // VERIFY THIS
     if (type) {
         crumbs.push({
             label: `${t(`all-the`)} ${type.frontmatter.title}`,
-            url: `/${type.fields.slug}`
+            url: `/${type.fields.fileName}`
         });
     }
 
     if (category) {
         crumbs.push({
             label: category.frontmatter.title,
-            url: `/${category.fields.slug}`
+            url: `/${category.fields.fileName}`
         });
     }
 
     return (
         <>
-            <Seo title={title} description={description || post.excerpt} />
+            <Seo
+                title={title}
+                description={description || post.excerpt}
+                alternatives={alternatives}
+            />
 
             <article
                 itemScope
@@ -154,7 +160,7 @@ export const query = graphql`
         category: markdownRemark(frontmatter: { title: { eq: $category } }) {
             excerpt
             fields {
-                slug
+                fileName
             }
             frontmatter {
                 title
@@ -164,7 +170,7 @@ export const query = graphql`
         }
         type: markdownRemark(frontmatter: { title: { eq: $type } }) {
             fields {
-                slug
+                fileName
             }
             frontmatter {
                 title
@@ -172,7 +178,7 @@ export const query = graphql`
         }
         previous: markdownRemark(id: { eq: $previousPostId }) {
             fields {
-                slug
+                fileName
             }
             frontmatter {
                 title
@@ -180,7 +186,7 @@ export const query = graphql`
         }
         next: markdownRemark(id: { eq: $nextPostId }) {
             fields {
-                slug
+                fileName
             }
             frontmatter {
                 title

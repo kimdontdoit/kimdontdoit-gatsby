@@ -4,11 +4,11 @@ import dayjs from "dayjs";
 import "dayjs/locale/fr";
 
 export const Post = ({ node }) => {
-    const { t, language } = useI18next("index");
+    const { language } = useI18next("index");
     const { type, slug, publish_date, category } = node.frontmatter;
 
     let prepareSlug = type ? `/${type.toLowerCase()}` : ``;
-    prepareSlug += `/${slug ?? node.fields.slug}/`;
+    prepareSlug += `/${slug ?? node.fields.fileName}/`;
 
     const date = useMemo(() => {
         return language === "fr"
@@ -25,9 +25,9 @@ export const Post = ({ node }) => {
                 {node.frontmatter.title}
             </Link>
 
-            <div className="mt-2 text-sm font-display">
-                {date}
-                <div className="inline text-xs ml-2 rounded-full bg-sky-100 py-1.5 px-3 font-medium text-sky-500">
+            <div className="flex items-center mt-2 font-display">
+                <span className="text-sm">{date}</span>
+                <div className="text-sm ml-2 rounded-full bg-sky-100 py-1.5 px-3 font-medium text-sky-500">
                     {category}
                 </div>
             </div>

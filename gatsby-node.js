@@ -23,7 +23,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                                 slug
                             }
                             fields {
-                                slug
+                                fileName
                                 language
                             }
                         }
@@ -41,44 +41,73 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         return;
     }
 
-    const nodes = result.data.allFile.nodes;
+    const { nodes } = result.data.allFile;
     const validSources = ["post", "category", "type"];
 
     if (nodes.length > 0) {
-        nodes.forEach((node, index) => {
+        nodes.forEach((node /*, index*/) => {
             if (validSources.includes(node.sourceInstanceName)) {
-                const previous = index === 0 ? null : nodes[index - 1].id;
-                const next =
-                    index === nodes.length - 1 ? null : nodes[index + 1].id;
+                const { frontmatter, fields } = node.childMarkdownRemark;
 
-                const language = node.childMarkdownRemark.fields.language;
+                /**
+                 * Prepare links to other languages
+                 */
+                let alternatives;
 
-                let prepareSlug = [];
-                let template;
+                if (node.sourceInstanceName === "post") {
+                    alternatives = nodes
+                        .filter(
+                            (altNode) =>
+                                fields.fileName ===
+                                    altNode.childMarkdownRemark.fields
+                                        .fileName &&
+                                altNode.sourceInstanceName === "post" &&
+                                altNode.childMarkdownRemark.frontmatter?.type &&
+                                altNode.childMarkdownRemark.frontmatter?.slug
+                        )
+                        .map((altNode) => {
+                            const {
+                                frontmatter: altFrontmatter,
+                                fields: altFields
+                            } = altNode.childMarkdownRemark;
 
-                // if not default language
-                if (language !== "fr") {
-                    prepareSlug.push(language);
+                            return {
+                                language: altFields.language,
+                                slug: `${altFrontmatter.type.toLowerCase()}/${
+                                    altFrontmatter.slug
+                                }`
+                            };
+                        });
                 }
 
-                // @todo maybe make this into util
+                /**
+                 * Prepare Slug
+                 */
+                let prepareSlug = [];
+
+                // if not default language
+                if (fields.language !== "fr") {
+                    prepareSlug.push(fields.language);
+                }
+
                 if (node.sourceInstanceName === "post") {
                     // /articles/... /snippets/...
-                    prepareSlug.push(
-                        node.childMarkdownRemark.frontmatter.type.toLowerCase()
-                    );
+                    prepareSlug.push(frontmatter.type.toLowerCase());
                 }
 
                 // slug from frontmatter, else use filename
-                if (node.childMarkdownRemark.frontmatter.slug) {
-                    prepareSlug.push(
-                        `${node.childMarkdownRemark.frontmatter.slug}/`
-                    );
+                if (frontmatter.slug) {
+                    prepareSlug.push(`${frontmatter.slug}/`);
                 } else {
-                    prepareSlug.push(
-                        `${node.childMarkdownRemark.fields.slug}/`
-                    );
+                    prepareSlug.push(`${fields.fileName}/`);
                 }
+
+                /**
+                 *
+                 * Prepare Template
+                 *
+                 */
+                let template;
 
                 if (
                     node.sourceInstanceName === "type" &&
@@ -111,10 +140,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                         title: node.childMarkdownRemark.frontmatter.title,
                         category: node.childMarkdownRemark.frontmatter.category,
                         type: node.childMarkdownRemark.frontmatter.type,
-                        file_slug: node.childMarkdownRemark.fields.slug,
-                        language,
-                        previous,
-                        next
+                        language: fields.language,
+                        //previousId,
+                        //nextId,
+                        alternatives
                     }
                 });
             }
@@ -130,21 +159,21 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
         // filePathArray ex.: ['', 'fr', 'a-propos', '']
         const filePathArray = filePath.split("/");
-        const lang_from_path = filePathArray[1];
-        const slug = filePathArray[2];
+        const langFromPath = filePathArray[1];
+        const slugFromPath = filePathArray[2];
 
         // Add language from path to node.fields.language
         createNodeField({
             name: `language`,
             node,
-            value: lang_from_path
+            value: langFromPath
         });
 
         // Add filename as alternative slug (if none in frontmatter)
         createNodeField({
-            name: `slug`,
+            name: `fileName`,
             node,
-            value: slug
+            value: slugFromPath
         });
     }
 };

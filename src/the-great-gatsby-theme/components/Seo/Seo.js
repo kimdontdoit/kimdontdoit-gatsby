@@ -4,15 +4,19 @@ import { useLocation } from "@reach/router";
 import { useStaticQuery, graphql } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
-const Seo = ({
-    title = ``,
-    skipSiteName = false,
-    titleSeparator = `-`,
-    description = ``
-}) => {
+const Seo = (props) => {
+    const {
+        title = ``,
+        skipSiteName = false,
+        titleSeparator = `-`,
+        description = ``,
+        alternatives
+    } = props;
+
     const { languages, language, defaultLanguage, originalPath } = useI18next();
     const { pathname } = useLocation();
 
+    // FIX THIS ?
     const { site } = useStaticQuery(
         graphql`
             query {
@@ -65,22 +69,41 @@ const Seo = ({
             )}
             <meta name="image" content={seoData.image} />
             <link rel="canonical" href={seoData.url} />
-            {languages.map((lang) => {
-                const localizedLink =
-                    lang === defaultLanguage
-                        ? `${siteUrl}${originalPath}`
-                        : `${siteUrl}/${lang}${originalPath}`;
 
-                return (
-                    <link
-                        key={lang}
-                        rel="alternate"
-                        href={localizedLink}
-                        hreflang={lang}
-                    />
-                );
-            })}
-            {/* <link rel="alternate" href={`${siteUrl}${originalPath}`} hreflang="x-default"/> */}
+            {alternatives
+                ? alternatives.map((alternative) => {
+                      const { language: alternativeLanguage, slug } =
+                          alternative;
+                      const localizedLink =
+                          alternativeLanguage === defaultLanguage
+                              ? `${siteUrl}${originalPath}`
+                              : `${siteUrl}/${alternativeLanguage}/${slug}`; // FIX THIS!
+
+                      return (
+                          <link
+                              key={alternativeLanguage}
+                              rel="alternate"
+                              href={localizedLink}
+                              hreflang={alternativeLanguage}
+                          />
+                      );
+                  })
+                : languages.map((alternativeLanguage) => {
+                      const localizedLink =
+                          alternativeLanguage === defaultLanguage
+                              ? `${siteUrl}${originalPath}`
+                              : `${siteUrl}/${alternativeLanguage}${originalPath}`;
+
+                      return (
+                          <link
+                              key={alternativeLanguage}
+                              rel="alternate"
+                              href={localizedLink}
+                              hreflang={alternativeLanguage}
+                          />
+                      );
+                  })}
+
             {/*
              * Open Graph data
              */}
@@ -100,48 +123,58 @@ const Seo = ({
              * TWITTER CARD
              */}
             <meta name="twitter:card" content="summary_large_image" />
-            twitterUsername && (
+
             <meta name="twitter:creator" content={twitterUsername} />
-            <meta name="twitter:site" content={twitterUsername} />)
-            seoData.title &&{" "}
-            <meta name="twitter:title" content={seoData.title} />
-            seoData.description &&{" "}
-            <meta name="twitter:description" content={seoData.description} />
-            seoData.image &&{" "}
-            <meta name="twitter:image" content={seoData.image} />}
+            <meta name="twitter:site" content={twitterUsername} />
+
+            {seoData.title && (
+                <meta name="twitter:title" content={seoData.title} />
+            )}
+
+            {seoData.description && (
+                <meta
+                    name="twitter:description"
+                    content={seoData.description}
+                />
+            )}
+
+            {seoData.image && (
+                <meta name="twitter:image" content={seoData.image} />
+            )}
+
             <script type="application/ld+json">
                 {`
-        {
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "url": "${seoData.siteUrl}",
-          "name": "${seoData.defaultTitle}",
-          "familyName": "${seoData.lastName}",
-          "givenName": "${seoData.firstName}",
-          "knowsLanguage": ["en-US", "fr-CA", "ru-RU"],
-          "image": "https://kimdontdoit.com/media/wow-vladislav-kim.jpeg",
-          "jobTitle": "Front End Developer",
-          "worksFor": {
-            "@type": "Organization",
-            "name": "O2 Web"
-          },
-          "alternateName": ["Kimdontdoit", "Vlad Kim"],
-          "sameAs": [
-            "https://github.com/kimdontdoit",
-            "https://www.instagram.com/kimdontdoit/",
-            "https://www.linkedin.com/in/vladislav-kim-3ba4a1172",
-            "https://twitter.com/kimdontdoit",
-            "https://kimdontdoit.tumblr.com/"
-          ],
-          "email": "mailto:info@kimdontdoit.com",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Montreal",
-            "addressCountry": "Canada",
-            "addressRegion": "Quebec"
-          }
-        }
-      `}
+                {
+                    "@context": "https://schema.org",
+                    "@type": "Person",
+                    "url": "${seoData.siteUrl}",
+                    "name": "${seoData.defaultTitle}",
+                    "familyName": "${seoData.lastName}",
+                    "givenName": "${seoData.firstName}",
+                    "knowsLanguage": ["en-US", "fr-CA", "ru-RU"],
+                    "image": "https://kimdontdoit.com/media/wow-vladislav-kim.jpeg",
+                    "jobTitle": "Front End Developer",
+                    "worksFor": {
+                        "@type": "Organization",
+                        "name": "O2 Web"
+                    },
+                    "alternateName": ["Kimdontdoit", "Vlad Kim"],
+                    "sameAs": [
+                        "https://github.com/kimdontdoit",
+                        "https://www.instagram.com/kimdontdoit/",
+                        "https://www.linkedin.com/in/vladislav-kim-3ba4a1172",
+                        "https://twitter.com/kimdontdoit",
+                        "https://kimdontdoit.tumblr.com/"
+                    ],
+                    "email": "mailto:info@kimdontdoit.com",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Montreal",
+                        "addressCountry": "Canada",
+                        "addressRegion": "Quebec"
+                    }
+                }
+                `}
             </script>
         </Helmet>
     );
