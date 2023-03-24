@@ -64,10 +64,17 @@ const Seo = (props) => {
     );
 
     function getFullUrl(lang, path) {
-        let localizedUrl =
-            lang === defaultLanguage
-                ? `${siteUrl}${originalPath}`
-                : `${siteUrl}/${lang}/${path.replace(/^\/|\/$/g, "")}/`; // regex: remove first and last slash from string
+        let localizedUrl;
+
+        if (lang === defaultLanguage) {
+            localizedUrl = `${siteUrl}${originalPath}`;
+        } else {
+            let editedPath = `${path.replace(/^\/|\/$/g, "")}`; // regex: remove first and last slash from string
+
+            if (editedPath) editedPath += "/";
+
+            localizedUrl = `${siteUrl}/${lang}/${editedPath}`;
+        }
 
         return localizedUrl;
     }
