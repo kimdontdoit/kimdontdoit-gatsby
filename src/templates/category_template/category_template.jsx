@@ -5,51 +5,49 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import { Post } from "../components/Post";
+import { Post } from "../../components/Post";
 
-export default function TypeTemplate({ data }) {
-    const { t } = useI18next("index");
+export default function CategoryTemplate({ data }) {
+    const { t, language } = useI18next("index");
 
-    const { type } = data;
+    const { category } = data;
     const posts = data.posts.nodes;
-
-    const crumbs = [];
+    let crumbs = [];
 
     crumbs.push({
-        label: t("back-to-home"),
-        url: "/"
+        label: t("categories"),
+        url: "/categories"
     });
 
     return (
         <>
-            <Seo title={type.frontmatter.title} />
+            <Seo
+                title={category.frontmatter.title}
+                description={
+                    category.frontmatter.description || category.excerpt
+                }
+            />
+
             <div className="pt-[100px]">
-                <section className={`my-16 container`}>
+                <section className={`pt-16 container pb-16`}>
                     <Pageheader
-                        title={type.frontmatter.title}
-                        subtitle={type.frontmatter.short_description}
+                        title={category.frontmatter.title}
+                        subtitle={category.frontmatter.subtitle}
                         crumbs={crumbs}
-                    ></Pageheader>
+                        color={category.frontmatter.color}
+                    />
                 </section>
 
-                {
-                    /**
-                     * TYPE DESCRIPTION SECTION IN HTML
-                     */
-                    type.html && (
-                        <section className="container">
-                            <div
-                                dangerouslySetInnerHTML={{ __html: type.html }}
-                                itemProp="articleBody"
-                                className={`max-w-screen-lg text-lg`}
-                            ></div>
-                        </section>
-                    )
-                }
+                {category.html && (
+                    <section className="container">
+                        <div
+                            dangerouslySetInnerHTML={{ __html: category.html }}
+                            itemProp="articleBody"
+                            className={`max-w-screen-lg mx-auto text-lg`}
+                        ></div>
+                    </section>
+                )}
 
-                {/**
-                 * TYPE LISTING SECTION IN HTML
-                 */}
                 <section className={`container pb-16`}>
                     <div className="max-w-screen-lg mx-auto">
                         {posts &&
@@ -69,19 +67,23 @@ export default function TypeTemplate({ data }) {
 }
 
 export const query = graphql`
-    query singleType($id: String!, $title: String, $language: String!) {
-        type: markdownRemark(id: { eq: $id }) {
+    query ($id: String!, $title: String, $language: String!) {
+        category: markdownRemark(id: { eq: $id }) {
             id
+            excerpt
+            html
             frontmatter {
                 title
-                short_description
+                subtitle
+                color
             }
         }
         posts: allFile(
             filter: {
                 sourceInstanceName: { eq: "post" }
+                internal: { mediaType: { eq: "text/markdown" } }
                 childMarkdownRemark: {
-                    frontmatter: { type: { eq: $title } }
+                    frontmatter: { category: { eq: $title } }
                     fields: { language: { eq: $language } }
                 }
             }

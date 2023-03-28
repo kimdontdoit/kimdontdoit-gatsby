@@ -12,6 +12,10 @@
     @apply font-display;
   }
 
+  h1 {
+    @apply font-bold md:text-6xl;
+  }
+
   a {
     transition: 0.15s color ease-in-out;
   }

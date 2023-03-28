@@ -51,7 +51,7 @@ export default function IndexPage() {
                         .<span className={`opacity-30`}>{t("hero_2")}</span>
                     </h1>
 
-                    <h1
+                    <h2
                         className={[
                             `opacity-30`,
                             "mb-16",
@@ -60,7 +60,7 @@ export default function IndexPage() {
                         ].join(" ")}
                     >
                         {t(`based_in`)}
-                    </h1>
+                    </h2>
 
                     <Button
                         href="/vladislav-kim-a-propos"
@@ -73,10 +73,10 @@ export default function IndexPage() {
 
             <section className={`block bg-white py-24`}>
                 <div className="container max-w-screen-lg">
-                    <h1 className={`headingTitle`}>
+                    <h2 className={`headingTitle`}>
                         <span className={`highlight`}>Kimdontdoit</span>
                         {t(`mission_title`)}
-                    </h1>
+                    </h2>
                 </div>
             </section>
 
@@ -138,12 +138,12 @@ export default function IndexPage() {
 
             <section className={`block bg-primary py-16 md:py-40`}>
                 <div className="container max-w-screen-lg">
-                    <h1 className={`headingTitle`}>
+                    <h2 className={`headingTitle`}>
                         {t(`objective`)}
                         <span className={`opacity-30`}>
                             #react #web #magento #wordpress #gatsby
                         </span>
-                    </h1>
+                    </h2>
                 </div>
             </section>
 

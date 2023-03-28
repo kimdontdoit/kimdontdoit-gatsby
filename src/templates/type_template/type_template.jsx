@@ -5,49 +5,51 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import { Post } from "../components/Post";
+import { Post } from "../../components/Post";
 
-export default function CategoryTemplate({ data }) {
-    const { t, language } = useI18next("index");
+export default function TypeTemplate({ data }) {
+    const { t } = useI18next("index");
 
-    const { category } = data;
+    const { type } = data;
     const posts = data.posts.nodes;
-    let crumbs = [];
+
+    const crumbs = [];
 
     crumbs.push({
-        label: t("categories"),
-        url: "/categories"
+        label: t("back-to-home"),
+        url: "/"
     });
 
     return (
         <>
-            <Seo
-                title={category.frontmatter.title}
-                description={
-                    category.frontmatter.description || category.excerpt
-                }
-            />
-
+            <Seo title={type.frontmatter.title} />
             <div className="pt-[100px]">
-                <section className={`pt-16 container pb-16`}>
+                <section className={`my-16 container`}>
                     <Pageheader
-                        title={category.frontmatter.title}
-                        subtitle={category.frontmatter.subtitle}
+                        title={type.frontmatter.title}
+                        subtitle={type.frontmatter.short_description}
                         crumbs={crumbs}
-                        color={category.frontmatter.color}
-                    />
+                    ></Pageheader>
                 </section>
 
-                {category.html && (
-                    <section className="container">
-                        <div
-                            dangerouslySetInnerHTML={{ __html: category.html }}
-                            itemProp="articleBody"
-                            className={`max-w-screen-lg mx-auto text-lg`}
-                        ></div>
-                    </section>
-                )}
+                {
+                    /**
+                     * TYPE DESCRIPTION SECTION IN HTML
+                     */
+                    type.html && (
+                        <section className="container">
+                            <div
+                                dangerouslySetInnerHTML={{ __html: type.html }}
+                                itemProp="articleBody"
+                                className={`max-w-screen-lg text-lg`}
+                            ></div>
+                        </section>
+                    )
+                }
 
+                {/**
+                 * TYPE LISTING SECTION IN HTML
+                 */}
                 <section className={`container pb-16`}>
                     <div className="max-w-screen-lg mx-auto">
                         {posts &&
@@ -67,23 +69,19 @@ export default function CategoryTemplate({ data }) {
 }
 
 export const query = graphql`
-    query ($id: String!, $title: String, $language: String!) {
-        category: markdownRemark(id: { eq: $id }) {
+    query singleType($id: String!, $title: String, $language: String!) {
+        type: markdownRemark(id: { eq: $id }) {
             id
-            excerpt
-            html
             frontmatter {
                 title
-                subtitle
-                color
+                short_description
             }
         }
         posts: allFile(
             filter: {
                 sourceInstanceName: { eq: "post" }
-                internal: { mediaType: { eq: "text/markdown" } }
                 childMarkdownRemark: {
-                    frontmatter: { category: { eq: $title } }
+                    frontmatter: { type: { eq: $title } }
                     fields: { language: { eq: $language } }
                 }
             }

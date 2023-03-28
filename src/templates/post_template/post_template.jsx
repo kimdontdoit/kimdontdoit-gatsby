@@ -7,8 +7,8 @@ import "dayjs/locale/fr";
 import Pageheader from "the-great-gatsby-theme/src/components/Pageheader";
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import { useThemeContext } from "../context/ThemeContext";
-import Notice from "../components/Notice";
+import { useThemeContext } from "../../context/ThemeContext";
+import Notice from "../../components/Notice";
 import * as classes from "./post_template.module.css";
 
 export default function PostTemplate({ data, pageContext }) {

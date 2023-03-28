@@ -3,6 +3,17 @@
     @apply mb-6;
   }
 
+  a {
+    @apply border-b border-sky-300;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all;
+
+    &:hover {
+      border-bottom-width: 2px;
+    }
+  }
+
   h2,
   h3,
   h4 {

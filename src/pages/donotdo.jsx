@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { graphql } from "gatsby";
-import dayjs from "dayjs";
-import "dayjs/locale/fr";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
@@ -11,7 +9,6 @@ import { DoNotDo } from "../components/DoNotDo";
 
 export default function AppPage() {
     // const { t, language } = useI18next("index");
-    const currentDate = dayjs().format("D MMMM YYYY");
     // 3am march 24 2023
 
     // T_T donotdo ... wow the name is so bad (written by github copilot)
@@ -20,7 +17,6 @@ export default function AppPage() {
     let [isOpen, setIsOpen] = useState(true);
 
     const handle1PClick = () => {
-        console.log("prout");
         setIsOpen(true);
     };
 
@@ -38,11 +34,9 @@ export default function AppPage() {
             />
             <DoNotDo isOpen={isOpen} setIsOpen={setIsOpen} />
 
-            <div class="block pt-40 md:pt-52 pb-16 md:pb-24">
+            <div className="block pt-40 md:pt-52 pb-16 md:pb-24">
                 <div className="container max-w-screen-lg">
-                    <div>{currentDate}</div>
-
-                    <h1>
+                    <h1 className="mb-8">
                         donotdo, a purposeful dashboard app for collaboration
                         and productivity by Vladislav Kim
                     </h1>
@@ -56,6 +50,7 @@ export default function AppPage() {
                         >
                             1 player
                         </Button>
+
                         <Tooltip
                             id="dnd-2p-tooltip"
                             title="Coming soon... mmmmmaybe"

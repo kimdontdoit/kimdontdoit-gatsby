@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { graphql } from "gatsby";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
-import { PortfolioPost } from "../components/Post";
+import { PortfolioPost } from "../../components/Post";
 
 import * as classes from "./portfolio.module.css";
 
