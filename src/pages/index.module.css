@@ -8,6 +8,17 @@
   & button {
     cursor: default;
   }
+
+  .name {
+    @apply sr-only md:not-sr-only;
+    color: var(--color-accent);
+    position: absolute;
+    font-weight: 600;
+    font-size: 15px;
+    white-space: nowrap;
+    opacity: 90%;
+    transform: rotate(6deg) translate(-50px, -8px);
+  }
 }
 
 .card {

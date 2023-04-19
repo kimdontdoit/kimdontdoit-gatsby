@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby-plugin-react-i18next";
+import { useI18next, Link } from "gatsby-plugin-react-i18next";
 import { useLocation } from "@reach/router";
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
@@ -11,6 +11,7 @@ import * as classes from "./Logo.module.css";
 
 export const Logo = ({ sticky, light }) => {
     const { pathname } = useLocation();
+    const { t } = useI18next();
 
     const logo = (
         <img
@@ -29,7 +30,7 @@ export const Logo = ({ sticky, light }) => {
     return (
         <Tooltip
             id="logo-tooltip"
-            title="Back to home"
+            title={t("back-to-home")}
             bg="#0ea5e9"
             mt="0.5rem"
         >

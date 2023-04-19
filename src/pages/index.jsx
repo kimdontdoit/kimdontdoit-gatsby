@@ -47,6 +47,9 @@ export default function IndexPage() {
                             >
                                 Vlad
                             </button>
+                            <span className={classes.name}>
+                                (Vladislav Kim!)
+                            </span>
                         </div>
                         .<span className={`opacity-30`}>{t("hero_2")}</span>
                     </h1>
