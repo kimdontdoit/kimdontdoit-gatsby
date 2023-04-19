@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "gatsby-plugin-react-i18next";
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
-import * as classes from "./button.module.css";
+import * as classes from "./Button.module.css";
 
-const Button = (props) => {
+export const Button = (props) => {
     const { children, onClick, type, disabled, className = "", href } = props;
 
     const buttonClasses = classNames(classes.btn, className);
@@ -46,5 +46,3 @@ const Button = (props) => {
 
     return passiveButton;
 };
-
-export default Button;

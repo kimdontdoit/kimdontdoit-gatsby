@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby-plugin-react-i18next";
-import Button from "../../Button";
-import { Logo } from "./Logo";
-
 import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
 import ScrollProgress from "../../ScrollProgress";
 import SocialLinks from "../../SocialLinks";
+import { Button } from "../../Button";
+import { Modal } from "../../Modal";
 
+import { Logo } from "./Logo";
 import { useHeader } from "./useHeader";
 import * as classes from "./Header.module.css";
 
 export const Header = () => {
     const { sticky, t, headerRef } = useHeader();
+    let [mobileHeaderOpen, setMobileHeaderOpen] = useState(false);
+
+    const logo = <Logo sticky={sticky} /*light={headerLight}*/ />;
 
     const navItems = [
         {
@@ -26,6 +29,37 @@ export const Header = () => {
         }
     ];
 
+    const nav = (
+        <nav
+            className={classes.nav}
+            aria-label="Main Navigation"
+            role="navigation"
+        >
+            <ul className={classes.navItems}>
+                {navItems.map((navItem) => (
+                    <li className={classes.navItem} key={navItem.href}>
+                        <Link
+                            to={navItem.href}
+                            className={`text-base font-medium`}
+                            activeClassName={classes.activeLink}
+                        >
+                            {navItem.label}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+            <ul className={`md:hidden`}>
+                <li className={classes.navItem}>
+                    <div className={`text-base font-medium`}>
+                        <button onClick={() => setMobileHeaderOpen(true)}>
+                            MENU
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    );
+
     return (
         <>
             <ScrollProgress />
@@ -38,30 +72,9 @@ export const Header = () => {
                 {/** Add border under nav */}
                 <div className={classes.innerHeader}>
                     <div className={`flex-1 flex text-base`}>
-                        <Logo sticky={sticky} /*light={headerLight}*/ />
+                        {logo}
                         {/** Accessibility! */}
-                        <nav
-                            className={classes.nav}
-                            aria-label="Main Navigation"
-                            role="navigation"
-                        >
-                            <ul>
-                                {navItems.map((navItem) => (
-                                    <li
-                                        className={classes.navItem}
-                                        key={navItem.href}
-                                    >
-                                        <Link
-                                            to={navItem.href}
-                                            className={`text-base font-medium`}
-                                            activeClassName={classes.activeLink}
-                                        >
-                                            {navItem.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </nav>
+                        {nav}
                     </div>
 
                     <div
@@ -75,6 +88,23 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
+            <Modal
+                isOpen={mobileHeaderOpen}
+                setIsOpen={setMobileHeaderOpen}
+                classes={classes}
+            >
+                <button onClick={() => setMobileHeaderOpen(false)}>
+                    Deactivate
+                </button>
+                {logo}
+                {nav}
+
+                <Button href="/contact" className={`${classes.cta}`}>
+                    Get in touch
+                </Button>
+
+                <SocialLinks />
+            </Modal>
         </>
     );
 };

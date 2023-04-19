@@ -5,7 +5,7 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import Button from "../components/Button";
+import { Button } from "../components/Button";
 import memoji from "../images/memoji_bump.png";
 import { useThemeContext } from "../context/ThemeContext";
 

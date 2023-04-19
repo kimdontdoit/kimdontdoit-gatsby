@@ -23,8 +23,11 @@
   @apply md:ml-16;
 
   ul {
-    @apply flex flex-row;
   }
+}
+
+.navItems {
+  @apply hidden md:flex flex-row;
 }
 
 .navItem {
@@ -79,4 +82,8 @@
   .innerHeader {
     @apply border-b border-zinc-200;
   }
+}
+
+.dialog {
+  height: auto;
 }

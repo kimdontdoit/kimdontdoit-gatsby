@@ -3,6 +3,8 @@ import dayjs from "dayjs";
 import "dayjs/locale/fr";
 import { Dialog } from "@headlessui/react";
 
+import { Modal } from "../Modal";
+
 import * as classes from "./DoNotDo.module.css";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/#just-show-me-the-code
@@ -130,58 +132,52 @@ export const DoNotDo = (props) => {
     // @todo onboard
 
     return (
-        <Dialog
-            className={classes.overlay}
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
-        >
-            <Dialog.Panel className={classes.dialog}>
-                <div className={classes.topPanel}>
-                    <button onClick={() => setIsOpen(false)}>Quit</button>
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <div className={classes.topPanel}>
+                <button onClick={() => setIsOpen(false)}>Quit</button>
 
-                    <div>{currentDate}</div>
-                </div>
+                <div>{currentDate}</div>
+            </div>
 
-                <div className={classes.widgetsContainer}>
-                    <div className={classes.widgetWrap}>
-                        <div className={classes.widget}>
-                            <div className={classes.widgetHeading}>
-                                <h3 className={classes.title}>Pomodoro</h3>
-                            </div>
+            <div className={classes.widgetsContainer}>
+                <div className={classes.widgetWrap}>
+                    <div className={classes.widget}>
+                        <div className={classes.widgetHeading}>
+                            <h3 className={classes.title}>Pomodoro</h3>
+                        </div>
 
-                            <div className={classes.widgetBody}>
-                                {`${pomodoro.timeLeftString}`}
-                            </div>
+                        <div className={classes.widgetBody}>
+                            {`${pomodoro.timeLeftString}`}
+                        </div>
 
-                            <div className={classes.widgetFooter}>
-                                <div className={classes.actions}>
-                                    <button
-                                        className={classes.start}
-                                        onClick={handleClick}
-                                        data-action="start"
-                                    >
-                                        Start
-                                    </button>
-                                    <button
-                                        className={classes.pause}
-                                        onClick={handleClick}
-                                        data-action="pause"
-                                    >
-                                        Pause
-                                    </button>
-                                    <button
-                                        className={classes.end}
-                                        onClick={handleClick}
-                                        data-action="stop"
-                                    >
-                                        Reset
-                                    </button>
-                                </div>
+                        <div className={classes.widgetFooter}>
+                            <div className={classes.actions}>
+                                <button
+                                    className={classes.start}
+                                    onClick={handleClick}
+                                    data-action="start"
+                                >
+                                    Start
+                                </button>
+                                <button
+                                    className={classes.pause}
+                                    onClick={handleClick}
+                                    data-action="pause"
+                                >
+                                    Pause
+                                </button>
+                                <button
+                                    className={classes.end}
+                                    onClick={handleClick}
+                                    data-action="stop"
+                                >
+                                    Reset
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </Dialog.Panel>
-        </Dialog>
+            </div>
+        </Modal>
     );
 };

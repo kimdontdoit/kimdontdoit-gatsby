@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import { Tooltip } from "../components/Tooltip";
-import Button from "../components/Button";
+import { Button } from "../components/Button";
 import { DoNotDo } from "../components/DoNotDo";
 
 export default function AppPage() {

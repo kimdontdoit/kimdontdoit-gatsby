@@ -1,24 +1,21 @@
 import React from "react";
+import { Dialog } from "@headlessui/react";
+import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
-import ContactForm from "../Form/ContactForm";
-import * as classes from "./modal.module.css";
+import * as classes from "./Modal.module.css";
 
-const Modal = (props) => {
-    const {} = props;
+export const Modal = (props) => {
+    const { isOpen, setIsOpen, children, classes: propsClasses } = props;
+
+    const dialogClasses = classNames(classes.dialog, propsClasses.dialog);
 
     return (
-        <div className={classes.root}>
-            <div className={classes.innerModal}>
-                <h3>Contact</h3>
-
-                <ContactForm />
-
-                <p>
-                    Feeling shy? <strong>Send me an email instead</strong>
-                </p>
-            </div>
-        </div>
+        <Dialog
+            className={classes.overlay}
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+        >
+            <Dialog.Panel className={dialogClasses}>{children}</Dialog.Panel>
+        </Dialog>
     );
 };
-
-export default Modal;
