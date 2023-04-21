@@ -15,6 +15,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@studio-freight/lenis": "^1.0.9",
+    "@supabase/supabase-js": "^2.21.0",
     "dayjs": "^1.11.7",
     "gatsby": "^5.9.0",
     "gatsby-plugin-image": "^3.9.0",
