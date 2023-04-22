@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo, useState } from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 import { graphql } from "gatsby";
 import { useForm } from "react-hook-form";
 
@@ -6,10 +6,12 @@ import Seo from "the-great-gatsby-theme/src/components/Seo";
 
 import { DoNotDo } from "../components/DoNotDo";
 
-import "./donotdo.css";
+import * as classes from "./donotdo.module.css";
 
 const Prompt = (props) => {
     const { prompts } = props;
+
+    const cmdRef = useRef(null);
 
     const [title, setTitle] = useState("");
     const [lines, setLines] = useState([]);
@@ -61,7 +63,6 @@ const Prompt = (props) => {
             reset();
         } else {
             addLine("That's it folks!");
-            setIsOpen(true);
             setDisabled(true);
         }
     };
@@ -81,34 +82,51 @@ const Prompt = (props) => {
         return true;
     });
 
+    const [cmdClasses, setCmdClasses] = useState([classes.cmd]);
+
+    useEffect(() => {
+        if (isSubmitting) {
+            setCmdClasses([classes.cmd, classes.shake]);
+        }
+
+        setTimeout(() => {
+            setCmdClasses([classes.cmd]);
+        }, 1000);
+    }, [isSubmitting]);
+
     return (
-        <div className="root">
-            <div className="cmd">
-                {title ? <div className="menu">{title}</div> : null}
+        <div className={cmdClasses.join(" ")} ref={cmdRef}>
+            {title ? <div className={classes.menu}>{title}</div> : null}
 
-                <div className="cmdInner">
-                    <div className="lines">
-                        {lines.map((line) => {
-                            return <div className="line">{line}</div>;
-                        })}
-
-                        {!disabled && (
-                            <div className="line">
-                                <span>
-                                    <form onSubmit={handleSubmit(onSubmit)}>
-                                        <input
-                                            type="text"
-                                            {...register("prompt", {
-                                                validate: (value) =>
-                                                    currentValidation(value)
-                                            })}
-                                            autoFocus
-                                        />
-                                    </form>
-                                </span>
+            <div className={classes.cmdInner}>
+                <div className={classes.lines}>
+                    {lines.map((line, index) => {
+                        return (
+                            <div
+                                key={`${line}-${index}`}
+                                className={classes.line}
+                            >
+                                {line}
                             </div>
-                        )}
-                    </div>
+                        );
+                    })}
+
+                    {!disabled && (
+                        <div className={classes.line}>
+                            <span>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <input
+                                        type="text"
+                                        {...register("prompt", {
+                                            validate: (value) =>
+                                                currentValidation(value)
+                                        })}
+                                        autoFocus
+                                    />
+                                </form>
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
@@ -160,12 +178,12 @@ export default function AppPage() {
             />
             <DoNotDo isOpen={isOpen} setIsOpen={setIsOpen} />
 
-            <div className="landing">
+            <div className={classes.landing}>
                 {/* T_T paid plan to save in the cloud, else load from file + localstorage */}
 
-                <div className="container">
-                    <div className="intro">
-                        <span className="badge">v.0.0.2</span>
+                <div className={classes.container}>
+                    <div className={classes.intro}>
+                        <span className={classes.badge}>v.0.0.2</span>
                         <h1>⌘Dnd</h1>
                         <p>
                             Smart, purposeful dashboard app for collaboration

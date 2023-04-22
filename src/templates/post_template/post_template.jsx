@@ -76,7 +76,7 @@ export default function PostTemplate({ data, pageContext }) {
                     <Pageheader title={title} center={true} crumbs={crumbs}>
                         {shortDate && (
                             <p
-                                className={`font-medium font-display mt-4 opacity-69`}
+                                className={`font-medium font-display mt-4 opacity-[.69]`}
                             >
                                 {shortDate}
                                 {post.timeToRead > 1 &&
@@ -104,11 +104,11 @@ export default function PostTemplate({ data, pageContext }) {
                         <div className="md:max-w-2xl mx-auto font-display">
                             {date && (
                                 <p
-                                    className={`font-medium mt-4 mb-0 opacity-69`}
+                                    className={`font-medium mt-4 mb-0 opacity-[.69]`}
                                 >{`${t("published-on")} ${date}`}</p>
                             )}
 
-                            <p className={`font-medium opacity-69`}>{`${t(
+                            <p className={`font-medium opacity-[.69]`}>{`${t(
                                 `published-by`
                             )} Vladislav Kim`}</p>
                         </div>
