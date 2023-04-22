@@ -1,11 +1,119 @@
-import React, { useState } from "react";
+import React, { useEffect, useCallback, useMemo, useState } from "react";
 import { graphql } from "gatsby";
+import { useForm } from "react-hook-form";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
-import { Tooltip } from "../components/Tooltip";
-import Button from "../components/Button";
 import { DoNotDo } from "../components/DoNotDo";
+
+import "./donotdo.css";
+
+const Prompt = (props) => {
+    const { prompts } = props;
+
+    const [title, setTitle] = useState("");
+    const [lines, setLines] = useState([]);
+    const [promptId, setPromptId] = useState(0);
+    const [disabled, setDisabled] = useState(false);
+
+    const escFunction = useCallback((event) => {
+        if (event.key === "Escape") {
+            //Do whatever when esc is pressed
+        }
+    }, []);
+
+    useEffect(() => {
+        document.addEventListener("keydown", escFunction, false);
+
+        return () => {
+            document.removeEventListener("keydown", escFunction, false);
+        };
+    }, [escFunction]);
+
+    const currentLine = useCallback(() => {
+        lines.slice(-1).pop();
+    }, [lines]);
+
+    useEffect(() => {
+        // What happens when the current line changes
+    }, [currentLine]);
+
+    useEffect(() => {
+        addLine(prompts[promptId]?.prompt);
+    }, [promptId]);
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors, isSubmitSuccessful, isSubmitting }
+    } = useForm();
+
+    const onSubmit = (data) => {
+        const { prompt } = data;
+
+        if (prompt) {
+            addLine(prompt);
+        }
+
+        if (prompts[promptId + 1]) {
+            setPromptId(promptId + 1);
+            reset();
+        } else {
+            addLine("That's it folks!");
+            setIsOpen(true);
+            setDisabled(true);
+        }
+    };
+
+    const addLine = async (line) => {
+        await setLines([...lines, line]);
+    };
+
+    const currentValidation = useCallback((value) => {
+        if (
+            isSubmitting &&
+            typeof prompts[promptId]?.prompt_metas?.validation === "function"
+        ) {
+            return prompts[promptId]?.prompt_metas?.validation(value);
+        }
+
+        return true;
+    });
+
+    return (
+        <div className="root">
+            <div className="cmd">
+                {title ? <div className="menu">{title}</div> : null}
+
+                <div className="cmdInner">
+                    <div className="lines">
+                        {lines.map((line) => {
+                            return <div className="line">{line}</div>;
+                        })}
+
+                        {!disabled && (
+                            <div className="line">
+                                <span>
+                                    <form onSubmit={handleSubmit(onSubmit)}>
+                                        <input
+                                            type="text"
+                                            {...register("prompt", {
+                                                validate: (value) =>
+                                                    currentValidation(value)
+                                            })}
+                                            autoFocus
+                                        />
+                                    </form>
+                                </span>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default function AppPage() {
     // const { t, language } = useI18next("index");
@@ -14,15 +122,33 @@ export default function AppPage() {
     // T_T donotdo ... wow the name is so bad (written by github copilot)
     // hey, you could probably link ads to this page
 
-    let [isOpen, setIsOpen] = useState(true);
+    let [isOpen, setIsOpen] = useState(false);
 
-    const handle1PClick = () => {
-        setIsOpen(true);
-    };
-
-    const handleTClick = () => {
-        console.log("prout prout");
-    };
+    const prompts = [
+        {
+            prompt: "Not sure how I came up with this...",
+            prompt_metas: {
+                type: "simple",
+                choices: [],
+                type: ""
+            }
+        },
+        {
+            prompt: "Are you ready for this?",
+            prompt_metas: {
+                type: "bool",
+                choices: ["Yes [y]", "No [n]"],
+                validation: (val) => {
+                    return ["Y", "N"].includes(val.toUpperCase());
+                }
+            }
+        },
+        {
+            prompt: "Actually validation doesn't work yet."
+        },
+        { prompt: "Type in your email to login or register" },
+        { prompt: "Type in a unique password (minimum of 8 characters)" }
+    ];
 
     return (
         <>
@@ -34,37 +160,20 @@ export default function AppPage() {
             />
             <DoNotDo isOpen={isOpen} setIsOpen={setIsOpen} />
 
-            <div className="block pt-40 md:pt-52 pb-16 md:pb-24">
-                <div className="container max-w-screen-lg">
-                    <h1 className="mb-8">
-                        donotdo, a purposeful dashboard app for collaboration
-                        and productivity by Vladislav Kim
-                    </h1>
+            <div className="landing">
+                {/* T_T paid plan to save in the cloud, else load from file + localstorage */}
 
-                    {/* T_T paid plan to save in the cloud, else load from file + localstorage */}
-
-                    <div className="flex">
-                        <Button
-                            className="bg-zinc-900 text-white"
-                            onClick={handle1PClick}
-                        >
-                            1 player
-                        </Button>
-
-                        <Tooltip
-                            id="dnd-2p-tooltip"
-                            title="Coming soon... mmmmmaybe"
-                            mt="0.5rem"
-                        >
-                            <Button
-                                className="bg-zinc-900 text-white ml-2"
-                                onClick={handle1PClick}
-                                disabled
-                            >
-                                Team player
-                            </Button>
-                        </Tooltip>
+                <div className="container">
+                    <div className="intro">
+                        <span className="badge">v.0.0.2</span>
+                        <h1>⌘Dnd</h1>
+                        <p>
+                            Smart, purposeful dashboard app for collaboration
+                            and productivity.
+                        </p>
                     </div>
+
+                    <Prompt prompts={prompts} />
                 </div>
             </div>
         </>
