@@ -52,6 +52,6 @@
     "postcss": "^8.4.23",
     "postcss-import": "^15.1.0",
     "postcss-reporter": "^7.0.5",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.8"
   }
 }
