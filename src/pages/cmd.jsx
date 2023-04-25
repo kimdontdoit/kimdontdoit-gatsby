@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
@@ -21,6 +21,10 @@ export default function Admin() {
             }
         }
     ];
+
+    // fetch the project
+    // fetch the initial Prompt
+    // get the Prompt's metas
 
     const config = {
         apiKey: "123", // @TODO
