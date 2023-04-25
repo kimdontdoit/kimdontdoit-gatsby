@@ -11,6 +11,9 @@
   --cmd-font-size: 13px;
 }
 
+.cmdInner {
+}
+
 .menu {
   font-size: var(--cmd-font-size);
   text-align: center;
@@ -20,39 +23,33 @@
   height: 320px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .line {
   font-size: var(--cmd-font-size);
   padding: 4px 8px;
-  line-height: 1;
-
-  span {
-    display: flex;
-    align-items: center;
-
-    &:before {
-      content: "❯";
-    }
-  }
-
-  &:first-of-type {
-    padding-top: 8px;
-  }
-
-  &:last-of-type {
-  }
+  line-height: 15px;
 
   input {
     background: none;
     padding-left: 8px;
-    height: 13px;
 
     &:focus {
       outline: none;
     }
   }
 }
+
+.innerLine {
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: "❯";
+  }
+}
+
 .menu {
   border-bottom: 1px solid #e2e2e2;
 }

@@ -39,6 +39,7 @@ export default function AppPage() {
         {
             prompt: "Actually validation doesn't work yet."
         },
+        { prompt: "What's your name?", prompt_metas: { type: "login" } },
         { prompt: "Type in your email to login or register" },
         { prompt: "Type in a unique password (minimum of 8 characters)" }
     ];
