@@ -1,2 +1,2 @@
 export { Post } from "./Post";
-export { PortfolioPost } from "./PortfolioPost";
+export { WpPost } from "./WpPost";

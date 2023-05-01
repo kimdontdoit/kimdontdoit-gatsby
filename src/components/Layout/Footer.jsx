@@ -32,7 +32,7 @@ const Footer = () => {
 
                 <div>
                     <p className={`opacity-30`}>
-                        {`Kimdontdoit copyright 2023`}
+                        {`kimdontdoit-ai copyright 2023`}
                         <br />
                         {`${t("copyright-line")} `}
                         <a
@@ -43,10 +43,6 @@ const Footer = () => {
                             Gatsby
                         </a>
                         {` — ${t("open-source")}`}
-                        <br />
-                        <Link to="/donotdo">
-                            <span className="opacity-[.69]">{`donotdo`}</span>
-                        </Link>
                     </p>
                 </div>
 

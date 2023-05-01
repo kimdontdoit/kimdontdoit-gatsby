@@ -2,7 +2,7 @@ import React from "react";
 
 import { Header } from "./Header";
 import Footer from "./Footer";
-import Cursor from "../Cursor";
+import { Cursor } from "../Cursor";
 // import Modal from "../Modal";
 
 export function Layout({ children, ...props }) {

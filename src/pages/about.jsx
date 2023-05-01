@@ -12,7 +12,6 @@ export default function AboutPage() {
             <Seo title={t(`about-title`)} />
 
             <div className="pt-[100px]">
-                {" "}
                 <section className={`my-16`}>
                     <div className={`container max-w-screen-lg mx-auto`}>
                         <h1 className={`text-4xl font-bold`}>

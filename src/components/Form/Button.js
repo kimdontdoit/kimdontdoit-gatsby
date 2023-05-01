@@ -1,3 +1,5 @@
+/* import React from "react";
+
 export const Button = ({ children, ...otherProps }) => {
     return (
         <button
@@ -8,3 +10,4 @@ export const Button = ({ children, ...otherProps }) => {
         </button>
     );
 };
+ */

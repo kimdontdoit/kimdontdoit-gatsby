@@ -14,13 +14,14 @@
 
 /* Header Elements */
 .cta {
-  @apply self-center text-sm  px-4 py-2.5 mr-3 border bg-zinc-900 border-zinc-900 text-white;
+  @apply self-center text-sm px-4 py-2.5 mr-3 border bg-zinc-900 border-zinc-900 text-white;
 }
 
 .nav {
-  align-self: center;
   @apply ml-8;
   @apply md:ml-16;
+
+  align-self: center;
 
   ul {
     @apply flex flex-row;
@@ -79,4 +80,15 @@
   .innerHeader {
     @apply border-b border-zinc-200;
   }
+}
+
+.logo {
+  font-weight: 700;
+  background: white;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+
+  @apply flex rounded-md;
 }

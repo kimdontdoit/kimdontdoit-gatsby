@@ -1,1 +1,2 @@
-export { default } from "./Cursor";
+export { Cursor } from "./Cursor";
+export { useCursor } from "./useCursor";

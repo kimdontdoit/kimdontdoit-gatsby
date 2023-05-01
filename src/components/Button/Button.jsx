@@ -1,13 +1,29 @@
 import React from "react";
 import { Link } from "gatsby-plugin-react-i18next";
-import classNames from "the-great-gatsby-theme/src/utils/classNames";
+//import classNames from "the-great-gatsby-theme/src/utils/classNames";
+import classNames from "classnames";
 
-import * as classes from "./button.module.css";
+import * as defaultClasses from "./Button.module.css";
 
-const Button = (props) => {
-    const { children, onClick, type, disabled, className = "", href } = props;
+export const Button = (props) => {
+    const {
+        label,
+        className,
+        children,
+        onClick,
+        type,
+        disabled,
+        classes: propsClasses,
+        href
+    } = props;
 
+    const classes = {
+        ...defaultClasses,
+        ...propsClasses
+    };
     const buttonClasses = classNames(classes.btn, className);
+
+    const value = label || children;
 
     const passiveButton = <button className={buttonClasses}>{children}</button>;
 
@@ -18,33 +34,27 @@ const Button = (props) => {
             className={buttonClasses}
             disabled={disabled}
         >
-            {children}
+            {value}
         </button>
-    );
-
-    const htmlLink = (
-        <a href={href} className={buttonClasses}>
-            {children}
-        </a>
-    );
-
-    const gatsbyLink = (
-        <Link to={href} className={buttonClasses}>
-            {children}
-        </Link>
     );
 
     if (href) {
         if (href.startsWith("mailto:")) {
-            return htmlLink;
+            return (
+                <a href={href} className={buttonClasses}>
+                    {value}
+                </a>
+            );
         }
 
-        return gatsbyLink;
+        return (
+            <Link to={href} className={buttonClasses}>
+                {value}
+            </Link>
+        );
     }
 
     if (onClick) return clickableButton;
 
     return passiveButton;
 };
-
-export default Button;
