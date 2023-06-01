@@ -1,5 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { supabase } from "../supabaseClient";
+import { useQuery } from "@tanstack/react-query";
 
 import Seo from "the-great-gatsby-theme/src/components/Seo";
 
@@ -23,6 +25,16 @@ export default function Admin() {
     ];
 
     // fetch the project
+    /*     const fetchProject = async () => await supabase.from("projects").select();
+
+    const [projects, setProjects] = useState([]);
+
+    const { data: projectsData, isLoading } = useQuery({
+        queryKey: ["projects"],
+        queryFn: fetchProjects
+    });
+ */
+
     // fetch the initial Prompt
     // get the Prompt's metas
 
@@ -30,7 +42,7 @@ export default function Admin() {
         apiKey: "123", // @TODO
         initialPrompt: {
             id: 1,
-            prompt: "Welcome\nLogin or create an account to continue", // @TODO: take this from the DB
+            prompt: "Welcome\nLogin or create an account to manage your cmd", // @TODO: take this from the DB
             metas: {
                 title: "Login",
                 type: "choices",
@@ -41,6 +53,8 @@ export default function Admin() {
             }
         }
     };
+
+    const prompts = [""];
 
     return (
         <>
