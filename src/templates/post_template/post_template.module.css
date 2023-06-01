@@ -1,0 +1,61 @@
+.content {
+  p {
+    @apply mb-6;
+  }
+
+  a {
+    @apply border-b border-sky-300;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all;
+
+    &:hover {
+      border-bottom-width: 2px;
+    }
+  }
+
+  h2,
+  h3,
+  h4 {
+    @apply font-bold;
+  }
+
+  h2 {
+    @apply text-3xl;
+    @apply mb-4 mt-16;
+  }
+
+  h3 {
+    @apply text-2xl;
+    @apply mb-4;
+  }
+
+  h4 {
+    @apply text-xl;
+    @apply -mt-4 mb-4;
+  }
+}
+
+.toc {
+  @apply ml-auto;
+  @apply hidden lg:block;
+
+  /* h2 */
+  ul {
+    p {
+      @apply mb-1;
+    }
+
+    /* h3 */
+    ul {
+      li {
+        @apply pl-3;
+
+        /* h4 */
+        ul {
+          display: none;
+        }
+      }
+    }
+  }
+}

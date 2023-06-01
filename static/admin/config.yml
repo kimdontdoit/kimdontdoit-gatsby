@@ -1,0 +1,215 @@
+i18n:
+  structure: multiple_folders
+  locales: [fr, en]
+  default_locale: fr
+
+show_preview_links: false
+
+#local_backend: true
+media_folder: static/media
+public_folder: /media
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
+
+collections:
+  - name: "post"
+    label: "Posts"
+    label_singular: "Post"
+    description: "Post Collection"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - {
+          label: "Template",
+          name: "template",
+          widget: hidden,
+          default: single-post,
+          i18n: duplicate,
+        }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+        # defaults to current datetime
+      - {
+          label: "Publish Date",
+          name: "publish_date",
+          widget: "datetime",
+          i18n: duplicate,
+        }
+        # defaults to Vladislav Kim
+      - {
+          label: "Author(s)",
+          name: "authors",
+          widget: "relation",
+          collection: "authors",
+          multiple: true,
+          searchFields: ["name"],
+          valueField: "name",
+          min: 1,
+          default: ["Vladislav Kim"],
+          i18n: duplicate,
+        }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "relation",
+          collection: "categories",
+          searchFields: ["title"],
+          valueField: "title",
+          i18n: duplicate,
+        }
+      - {
+          label: "Type",
+          name: "type",
+          widget: "relation",
+          collection: "types",
+          searchFields: ["title"],
+          valueField: "title",
+          default: "Article",
+          i18n: duplicate,
+        }
+      - {
+          label: "Featured Image",
+          name: "featured_img",
+          widget: image,
+          required: false,
+          i18n: duplicate,
+        }
+      - {
+          label: "Body",
+          name: "body",
+          widget: "markdown",
+          required: false,
+          i18n: true,
+        }
+      - {
+          label: "Short description",
+          name: short_description,
+          widget: text,
+          required: false,
+          i18n: true,
+        }
+
+  ### CATEGORIES COLLECTION
+  - name: categories
+    label: "Categories"
+    label_singular: "Category"
+    preview: false
+    publish: false
+    folder: content/categories
+    slug: "{{slug}}"
+    create: true
+    i18n: true
+    fields:
+      - {
+          label: Template,
+          name: template,
+          widget: hidden,
+          default: post_category,
+          i18n: duplicate,
+        }
+      - { label: Title, name: title, widget: string, i18n: true }
+      - {
+          label: Subtitle,
+          name: subtitle,
+          widget: string,
+          required: false,
+          i18n: true,
+        }
+      - {
+          label: "Short description",
+          name: short_description,
+          widget: text,
+          required: false,
+          i18n: true,
+        }
+      - {
+          label: Color,
+          name: color,
+          widget: color,
+          required: false,
+          i18n: duplicate,
+        }
+
+  ### AUTHORS COLLECTION
+  - name: authors
+    label: "Authors"
+    label_singular: "Author"
+    preview: false
+    publish: false
+    folder: content/authors
+    slug: "{{slug}}"
+    create: true
+    i18n: true
+    fields:
+      - {
+          label: Template,
+          name: template,
+          widget: hidden,
+          default: post_author,
+          i18n: duplicate,
+        }
+      - { label: Name, name: name, widget: string, i18n: duplicate }
+      - {
+          label: URL,
+          name: url,
+          widget: string,
+          required: false,
+          i18n: duplicate,
+        }
+      - {
+          label: "Author image",
+          name: author_img,
+          widget: image,
+          required: false,
+          i18n: duplicate,
+        }
+      - {
+          label: Bio,
+          name: body,
+          widget: markdown,
+          required: false,
+          i18n: true,
+        }
+
+  ### POST TYPES COLLECTION
+  - name: types
+    label: "Post Types"
+    label_singular: "Post Type"
+    preview: false
+    publish: false
+    folder: content/types
+    slug: "{{slug}}"
+    create: true
+    i18n: true
+    fields:
+      - {
+          label: Template,
+          name: template,
+          widget: hidden,
+          default: post_type,
+          i18n: duplicate,
+        }
+      - { label: Title, name: title, widget: string, i18n: true }
+      - {
+          label: Subtitle,
+          name: subtitle,
+          widget: string,
+          required: false,
+          i18n: true,
+        }
+      - {
+          label: "Short description",
+          name: short_description,
+          widget: text,
+          required: false,
+          i18n: true,
+        }

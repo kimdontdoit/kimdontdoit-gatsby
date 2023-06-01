@@ -23,9 +23,9 @@ export default function ContactPage() {
         };
 
         const {
-            /*data: responseData,
+            data: responseData,
             message,
-            success */
+            success
         } = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
             headers: {

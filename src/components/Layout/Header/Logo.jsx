@@ -5,49 +5,25 @@ import classNames from "the-great-gatsby-theme/src/utils/classNames";
 
 import { Tooltip } from "../../Tooltip";
 
-import * as defaultClasses from "./Logo.module.css";
+import logoDark from "../../../images/kimdontdoit-logo-2011.png";
+import logoLight from "../../../images/kimdontdoit-logo-2011-l.png";
+import * as classes from "./Logo.module.css";
 
-export const Logo = (props) => {
-    const {
-        sticky,
-        tooltip,
-        className,
-        classes: propsClasses,
-        light,
-        logoAlt = "Logo",
-        image,
-        text
-    } = props;
-
-    const classes = {
-        ...defaultClasses,
-        ...propsClasses
-    };
-
+export const Logo = ({ sticky, light }) => {
     const { pathname } = useLocation();
     const { t } = useI18next();
 
-    const logoClasses = classNames(
-        classes.root,
-        sticky && classes.sticky,
-        className
-    );
-
-    const logoTextClasses = classNames(className);
-
-    const logo = image ? (
+    const logo = (
         <img
-            alt={logoAlt}
-            src={image}
+            alt="Kimdontdoit WAVY logo"
+            src={light ? logoLight : logoDark}
             height="69"
             width="151"
-            className={logoClasses}
+            className={classNames(classes.root, sticky && classes.sticky)}
         />
-    ) : (
-        <h2 className={logoTextClasses}>{text}</h2>
     );
 
-    if (pathname === "/" || pathname === "/en/" || !tooltip) {
+    if (pathname === "/" || pathname === "/en/") {
         return logo;
     }
 

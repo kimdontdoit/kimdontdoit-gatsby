@@ -1,4 +1,5 @@
 import React from "react";
+import "./src/styles/prism-theme.css";
 import "./src/styles/global.css";
 
 import { Layout } from "./src/components/Layout/Layout";

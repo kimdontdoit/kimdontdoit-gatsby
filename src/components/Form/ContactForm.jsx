@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "gatsby-plugin-react-i18next";
 import { useI18next } from "gatsby-plugin-react-i18next";
 import { useForm } from "react-hook-form";
 
 import { Input, TextArea } from "../Form";
-import { Button } from "../Button";
+import Button from "../Button";
 
 export const ContactForm = ({ onSubmit }) => {
     const { t } = useI18next("index");

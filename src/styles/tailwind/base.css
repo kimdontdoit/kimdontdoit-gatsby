@@ -1,6 +1,6 @@
 @layer base {
   body {
-    color: #454c52;
+    @apply text-zinc-900;
   }
 
   h1,
@@ -9,7 +9,6 @@
   h4,
   h5,
   h6 {
-    color: #1a1d1f;
     @apply font-display;
   }
 

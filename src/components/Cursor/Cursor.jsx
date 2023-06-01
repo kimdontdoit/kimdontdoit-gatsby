@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { useCursor } from "./useCursor";
+import { useThemeContext } from "../../context/ThemeContext";
+
 import "./Cursor.css";
 
-export const Cursor = () => {
-    const { cursorImage, showCursorImage, setCursorImage } = useCursor();
+const Cursor = () => {
+    const { cursorImage, showCursorImage, setCursorImage } = useThemeContext();
 
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -46,3 +47,5 @@ export const Cursor = () => {
         </CSSTransition>
     );
 };
+
+export default Cursor;

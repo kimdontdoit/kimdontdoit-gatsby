@@ -47,7 +47,6 @@ const Seo = (props) => {
     const pageTitle = useMemo(
         () =>
             skipSiteName ? title : `${title} ${titleSeparator} ${defaultTitle}`,
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         [skipSiteName, title]
     );
 
@@ -168,8 +167,7 @@ const Seo = (props) => {
             )}
 
             <script type="application/ld+json">
-                {/*
-                `
+                {`
                 {
                     "@context": "https://schema.org",
                     "@type": "Person",
@@ -200,8 +198,7 @@ const Seo = (props) => {
                         "addressRegion": "Quebec"
                     }
                 }
-                `
-            */}
+                `}
             </script>
         </Helmet>
     );

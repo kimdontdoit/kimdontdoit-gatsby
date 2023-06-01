@@ -1,7 +1,7 @@
 {
-  "name": "kimdontdoit-ai",
+  "name": "kimdontdoit",
   "version": "1.0.0",
-  "description": "A website for Kimdontdoit.ai",
+  "description": "Kimdontdoit personal/experimental blog built with the-great-Gatsby-theme",
   "author": "Vladislav Kim",
   "scripts": {
     "start": "gatsby develop",
@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.14",
+    "@prisma/client": "^4.13.0",
     "@studio-freight/lenis": "^1.0.10",
-    "@tanstack/react-query": "^4.29.5",
-    "classnames": "^2.3.2",
+    "@supabase/supabase-js": "^2.21.0",
     "dayjs": "^1.11.7",
     "gatsby": "^5.9.0",
     "gatsby-plugin-image": "^3.9.0",
@@ -26,10 +26,16 @@
     "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sharp": "^5.9.0",
     "gatsby-plugin-sitemap": "^6.9.0",
+    "gatsby-remark-autolink-headers": "^6.9.0",
+    "gatsby-remark-copy-linked-files": "^6.9.0",
+    "gatsby-remark-images": "^7.9.0",
+    "gatsby-remark-prismjs": "^7.9.0",
+    "gatsby-remark-relative-images": "^2.0.2",
     "gatsby-source-filesystem": "^5.9.0",
-    "gatsby-source-wordpress": "^7.9.0",
+    "gatsby-transformer-remark": "^6.9.0",
     "gatsby-transformer-sharp": "^5.9.0",
     "i18next": "^22.4.15",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -42,12 +48,12 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
-    "eslint-config-react-app": "^7.0.1",
     "gatsby-plugin-netlify": "^5.1.0",
     "gatsby-plugin-postcss": "^6.9.0",
     "postcss": "^8.4.23",
     "postcss-import": "^15.1.0",
     "postcss-reporter": "^7.0.5",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "prisma": "^4.13.0"
   }
 }

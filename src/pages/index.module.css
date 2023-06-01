@@ -1,18 +1,43 @@
-.heroSection {
-  @apply pt-32;
-  background-color: #e5e7ea;
+.hero {
+  background: var(--color-primary);
 }
 
-.bigTitle {
-  @apply font-bold text-4xl leading-tight;
-  @apply md:text-6xl md:leading-tight md:whitespace-pre-line;
+.kim {
+  @apply inline-block;
+
+  & button {
+    cursor: default;
+  }
+
+  .name {
+    @apply sr-only md:not-sr-only;
+    color: var(--color-accent);
+    position: absolute;
+    font-weight: 600;
+    font-size: 15px;
+    white-space: nowrap;
+    opacity: 90%;
+    transform: rotate(6deg) translate(-50px, -8px);
+  }
 }
 
-.sideKick {
-  @apply leading-tight mb-12;
+.card {
+  @apply shadow-sm rounded-xl border border-zinc-200;
 }
 
-.homeContainer {
-  @apply mx-auto;
-  max-width: 640px;
+.blockContent {
+  @apply p-8 pb-16;
+  max-width: 25rem;
+}
+
+.workSection {
+  background: #f6f8fb;
+
+  & img {
+    border-radius: 8px;
+  }
+}
+
+.currentSection {
+  background: #f6f8fb;
 }
