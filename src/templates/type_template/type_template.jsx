@@ -69,7 +69,7 @@ export default function TypeTemplate({ data }) {
 }
 
 export const query = graphql`
-    query singleType($id: String!, $title: String, $language: String!) {
+    query ($id: String!, $title: String, $language: String!) {
         type: markdownRemark(id: { eq: $id }) {
             id
             frontmatter {

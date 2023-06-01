@@ -114,7 +114,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 ) {
                     // TYPE:PORTFOLIO TEMPLATE
                     template = path.resolve(
-                        `./src/templates/${node.sourceInstanceName}_template/${node.sourceInstanceName}_template.jsx`
+                        `./src/templates/portfolio_template/portfolio_template.jsx`
                     );
                 } else if (
                     node.sourceInstanceName === "post" &&
